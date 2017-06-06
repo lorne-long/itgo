@@ -9,10 +9,17 @@
 </template>
 <script type="text/ecmascript-6">
   import "./assets/scss/base.scss";
+
   import  "./assets/scss/font.scss";
   import "./assets/scss/mixin.scss";
+
+
+//  import alerts from "base/msgbox/msgbox.js";
+  import cover from 'base/cover/cover';
   import footer from './views/_components/footer';
+  console.log(cover)
   export default {
+    mixins:[cover],
     name:'app',
     data(){
       return {
@@ -25,6 +32,7 @@
         const toDepth=to.path.split('/').length;
         const fromDepth=from.path.substring(0,from.path.length-2).split('/').length
         this.transitionName=toDepth<fromDepth ? 'slide_back' : 'slide';
+        this.value=!this.value;
       }
     },
     components:{
