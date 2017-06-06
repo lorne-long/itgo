@@ -1,5 +1,10 @@
 import manager from './manager'
 export default {
+	data(){
+		return {
+			bodyOverflow:null
+		}
+	},
   props: {
     value: {
       type: Boolean,
@@ -24,14 +29,14 @@ export default {
   },
   watch:{
     value(val) {
-      if (val) {
-        manager.open(this)
-      } else {
-        manager.close(this)
-      }
+	      if (val) {
+	        manager.open(this)
+	      } else {
+	        manager.close(this)
+	      }
     }
   },
-  beforeDestroy () {
+  beforeDestroy() {
     manager.close(this);
   }
 }

@@ -13,8 +13,8 @@
           </div>
         </div>
         <div class="msgbox-btns">
-          <button :class="[ cancelButtonClasses ]" v-show="showCancelButton" @click="handleAction('cancel')">{{ cancelButtonText }}</button>
-          <button :class="[ confirmButtonClasses ]" v-show="showConfirmButton" @click="handleAction('confirm')">{{ confirmButtonText }}</button>
+          <button  v-show="showCancelButton" @click="handleAction('cancel')">{{ cancelButtonText }}</button>
+          <button  v-show="showConfirmButton" @click="handleAction('confirm')">{{ confirmButtonText }}</button>
         </div>
       </div>
     </transition>
@@ -27,12 +27,9 @@
 <script type="text/babel">
   let CONFIRM_TEXT = '确定';
   let CANCEL_TEXT = '取消';
-
-  import Popup from 'ui/src/utils/popup';
-
+  import cover from 'base/cover.vue';
   export default {
-    mixins: [ Popup ],
-
+    mixins: [cover],
     props: {
       modal: {
         default: true
@@ -78,9 +75,7 @@
       doClose() {
         this.value = false;
         this._closing = true;
-
         this.onClose && this.onClose();
-
         setTimeout(() => {
           if (this.modal && this.bodyOverflow !== 'hidden') {
             document.body.style.overflow = this.bodyOverflow;
@@ -95,7 +90,6 @@
           this.doAfterClose();
         }
       },
-
       handleAction(action) {
         if (this.$type === 'prompt' && action === 'confirm' && !this.validate()) {
           return;
@@ -144,7 +138,6 @@
           this.validate();
         }
       },
-
       value(val) {
         this.handleInputType(this.inputType);
         if (val && this.$type === 'prompt') {
@@ -155,7 +148,6 @@
           }, 500);
         }
       },
-
       inputType(val) {
         this.handleInputType(val);
       }

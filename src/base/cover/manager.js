@@ -51,6 +51,7 @@ const manager = {
     if(manager.modalDom){
       return;
     }
+   
     var dom= getModal();
     document.body.appendChild(dom);
     dom.style.zIndex =manager.nextZIndex();
