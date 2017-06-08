@@ -1,5 +1,5 @@
 //代理 路由
-let master_footer=(resolve) => resolve(require('views/_master/master-footer.vue'));
+let master_footer=(resolve) => resolve(require('views/index'));
 export default [{
 	path: "/agent",
 	name: 'agent',

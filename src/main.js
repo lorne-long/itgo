@@ -3,7 +3,7 @@ import Vue from 'vue'; //引入vue
 import store from './store';	//加载状态管理器
 import storage from './util/storage';	//加载状态管理器
 import router from './router';//加载路由器
-
+import prototype from './util/prototype';//加载原型方法
 import components from 'base/index.js';//装载公共模板
 
 import filters from './vue-extend/filters';//装载过滤器

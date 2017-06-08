@@ -1,6 +1,9 @@
 <template>
   <div class="customerServices j-customerServices hidden">
-    <div>
+
+    <a v-for="(i,item) in data" href="item.href">
+
+    </a>
       <a class="customerServices1" href="##" target="_blank">
         在线客服
       </a>
@@ -11,7 +14,6 @@
       </c:choose>
       <a href="tel:4000000000"  class="customerServices3">4000000000</a>
       <span class="j-customerServicesCancel">取消</span>
-    </div>
   </div>
 </template>
 <script type="text/ecmascript-6">
@@ -19,7 +21,11 @@
         data() {
             return {};
         },
-        props:{},
+        props:{
+          data:{
+            type:Array
+          }
+        },
         methods:{},
         computed:{},
         created(){

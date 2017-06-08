@@ -2125,7 +2125,6 @@ select.without_style.history_select {
 	color: #999;
 }
 .layout_item_list02 .toggle_content {
-	display: none;
 	padding: 15px 20px 15px 15px;
 	background: #eee;
 }
@@ -3021,7 +3020,7 @@ select.without_style.history_select {
 }
 
 
-//////////////////// Julien    
+//////////////////// Julien
 
 .mt12{
 	margin-top: 12px !important;
@@ -3186,14 +3185,14 @@ select.without_style.history_select {
 	background: #FFF;
 	overflow: hidden;
 	z-index: 3;
-	
+
 }
 .app_download span{
 	width: 14px;
     margin: 20px 5px;
 }
-.app_download span img{ 
-	
+.app_download span img{
+
 }
 .download_icon{
 	margin:5px auto;
@@ -3225,7 +3224,7 @@ select.without_style.history_select {
 .section_find{
 	width: 100%;
 	height:180px;
-			
+
 }
 .section_icon{
 	height: 100%;
@@ -3241,7 +3240,7 @@ select.without_style.history_select {
 	bottom: 45px;
 	right: 0;
 	margin: auto;
-	
+
 }
 .section_icon p{
 	width: 100%;

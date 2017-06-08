@@ -45,11 +45,10 @@
   let vip_gold=(resolve) => resolve(require('../discount-items/vip-gold'));
   let birthday_gold=(resolve) => resolve(require('../discount-items/birthday-gold'));
   let recommend_firend=(resolve) => resolve(require('../discount-items/recommend-firend'));
-
   export default {
     data() {
       return{
-        actives:'vip_gold',
+        actives:'save_send',
         items:{save_send,wash_code,discount_code,help_gold,vip_gold,birthday_gold,recommend_firend}
       };
     }

@@ -14,4 +14,10 @@ Vue.filter('dateTimeFormatter',function dateTimeFormatter(timestamp, format = 'Y
 });
 
 
+Vue.filter('toFixed',function dateTimeFormatter(val,_number='2'){
+  let _val= parseFloat(val).toString();
+    _val=isNaN(_val)?"0":_val;
+   _val+=_val.indexOf(".")>-1?"00":".00";
+  return _val.replace(new RegExp('(\\d*\\.\\d{'+_number+'})\\d*','g'),"$1")
+});
 export  default {}

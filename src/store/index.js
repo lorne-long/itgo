@@ -1,29 +1,40 @@
 import Vue from 'vue'; //引入vue
 import Vuex from 'vuex'; //引入vue
 
-import cart from './modules/cart'; //mutations
-import other from './modules/other'; //mutations
 import types from '@/util/types'; //mutations
+
 Vue.use(Vuex);
 
 export default new Vuex.Store({
-	modules:{
-		cart,
-		other
-	},
   state:{
     islogin:false,
 		userData:{
+        toTal:0,
+        userData:{
+          qq:"qq",
+          loginname:"loginname",
+          accountName:"accountName",
+          phone:"phone",
+          email:"email",
+          accountMoney:0
+        }
 		}
 	},
+
   mutations:{
     setLogin(state,val){
       state.islogin=val;
+    },
+    setUserData(state,val){
+       Object.assign(state.userData,val||{});
     }
   },
   actions:{
     setLogin({commit},val){
         commit("setLogin",val);
+    },
+    setUserData({commit},val){
+        commit("setUserData",val);
     }
   }
 });

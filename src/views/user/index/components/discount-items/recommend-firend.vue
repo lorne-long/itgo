@@ -7,26 +7,45 @@
     </form-tip>
 
 
-    <div class="user_refer_link_wrap">
+    <div class="user_refer_link_wrap" @click="copy">
      您的专属推荐链接 (点击可复制)
-      <div class="link_ref">http://103.255.44.10:2888?friendcode=46184</div>
+      <div class="link_ref" ref="linkurl">http://103.255.44.10:2888?friendcode={{url}}</div>
     </div>
     <div class="item_list">
       推荐奖金
-      <div id="friend-balance" class="item_list_money text_red">0</div>
+      <div id="friend-balance" class="item_list_money text_red">{{money}}</div>
     </div>
   </div>
 </template>
 <script>
-  import  "./public.scss"
+  import  "./public.scss";
+  import  {queryFriendBonue} from "api/preferential-terms";
   export default {
     data() {
-      return {};
+      return {
+        money:0,
+        url:""
+      };
     },
     props:{},
-    methods:{},
+    methods:{
+       copy(){
+         var save = (e)=>{
+           e.clipboardData.setData('text/plain',this.$refs.linkurl.innerHTML);
+           e.preventDefault();
+         }
+         document.addEventListener('copy', save);
+         document.execCommand('copy');
+         document.removeEventListener('copy',save);
+         toast('复制成功');
+       }
+    },
     computed:{},
     created(){
+      queryFriendBonue().then(data=>{
+        this.money=data.data.money;
+        this.url=data.data.url;
+      })
     },
     components:{
       "form-tip":require("./form-tip.vue")

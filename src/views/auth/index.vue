@@ -1,5 +1,5 @@
 <template>
-	<div class="auth ">
+	<div class="auth">
 		<img class="auth-logo" src="../../assets/images/logo.png"/>
 		<div class="tab-auth">
 			<router-link to="/login/index">会员登录</router-link>
@@ -8,12 +8,19 @@
     <keep-alive>
 		  <router-view></router-view>
     </keep-alive>
-    <v-footer></v-footer>
 	</div>
 </template>
+<script>
+  export default {
+    data(){
+      return {
+      }
+    }
+  }
+</script>
 <style lang="scss">
   @import "../../assets/scss/mixin.scss";
-  .auth-logo{  margin: r(68) auto; display: block; }
+  .auth-logo{  margin:r(68) auto; display: block; }
   .tab-auth{
     margin-bottom: r(30);
     text-align: center;

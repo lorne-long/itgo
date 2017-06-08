@@ -69,6 +69,7 @@
         methods:{},
         computed:{},
         created(){
+          this.$emit("setHeader","转账");
         },
         components:{}
     };

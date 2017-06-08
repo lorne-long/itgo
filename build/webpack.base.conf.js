@@ -30,7 +30,8 @@ module.exports = {
       'agent':resolve('src/views/agent'),
       'user':resolve('src/views/user'),
       'components':resolve('src/components'),
-      'assets':resolve('src/assets')
+      'assets':resolve('src/assets'),
+      '@store':resolve('src/store')
     }
   },
   module: {

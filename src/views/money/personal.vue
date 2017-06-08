@@ -1,7 +1,95 @@
 <template>
+  <div id="page_content" class="flex_1">
+    <div class="page_content_wrap withdraw_content_wrap">
+      <div class="sec_box main_account_sec j-content1">
+        <h3>主账户</h3>
+        <p><span class="money_text j-mainMoney">87.13</span> 元</p>
+      </div>
+      <div class="layout_form layout_form04 j-content1">
+        <div class="form_field_warp">
+          <div class="form_field with_right_label">
+            <span class="form_field_label">金额</span>
+            <div class="form_field_input"><input type="text" placeholder="最少100元" class="j-money"></div>
+            <span class="right_label">元</span>
+          </div>
+          <div class="form_field bank_card_select">
+            <span class="form_field_label">取款至</span>
+            <span class="icon icon_logo_bank icon_logo_02"></span><!-- 不同银行卡的样式 icon_logo_01 icon_logo_02 -->
+            <div class="form_field_input">
+              <select class="j-bankCard"><option value="365743">招商银行（尾号8521）</option><option value="365747">齐商银行（尾号9945）</option></select>
+            </div>
+          </div>
+        </div>
+        <div class="btn_wrap">
+          <a href="javascript:void(0);" class="btn btn01 j-submit">提交</a>
+        </div>
+      </div>
+      <div class="bottom_link j-content1"><a href="/mobile/addBankCard.jsp">添加银行卡？</a></div>
+      <div class="page_content_wrap j-content2 hidden">
+        <div class="layout_operation_result normal_padding">
+          <div class="sec_box">
+            <img class="icon_top" src="images/icons/icon_ok.png" width="78" height="79">
+            <h3>取款申请成功</h3>
+            <p class="result_text">金额 <span class="j-getMoney"></span></p>
+            <div class="space_border"></div>
+            <p class="info_text">工作人员正在为您处理，如果您的各项资料正确，
+              取款金额会在1小时内到达您的绑定银行账户。</p>
+          </div>
+          <div class="btn_wrap no_padding">
 
-    <div class="personal">
+
+            <a href="/mobile/accountHistory.jsp" class="btn btn01">查看取款记录</a>
+
+
+
+
+          </div>
+        </div>
+      </div>
+
+      <div class="dialog_wrap dialog_with_title j-content">
+        <div class="dialog_main">
+          <div class="title_wrap">请输入支付密码</div>
+          <div class="dialog_content">
+            <div class="layout_form layout_form_dialog">
+              <div class="form_field_warp">
+                <div class="form_field">
+                  <span class="form_field_label">银行</span>
+                  <div class="form_field_input j-card"></div>
+                </div>
+                <div class="form_field no_border">
+                  <span class="form_field_label">金额</span>
+                  <div class="form_field_input"><span class="money_text j-money2"></span></div>
+                </div>
+                <div class="form_field with_icon_label form_field_password with_right_label">
+                  <div class="form_field_input"><input type="password" placeholder="支付密码是由6位纯数字组成的" maxlength="6" class="j-payPassword"></div>
+                  <span class="right_label"></span>
+                </div>
+              </div>
+              <div class="btn_wrap">
+                <a href="javascript:void(0);" class="btn btn01 j-submit2">确定</a>
+                <a href="javascript:void(0);" class="btn btn02 j-cancel mt10">取消</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="dialog_wrap dialog_with_icon j-tips">
+        <div class="dialog_main">
+          <div class="icon_wrap"><img src="/mobile/images/icons/icon_warn.png" width="79" height="79"></div>
+          <div class="dialog_content">
+            <p>您还没有设置支付密码，<br>
+              <span class="text_black02">请先完成支付密码设置。</span></p>
+          </div>
+          <div class="btn_wrap">
+            <a href="/mobile/setPayPassword.jsp" class="btn btn01 btn_ok">确定</a>
+            <a href="javascript:void(0)" class="btn btn02 j-cancel mt10">取消</a>
+
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 </template>
 <script>
     export default {
@@ -12,6 +100,7 @@
         methods:{},
         computed:{},
         created(){
+          this.$emit("setHeader","取款");
         },
         components:{}
     };

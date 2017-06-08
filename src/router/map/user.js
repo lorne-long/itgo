@@ -1,19 +1,33 @@
-
-let master_footer=(resolve) => resolve(require('views/_master/master-footer.vue'));
 let index=(resolve) => resolve(require('user/index/index.vue'));
-
-
-export default [{
-	path: "/user",
-  name: 'user',
-  component:master_footer,
-  redirect:"/user/index",
-	children: [{
-			path: "index",
-			component:index,
-			meta:{
-				needAuth: true //需登录
-			}
-		}
-	]
-}]
+let history=(resolve) => resolve(require('views/common/history.vue'));
+let message=(resolve) => resolve(require('views/common/message.vue'));
+export default [
+  {
+    path:"/user",
+    name:'user',
+    redirect:"/user/index",
+    meta:{
+      needAuth:true //需登录
+    }
+  },
+  {
+    path:"/user/index",
+    component:index,
+    meta:{
+      needAuth:true //需登录
+    }
+  },{
+    path:"/user/history",
+    component:history,
+    meta:{
+      needAuth:true //需登录
+    }
+  },
+  {
+    path:"/user/message",
+    component:message,
+    meta:{
+      needAuth:true //需登录
+    }
+  }
+]

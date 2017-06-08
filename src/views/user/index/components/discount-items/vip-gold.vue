@@ -10,7 +10,9 @@
         <div class="present_box ">
           <div class="present_box_content">
             本月投注额<br>
-            <span class="money_text text_red ">0</span>
+            <span class="money_text text_red ">
+              {{data.betList[data.betList.length-1].bet}}
+            </span>
           </div>
           <div class="present_box_arrow"></div>
         </div>
@@ -18,49 +20,50 @@
           <div class="progress_info_val j-progress_info_val" style="width: 0%;"></div>
         </div>
         <div class="user_vip_level_info">
-          <div class="fl" style="width:16.666666666666668%">
-            <div class="level_info_label text_red">VIP 2</div>
-            <div class="level_info_text">100,000</div>
-          </div>
-          <div class="fl" style="width:16.666666666666668%">
-            <div class="level_info_label text_red">VIP 3</div>
-            <div class="level_info_text">500,000</div>
-          </div>
-          <div class="fl" style="width:16.666666666666668%">
-            <div class="level_info_label text_red">VIP 4</div>
-            <div class="level_info_text">1,000,000</div>
-          </div>
-          <div class="fl" style="width:16.666666666666668%">
-            <div class="level_info_label text_red">VIP 5</div>
-            <div class="level_info_text">2,000,000</div>
-          </div>
-          <div class="fl" style="width:16.666666666666668%">
-            <div class="level_info_label text_red">VIP 6</div>
-            <div class="level_info_text">5,000,000</div>
-          </div>
-          <div class="fl" style="width:16.666666666666668%">
-            <div class="level_info_label text_red">VIP 7</div>
-            <div class="level_info_text">9,999,999,999</div>
+          <div v-for="(item,i) in data.upgradeThresholdList" class="fl" style="width16%">
+            <div class="level_info_label text_red">VIP {{item.levelName}}</div>
+            <div class="level_info_text">{{item.upgradethreshold}}</div>
           </div>
         </div>
       </div>
     </div>
-    <a href="javascript:void(0);" class="btn btn01 btn_disable">申请礼金</a>
+    <a href="javascript:void(0);" @click="submit" class="btn btn01 btn_disable">申请礼金</a>
     <div class="bottom_info_text">每月仅可自助申请一次哟</div>
-  </div>
   </div>
 </template>
 
 <script>
   import  "./public.scss"
+  import  {checkUpgrade,getBetUpgrateVO} from "api/preferential-terms"
   export default {
     data() {
-      return {};
+      return {
+            data:{ }
+      };
     },
     props:{},
-    methods:{},
-    computed:{},
+    methods:{
+      submit(){
+        checkUpgrade().then(data=>{
+            toast(data.message)
+        })
+      }
+    },
+    computed:{
+      username(){
+        return this.$store.state.userData.loginname;
+      }
+    },
     created(){
+      getBetUpgrateVO({username:this.username}).then(data=>{
+        if(data.success){
+            this.data=data.data;
+        }else{
+              toast(data.message)
+        }
+      }).catch(err=>{
+         toast("晋级查询失败");
+      })
     },
     components:{
       "form-tip":require("./form-tip.vue")

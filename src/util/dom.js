@@ -1,6 +1,6 @@
 /* istanbul ignore next */
-import Vue from 'vue';
-const isServer = Vue.prototype.$isServer;
+
+
 const SPECIAL_CHARS_REGEXP = /([\:\-\_]+(.))/g;
 const MOZ_HACK_REGEXP = /^moz([A-Z])/;
 const ieVersion = isServer ? 0 : Number(document.documentMode);
@@ -8,159 +8,69 @@ const ieVersion = isServer ? 0 : Number(document.documentMode);
 const trim = function(string) {
   return (string || '').replace(/^[\s\uFEFF]+|[\s\uFEFF]+$/g, '');
 };
+NodeList.prototype.addClass = Element.prototype.hasClass = function(csName) {
+  var x = this.className.split(" ") || [];
+  return x.indexOf(csName)>-1;
+}
 
-const camelCase = function(name) {
-  return name.replace(SPECIAL_CHARS_REGEXP, function(_, separator, letter, offset) {
-    return offset ? letter.toUpperCase() : letter;
-  }).replace(MOZ_HACK_REGEXP, 'Moz$1');
-};
-
-export const on = (function() {
-  if (!isServer && document.addEventListener) {
-    return function(element, event, handler) {
-      if (element && event && handler) {
-        element.addEventListener(event, handler, false);
-      }
-    };
-  } else {
-    return function(element, event, handler) {
-      if (element && event && handler) {
-        element.attachEvent('on' + event, handler);
-      }
-    };
-  }
-})();
-
-export const off = (function() {
-  if (!isServer && document.removeEventListener) {
-    return function(element, event, handler) {
-      if (element && event) {
-        element.removeEventListener(event, handler, false);
-      }
-    };
-  } else {
-    return function(element, event, handler) {
-      if (element && event) {
-        element.detachEvent('on' + event, handler);
-      }
-    };
-  }
-})();
-
-export const once = function(el, event, fn) {
-  var listener = function() {
-    if (fn) {
-      fn.apply(this, arguments);
-    }
-    off(el, event, listener);
-  };
-  on(el, event, listener);
-};
-
-export function hasClass(el, cls) {
-  if (!el || !cls) return false;
-  if (cls.indexOf(' ') !== -1) throw new Error('className should not contain space.');
-  if (el.classList) {
-    return el.classList.contains(cls);
-  } else {
-    return (' ' + el.className + ' ').indexOf(' ' + cls + ' ') > -1;
-  }
-};
-
-export function addClass(el, cls) {
-  if (!el) return;
-  var curClass = el.className;
-  var classes = (cls || '').split(' ');
-
-  for (var i = 0, j = classes.length; i < j; i++) {
-    var clsName = classes[i];
-    if (!clsName) continue;
-
-    if (el.classList) {
-      el.classList.add(clsName);
+NodeList.prototype.addClass = Element.prototype.classToggle = function(csName) {
+  var item = !this.length ? [this] : [].slice.call(this);
+  for(var i = 0; i < item.length; i++) {
+    var x = item[i].className.split(" ") || [];
+    var index = x.indexOf(csName);
+    if(index > -1) {
+      x.splice(index, 1);
     } else {
-      if (!hasClass(el, clsName)) {
-        curClass += ' ' + clsName;
-      }
+      x.push(csName);
     }
+    item[i].className = x.join(" ");
   }
-  if (!el.classList) {
-    el.className = curClass;
-  }
-};
-
-export function removeClass(el, cls) {
-  if (!el || !cls) return;
-  var classes = cls.split(' ');
-  var curClass = ' ' + el.className + ' ';
-
-  for (var i = 0, j = classes.length; i < j; i++) {
-    var clsName = classes[i];
-    if (!clsName) continue;
-
-    if (el.classList) {
-      el.classList.remove(clsName);
-    } else {
-      if (hasClass(el, clsName)) {
-        curClass = curClass.replace(' ' + clsName + ' ', ' ');
-      }
+  return this;
+}
+NodeList.prototype.addClass = Element.prototype.addClass = function(csName) {
+  var item = !this.length ? [this] : [].slice.call(this);
+  for(var i = 0; i < item.length; i++) {
+    var x = item[i].className.split(" ") || [];
+    if(x.indexOf(csName) == -1) {
+      x.push(csName);
     }
+    item[i].className = x.join(" ");
   }
-  if (!el.classList) {
-    el.className = trim(curClass);
-  }
-};
-
-export const getStyle = ieVersion < 9 ? function(element, styleName) {
-  if (isServer) return;
-  if (!element || !styleName) return null;
-  styleName = camelCase(styleName);
-  if (styleName === 'float') {
-    styleName = 'styleFloat';
-  }
-  try {
-    switch (styleName) {
-      case 'opacity':
-        try {
-          return element.filters.item('alpha').opacity / 100;
-        } catch (e) {
-          return 1.0;
-        }
-      default:
-        return (element.style[styleName] || element.currentStyle ? element.currentStyle[styleName] : null);
+  return this;
+}
+NodeList.prototype.removeClass=Element.prototype.removeClass = function(csName) {
+  var item = !this.length ? [this] : [].slice.call(this);
+  for(var i = 0; i < item.length; i++) {
+    var x = item[i].className.split(" ") || [];
+    var index = x.indexOf(csName);
+    if(index > -1) {
+      x.splice(index, 1);
     }
-  } catch (e) {
-    return element.style[styleName];
+    item[i].className = x.join(" ");
   }
-} : function(element, styleName) {
-  if (isServer) return;
-  if (!element || !styleName) return null;
-  styleName = camelCase(styleName);
-  if (styleName === 'float') {
-    styleName = 'cssFloat';
+  return this;
+}
+NodeList.prototype.show = Element.prototype.show = function() {
+  var item = !this.length ? [this] : [].slice.call(this);
+  for(var i = 0; i < item.length; i++) {
+    item[i].style.display = "block";
   }
-  try {
-    var computed = document.defaultView.getComputedStyle(element, '');
-    return element.style[styleName] || computed ? computed[styleName] : null;
-  } catch (e) {
-    return element.style[styleName];
+  return this;
+}
+NodeList.prototype.hide = Element.prototype.hide = function() {
+  var item = !this.length ? [this] : [].slice.call(this);
+  for(var i = 0; i < item.length; i++) {
+    item[i].style.display = "none";
   }
-};
-export function setStyle(element, styleName, value) {
-  if (!element || !styleName) return;
-
-  if (typeof styleName === 'object') {
-    for (var prop in styleName) {
-      if (styleName.hasOwnProperty(prop)) {
-        setStyle(element, prop, styleName[prop]);
-      }
-    }
-  } else {
-    styleName = camelCase(styleName);
-    if (styleName === 'opacity' && ieVersion < 9) {
-      element.style.filter = isNaN(value) ? '' : 'alpha(opacity=' + value * 100 + ')';
-    } else {
-      element.style[styleName] = value;
-    }
+  return this;
+}
+NodeList.prototype.toggle = Element.prototype.toggle = function() {
+  var item = !this.length ? [this] : [].slice.call(this);
+  for(var i = 0; i < item.length; i++) {
+    item[i].style.display = this.css("display") == "none" ? "block" : "none";
   }
-};
+  return this;
+}
+Element.prototype.css = function(_style) {
+  return window.getComputedStyle ? w.getComputedStyle(this, null)[_style] : this.currentStyle[_style];
+}

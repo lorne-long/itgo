@@ -91,6 +91,7 @@
         methods:{},
         computed:{},
         created(){
+          this.$emit("setHeader","充值");
         }
     };
 </script>
