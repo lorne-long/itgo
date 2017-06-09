@@ -52,7 +52,7 @@ const defaultCallback = action => {
   if (currentMsg) { //确定实例化成功
     var callback = currentMsg.callback; //回调
     if (typeof callback === 'function') {
-      if (instance.showInput) { 
+      if (instance.showInput) {
       	//显示了 input框表示是 prompt模式   回调时把值传递出去
         callback(instance.inputValue, action);
       } else {
@@ -89,7 +89,7 @@ var initInstance = function() {
 //下一次弹框
 var showNextMsg = function() {
   if (!instance) {//单例模式
-    initInstance(); 
+    initInstance();
   }
   if (!instance.value || instance.closeTimer) {
     if (msgQueue.length > 0) {
@@ -103,7 +103,6 @@ var showNextMsg = function() {
       if (options.callback === undefined) {
         instance.callback = defaultCallback;
       }
-
       //有些值未设置的话 需要设定一次
       ['modal', 'showClose', 'closeOnClickModal', 'closeOnPressEscape'].forEach(prop => {
         if (instance[prop] === undefined) {

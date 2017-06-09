@@ -1,30 +1,53 @@
 <template>
-  <div class="msgbox-wrapper">
-    <transition name="msgbox-bounce">
-      <div class="msgbox" v-show="value">
-        <div class="msgbox-header" v-if="title !== ''">
-          <div class="msgbox-title">{{ title }}</div>
-        </div>
-        <div class="msgbox-content" v-if="message !== ''">
-          <div class="msgbox-message" v-html="message"></div>
-          <div class="msgbox-input" v-show="showInput">
-            <input v-model="inputValue" :placeholder="inputPlaceholder" ref="input">
-            <div class="msgbox-errormsg" :style="{ visibility: !!editorErrorMessage ? 'visible' : 'hidden' }">{{ editorErrorMessage }}</div>
+  <div class="dialog_wrap dialog_with_title j-content">
+
+    <div class="msgbox">
+          <div class="">{{title}}</div>
+          <div class="">{{title}}</div>
+           <div class="msgbox-btn">
+             <a class="btn-cancal" href=""></a>
+             <a href="btn-sure"></a>
+           </div>
+    </div>
+
+
+    <div class="dialog_main">
+      <div class="title_wrap">请输入支付密码</div>
+      <div class="dialog_content">
+        <div class="layout_form layout_form_dialog">
+          <div class="form_field_warp">
+            <div class="form_field">
+              <span class="form_field_label">银行</span>
+              <div class="form_field_input"></div>
+            </div>
+            <div class="form_field no_border">
+              <span class="form_field_label">金额</span>
+              <div class="form_field_input"><span class="money_text j-money2"></span></div>
+            </div>
+            <div class="form_field with_icon_label form_field_password with_right_label">
+              <div class="form_field_input"><input type="password" placeholder="支付密码是由6位纯数字组成的" maxlength="6" class="j-payPassword"></div>
+              <span class="right_label"></span>
+            </div>
+          </div>
+          <div class="btn_wrap">
+            <a href="javascript:void(0);" class="btn btn01 j-submit2">确定</a>
+            <a href="javascript:void(0);" class="btn btn02 j-cancel mt10">取消</a>
           </div>
         </div>
-        <div class="msgbox-btns">
-          <button  v-show="showCancelButton" @click="handleAction('cancel')">{{ cancelButtonText }}</button>
-          <button  v-show="showConfirmButton" @click="handleAction('confirm')">{{ confirmButtonText }}</button>
-        </div>
       </div>
-    </transition>
+    </div>
   </div>
 </template>
-
-
-
-
-<script type="text/babel">
+<style>
+  .msgbox{ position: fixed; top:50%;}
+  .msgbox-btn{ display: flex;}
+  .msgbox-btn> .btn-sure,.btn-cancal{
+     display: block; flex: 1;
+    line-height:40px;
+  }
+  .msgbox-btn .btn-cancal{border:1px solid #ccc;}
+</style>
+<script >
   let CONFIRM_TEXT = '确定';
   let CANCEL_TEXT = '取消';
   import cover from 'base/cover.vue';
@@ -55,123 +78,23 @@
     },
 
     computed: {
-      confirmButtonClasses() {
-        let classes = 'msgbox-btn msgbox-confirm ' + this.confirmButtonClass;
-        if (this.confirmButtonHighlight) {
-          classes += ' msgbox-confirm-highlight';
-        }
-        return classes;
-      },
-      cancelButtonClasses() {
-        let classes ='msgbox-btn msgbox-cancel ' + this.cancelButtonClass;
-        if (this.cancelButtonHighlight) {
-          classes += 'msgbox-cancel-highlight';
-        }
-        return classes;
-      }
+
     },
 
     methods: {
-      doClose() {
-        this.value = false;
-        this._closing = true;
-        this.onClose && this.onClose();
-        setTimeout(() => {
-          if (this.modal && this.bodyOverflow !== 'hidden') {
-            document.body.style.overflow = this.bodyOverflow;
-            document.body.style.paddingRight = this.bodyPaddingRight;
-          }
-          this.bodyOverflow = null;
-          this.bodyPaddingRight = null;
-        }, 200);
-        this.opened = false;
 
-        if (!this.transition) {
-          this.doAfterClose();
-        }
-      },
-      handleAction(action) {
-        if (this.$type === 'prompt' && action === 'confirm' && !this.validate()) {
-          return;
-        }
-        var callback = this.callback;
-        this.value = false;
-        callback(action);
-      },
-
-      validate() {
-        if (this.$type === 'prompt') {
-          var inputPattern = this.inputPattern;
-          if (inputPattern && !inputPattern.test(this.inputValue || '')) {
-            this.editorErrorMessage = this.inputErrorMessage || '输入的数据不合法!';
-            this.$refs.input.classList.add('invalid');
-            return false;
-          }
-          var inputValidator = this.inputValidator;
-          if (typeof inputValidator === 'function') {
-            var validateResult = inputValidator(this.inputValue);
-            if (validateResult === false) {
-              this.editorErrorMessage = this.inputErrorMessage || '输入的数据不合法!';
-              this.$refs.input.classList.add('invalid');
-              return false;
-            }
-            if (typeof validateResult === 'string') {
-              this.editorErrorMessage = validateResult;
-              return false;
-            }
-          }
-        }
-        this.editorErrorMessage = '';
-        this.$refs.input.classList.remove('invalid');
-        return true;
-      },
-
-      handleInputType(val) {
-        if (val === 'range' || !this.$refs.input) return;
-        this.$refs.input.type = val;
-      }
     },
 
     watch: {
-      inputValue() {
-        if (this.$type === 'prompt') {
-          this.validate();
-        }
-      },
-      value(val) {
-        this.handleInputType(this.inputType);
-        if (val && this.$type === 'prompt') {
-          setTimeout(() => {
-            if (this.$refs.input) {
-              this.$refs.input.focus();
-            }
-          }, 500);
-        }
-      },
-      inputType(val) {
-        this.handleInputType(val);
-      }
     },
 
     data() {
       return {
-        title: '',
+        title: '提示',
         message: '',
         type: '',
-        showInput: false,
-        inputValue: null,
-        inputPlaceholder: '',
-        inputPattern: null,
-        inputValidator: null,
-        inputErrorMessage: '',
-        showConfirmButton: true,
-        showCancelButton: false,
-        confirmButtonText: CONFIRM_TEXT,
-        cancelButtonText: CANCEL_TEXT,
-        confirmButtonClass: '',
-        confirmButtonDisabled: false,
-        cancelButtonClass: '',
-        editorErrorMessage: null,
+        CONFIRM_TEXT:CONFIRM_TEXT,
+        CANCEL_TEXT:CANCEL_TEXT
         callback: null
       };
     }

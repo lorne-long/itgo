@@ -7,7 +7,8 @@ export default (to,from,next) =>{
   if(to.matched.some(function(item,i){
       return item.meta.needAuth;
     })){
-    if(!store.state.islogin||!storage.get("islogin")){ //没有登录去检查一次 怕煞笔刷新页面 然后数据掉了 本地存储 太久检查一次最好
+
+    // if(!store.state.islogin){ //没有登录去检查一次 怕煞笔刷新页面 然后数据掉了 本地存储 太久检查一次最好
       checkLogin().then((data)=>{
         let isLogin=data.data.loginname&&(data.success||data.code=='10000');
         store.dispatch("setLogin",isLogin);
@@ -24,9 +25,9 @@ export default (to,from,next) =>{
         storage.set("islogin",false);
         next({path:'/login/index',query:{rquest:from.fullPath}});
       });
-    }else{
-      next();
-    }
+    // }else{
+    //   next();
+    // }
   }
   else{
     next();

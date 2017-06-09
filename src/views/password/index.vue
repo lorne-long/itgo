@@ -14,7 +14,7 @@
           </li>
         </ul>
         <div class="btn_wrap">
-          <a href="javascript:void(0)" @click="logOut" class="btn btn01 j-exit">退出</a>
+          <a href="javascript:void(0)" @click="logOut" class="btn btn01">退出</a>
         </div>
       </div>
     </div>
@@ -22,6 +22,9 @@
 </template>
 <script>
   import {logOut} from 'api/authService';
+
+  import {checkWithdrawPwd} from 'api/safeCenter';
+
   export default {
     data() {
       return {
@@ -33,12 +36,25 @@
       logOut:function(){
         logOut();
         this.$router.push("/index");
+      },
+      checkPwd(){
+        checkWithdrawPwd().then(data=>{
+          if(data.success){
+            this.isSetPayPwd=data.data
+          }
+          else{
+            toast(data.message);
+          }
+        })
       }
     },
-    computed:{},
+    activated(){
+      this.checkPwd()
+    },
     created(){
       this.$emit("setHeader","安全中心");
       //此处有个判断判断是否设置支付密码 ajax请求
+      this.checkPwd();
     }
   };
 </script>

@@ -1,7 +1,7 @@
 import agent from './agent';
 import user from './user';
 import password from './password';
-import money from './money';
+import common from './common';
 let index=(resolve) => resolve(require('views/index'));
 let history=(resolve) => resolve(require('views/show/history/history'));
 let preferential=(resolve) => resolve(require('views/show/preferential/preferential'));
@@ -55,7 +55,7 @@ export default [
   ...agent,
   ...user,
   ...password,
-  ...money,
+  ...common,
   {
     path:"/",
     redirect:"/index"

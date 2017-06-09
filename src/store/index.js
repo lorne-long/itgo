@@ -16,7 +16,8 @@ export default new Vuex.Store({
           accountName:"accountName",
           phone:"phone",
           email:"email",
-          accountMoney:0
+          accountMoney:0,
+          level:0
         }
 		}
 	},

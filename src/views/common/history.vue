@@ -69,7 +69,7 @@
                   <td>{{item.flag}}</td>
                   <td>{{item.tempCreateTime}}</td>
               </tr>
-              <tr v-else>
+              <tr  v-if="data.total<=0">
                 <td colspan="4" algin="center" style="position: relative;padding: 2em;">无资料</td>
               </tr>
               </tbody>
@@ -81,7 +81,7 @@
                 <div class="m-grid-pagination-first flaticon-media25"></div>
                 <div class="m-grid-pagination-prev flaticon-media23"></div>
               </div>
-              <div class="m-grid-pagination-page"><span>第 </span><input type="text" value="1"><span> 页</span></div>
+              <div class="m-grid-pagination-page"><span>第</span><input type="text" value="1"><span> 页</span></div>
               <div class="m-grid-pagination-right">
                 <div class="m-grid-pagination-next flaticon-media23"></div>
                 <div class="m-grid-pagination-last flaticon-media25"></div>

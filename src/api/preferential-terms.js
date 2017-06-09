@@ -46,7 +46,7 @@ export function queryPTLosePromo(data){
 }
 
 export function getBetUpgrateVO(data){
-  return  ajax.get(_getBetUpgrateVO,data);
+  return  ajax.post(_getBetUpgrateVO,data);
 }
 export function checkUpgrade(data){
   return  ajax.post(_checkUpgrade,data);

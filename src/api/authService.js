@@ -6,9 +6,9 @@ import storage from '@/util/storage';
 let checkLogin="/asp/ajaxGetSessionPersonalData.php";/*** 检查登录*/
 let login="/mobi/login.php";/*** 登录*/
 let logout='/mobi/logout.php';/*** 登出*/
-let register='/mobi/register.php';/*** 登出*/
+let register='/mobi/register.php';/***注册*/
 
-// let check_code=;/***图片*/
+
 /**
  * 用户认证所用到的 API
  */

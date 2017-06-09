@@ -5,10 +5,14 @@
     </div>
     <div class="user_info_wrap">
       <div class="user_info_name">
-        <span class="user_name_text">{{userData.accountName}}</span><span class="vip_value">新会员</span>
-        <p>主账户&nbsp;&nbsp;&nbsp;<font>{{userData.accountMoney}}&nbsp;&nbsp;&nbsp;&nbsp;副账户&nbsp;&nbsp;<font>{{Deputy}}</font></font></p><font>
+        <span class="user_name_text">{{userData.accountName}}</span><span class="vip_value">
+        {{userData.level}}
+      </span>
+        <p>
+          主账户&nbsp;&nbsp;&nbsp;<font>{{userData.accountMoney}}&nbsp;&nbsp;&nbsp;&nbsp;副账户&nbsp;&nbsp;<font>{{Deputy}}</font></font>
+        </p><font>
       </font></div>
-      <font >
+      <font>
         <img class="avata_img" src="./img//avata.png">
         <img class="line_space" src="./img//bg02.png">
         <div class="user_center_menu_link display_flex_h">
@@ -27,10 +31,10 @@
           </div>
           <div class="icon_with_text flex_1">
 
-              <router-link to="/user/history">
+            <router-link to="/user/history">
               <span
-              class="icon icon_file"></span><span>记录</span>
-              </router-link>
+                class="icon icon_file"></span><span>记录</span>
+            </router-link>
           </div>
         </div>
         <div class="link_wrap">
