@@ -48,7 +48,7 @@
 </template>
 <script>
   import  "./index.scss";
-  import  {getAllMoney} from "api/user/getMoney"
+  import  {getAllMoney} from "api/user"
   export default {
     data() {
       return {

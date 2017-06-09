@@ -8,6 +8,8 @@ let _checkWithdrawPwd="/asp/checkWithdrawPwd.php"; //确认用户是否设置支
 let _change_pws="/asp/change_pws.php"; //修改登录密码
 let _modifyWithdrawPwd="/asp/modifyWithdrawPwd.php"; //修改支付密码
 let _bindWithdrawPwd="/asp/bindWithdrawPwd.php";//设置支付密码
+
+
 export function checkWithdrawPwd(data){
   return  ajax.get(_checkWithdrawPwd,data);
 }
