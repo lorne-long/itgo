@@ -44,7 +44,7 @@
       </font></div>
     <money-option>存款、取款、转账选项</money-option>
     <tab-menu></tab-menu>
-  </div>
+  </div>1
 </template>
 <script>
   import  "./index.scss";

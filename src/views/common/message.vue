@@ -9,13 +9,13 @@
               <h3>{{item.title}}</h3>
               <p>{{item.createDate}}</p></div>
           </div>
-          <transition name="slideH">
-              <div class="toggle_content" v-show="viewList[i]" >
+
+              <div class="toggle_content"  v-show="viewList[i]" >
                 <div class="toggle_content_main">
                     {{viewList[item.id] }}
                 </div>
               </div>
-            </transition>
+
         </div>
       </div>
     </div>
@@ -44,7 +44,7 @@
           }
           readMsg({msgID:val}).then(data=>{
             this.$set(this.viewList,i,true);
-            this.viewList[val]=data.content;
+            this.viewList[val]=data.data.content;
           });
         }
     },
@@ -64,12 +64,3 @@
     }
   };
 </script>
-<style>
-
-  /*.slideH-enter-active, .slideH-leave-active {*/
-    /*transition: all 1.5s;*/
-  /*}*/
-  /*.slideH-enter, .slideH-leave-active {*/
-    /*height: auto*/
-  /*}*/
-</style>
