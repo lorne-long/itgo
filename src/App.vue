@@ -19,6 +19,9 @@
         showfooter:true
       }
     },
+    computed:{
+
+    },
     watch:{
       "$route"(to,from){
         const toDepth=to.path.split('/').length;

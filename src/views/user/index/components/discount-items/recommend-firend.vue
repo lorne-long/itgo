@@ -3,7 +3,7 @@
     <form-tip>
       在您专属链接注册的好友，<br>
       当日30%的负盈利彩金将在次日派发给您！
-      <a href="/mobile/preferential.jsp" slot="link" class="text_red">详情 &gt;</a>
+      <a href="/static/preferential.jsp" slot="link" class="text_red">详情 &gt;</a>
     </form-tip>
 
 

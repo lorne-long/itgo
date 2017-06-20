@@ -3,7 +3,7 @@
       <form-tip>
         无限次领取，红利单日上限3888元！<br>
         更有限时限量100%存送惊喜等你来抢！
-        <a href="/mobile/preferential.jsp" slot="link" class="text_red">详情 &gt;</a>
+        <a href="/static/preferential.jsp" slot="link" class="text_red">详情 &gt;</a>
       </form-tip>
       <div class="form-public"><p><input @input="computedMoney" v-model.number="submitData.remit" placeholder="请填写转入金额" type="text"> <span class="right_label">元</span></p>
         <p><select v-model="Type">

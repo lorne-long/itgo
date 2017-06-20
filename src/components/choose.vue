@@ -32,35 +32,28 @@
 </script>
 <style lang="scss">
   @import "../assets/scss/mixin.scss";
-
   .switch {
     position: relative;
     display: inline-block;
     width: r(120);
     height: r(68); vertical-align: middle;
   }
-
   input:checked + .slider {
     background-color: #f66;
   }
-
   input:focus + .slider {
     box-shadow: 0 0 1px #f66;
   }
-
   input:checked + .slider:before {
     left: 0;
   }
-
   /* Rounded sliders */
   .slider.round {
     border-radius: r(68);
   }
-
   .slider.round:before {
     border-radius: 50%;
   }
-
   .slider:before {
     position: absolute;
     content: "";
@@ -71,7 +64,6 @@
     -webkit-transition: .4s;
     transition: .4s;
   }
-
   .slider {
     position: absolute;
     cursor: pointer;

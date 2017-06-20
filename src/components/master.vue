@@ -2,7 +2,9 @@
   <div class="master">
     <back-header :back="back">{{headerTxt}}</back-header>
     <transition name="slide">
-      <router-view @setHeader="setHeader"></router-view>
+      <router-view @setHeader="setHeader"
+                   @setBack="setBack">
+      </router-view>
     </transition>
   </div>
 </template>
@@ -10,15 +12,16 @@
   export default {
     data() {
       return {
-        headerTxt:""
+        headerTxt:"",
+        back:null
       };
     },
     methods:{
-      setHeader(val,fun){
+      setHeader(val){
         this.headerTxt=val;
-        this.back=fun;
       },
-      back(){
+      setBack(fun){
+        this.back=fun;
       }
     },
     components:{

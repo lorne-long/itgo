@@ -30,3 +30,5 @@ Date.prototype.format = function (fmt) { //author: meizz
 Date.prototype.addDay=function(days){
    return  new Date(this.getTime()+days*86400*1000);
 }
+
+export const DateFormat=Date.prototype.format

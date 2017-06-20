@@ -30,8 +30,8 @@ export default {
     }
   },
   // 组件被挂载时会判断show的值开控制打开
-  attached () {
-    if (this.show && this.overlay) {
+  mounted () {
+    if (this.value) {
       manager.open(this)
     }
   },
@@ -45,7 +45,7 @@ export default {
     		Vue.nextTick(() => {
             manager.open(this)
           });
-    		
+
     	}else{
     		manager.close(this);
     	}

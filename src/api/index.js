@@ -1,6 +1,7 @@
 // import Vue from 'vue'; //引入vue
 import _axios from 'axios'; //引入axios
-
+import store from '@/store';	//加载状态管理器
+import storage from '@/util/storage';
 var  ajax=_axios.create({
   baseURL:"http://112.213.126.135:4777",
   method:"get",
@@ -37,14 +38,12 @@ ajax.interceptors.response.use(function(response){
   if(response.status===200&&!response.data.hasOwnProperty("success")){
     response.data.success=response.data.code=="10000";
   }
-
   if(response.status===200&&response.data.code=="40001"){
-    store.dispatch("setLogin",false);
-    storage.set("islogin",false);
+    store.dispatch("SET_LOGIN",null);
   }
   return response.status===200?response.data:response;
 }, function (error){
-  alert(error)
+  //alert(error)
   console.log("请求数据失败:"+error);
   return Promise.reject(error);
 });

@@ -1,7 +1,7 @@
 <template>
   <div class="user_center_content">
     <div class="page_notice j-marquee">
-      <v-announceMent></v-announceMent>
+      <top-marquee></top-marquee>
     </div>
     <div class="user_info_wrap">
       <div class="user_info_name">
@@ -11,7 +11,8 @@
         <p>
           主账户&nbsp;&nbsp;&nbsp;<font>{{userData.accountMoney}}&nbsp;&nbsp;&nbsp;&nbsp;副账户&nbsp;&nbsp;<font>{{Deputy}}</font></font>
         </p><font>
-      </font></div>
+      </font>
+      </div>
       <font>
         <img class="avata_img" src="./img//avata.png">
         <img class="line_space" src="./img//bg02.png">
@@ -25,12 +26,11 @@
             </router-link>
           </div>
           <div class="icon_with_text flex_1">
-            <router-link to="/pwd/index">
+            <router-link to="/user/security">
               <span class="icon icon_shield"></span><span>安全</span>
             </router-link>
           </div>
           <div class="icon_with_text flex_1">
-
             <router-link to="/user/history">
               <span
                 class="icon icon_file"></span><span>记录</span>
@@ -38,39 +38,62 @@
           </div>
         </div>
         <div class="link_wrap">
-          <a href="javascript:void(0)" class="j-openCustomerServices"><span class="icon icon_chat04"></span></a>
-          <a href="/mobile/personal.jsp" class="link_config2"><img src="./img/icon_config.png" alt="Config"></a>
+          <a href="javascript:void(0)" @click="showSheet=!showSheet"><span class="icon icon_chat04"></span></a>
+          <router-link to="/user/personal" class="link_config2">
+            <img src="./img/icon_config.png" alt="Config">
+          </router-link>
         </div>
       </font></div>
     <money-option>存款、取款、转账选项</money-option>
     <tab-menu></tab-menu>
-  </div>1
+    <v-sheet @cover="sheet" :model="showSheet" :data="sheetData"></v-sheet>
+  </div>
 </template>
 <script>
   import  "./index.scss";
+  import topMarquee from "components/user-topMarquee"
+  import tabMenu from "./components/discount-menu/index.vue"
+  import moneyOption from "views/money/moneyOption.vue"
+  import vSheet from "base/sheet/sheet.vue"
+
   import  {getAllMoney} from "api/user"
+
+  import { mapGetters } from 'vuex'
   export default {
     data() {
       return {
-        Deputy:0,
+        sheetData: [
+          {
+            name: "400-2312314",
+            method(){
+              alert(1)
+            }
+          }
+        ],
+        Deputy: 0,
+        showSheet: false
       };
     },
-    computed:{
-      userData(){
-        return this.$store.state.userData;
+    watch: {},
+    computed: {
+        ...mapGetters(["userData"])
+    },
+    methods: {
+      sheet(val){
+        this.showSheet = val;
       }
     },
-    methods:{},
     created(){
-      getAllMoney(["Deputy","MAIN"],(data)=>{
-        this.Deputy=data[0].data;
-        this.$store.dispatch("setUserData",{accountMoney:data[1].data})
+      getAllMoney(["Deputy", "MAIN"], (data) => {
+        this.Deputy = data[0].data;
+        this.$store.dispatch("SET_USERDATA", {accountMoney: data[1].data})
       })
     },
-    components:{
-      "money-option":require("../../money/moneyOption.vue"),
-      "tab-menu":require("./components/discount-menu/index.vue"),
-      "v-announceMent":require("components/announceMent.vue")
+    components: {
+      moneyOption,
+      tabMenu,
+      topMarquee,
+      vSheet
     }
   };
 </script>

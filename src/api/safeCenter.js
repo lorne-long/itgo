@@ -25,12 +25,11 @@ export function bindWithdrawPwd(data){
   return  ajax.post(_bindWithdrawPwd,data);
 }
 
-
 let _findUserBankList="/asp/findUserBankList.php";//银行卡列表
 let _validateBankNo="/asp/validateBankNo.php";//校验银行卡列表
-let _bindBankNo="/mobi/bindBankNo.php";//银行卡列表
-
+let _bindBankNo="/mobi/bindBankNo.php";//绑定银行卡
 let _thirdWithdraw="/asp/thirdWithdraw.php";//取款提交
+
 export function findUserBankList(data){
   return  ajax.get(_findUserBankList,data);
 }

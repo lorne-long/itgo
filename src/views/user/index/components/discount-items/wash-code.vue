@@ -5,7 +5,7 @@
         <form-tip>
           所有平台 (非旋转类) 可随时自助洗码。<br>
           若当日没有洗码，次日自动派发到主账户！
-          <a href="/mobile/preferential.jsp" slot="link" class="text_red">详情 &gt;</a>
+          <a href="/static/preferential.jsp" slot="link" class="text_red">详情 &gt;</a>
         </form-tip>
     <div class="user_rebate_step01 user_center_nav_content_step show">
       <div class="layout_form no_padding with_last_border">

@@ -29,7 +29,7 @@
 .froms{
 padding:0 r(30);background-color:#fff;
   p { position: relative; border-bottom: 1px #ccc solid;  background-color: #fff; padding:0 r(15);}
-  input{ height: 100%;height: r(80);line-height: r(80);@include f(16px);width: 100%;color: #999; padding-left: r(80);border: none; }
+  input{ height: 100%;height: r(80);    box-sizing: border-box;outline: none; line-height: r(80);@include f(16px);width: 100%;color: #999; padding-left: r(80);border: none; }
   i {position: absolute; left: 0; @include f(30px);color: #f00;line-height: r(80);}
   .r-icon {position: absolute; right:0; top: 0; height: r(80); text-align: right;line-height: r(80); }
 }

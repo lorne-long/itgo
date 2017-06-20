@@ -93,7 +93,6 @@ const manager = {
           let classArr = topItem.modalClass.trim().split(/\s+/);
           classArr.forEach(item => removeClass(modalDom, item));
         }
-
         modalStack.pop();
         if (modalStack.length > 0) {
           modalDom.style.zIndex = modalStack[modalStack.length - 1].zIndex;

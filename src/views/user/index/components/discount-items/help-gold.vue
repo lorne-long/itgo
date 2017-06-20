@@ -3,7 +3,7 @@
     <form-tip>
       救援金有效时间为30天(从派发当天开始计算)，<br>
       规定时间内未领取将自动取消，10倍流水。
-      <a href="/mobile/preferential.jsp" slot="link" class="text_red">详情 &gt;</a>
+      <a href="/static/preferential.jsp" slot="link" class="text_red">详情 &gt;</a>
     </form-tip>
     <div class="rescue_content_step01 user_center_nav_content_step show  j-rescue1">
       <div class="layout_item_with_arrow_link j-losePromoList" data-is="false">

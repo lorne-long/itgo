@@ -3,7 +3,7 @@
     <form-tip>
       每月5日系统自动审核升降级，达到晋级条件<br>
       即可直接申请。真情回报，无投注额要求
-      <a href="/mobile/preferential.jsp" slot="link" class="text_red">详情 &gt;</a>
+      <a href="/static/preferential.jsp" slot="link" class="text_red">详情 &gt;</a>
     </form-tip>
     <div class="ul_auto_wrap">
       <div class="user_vip_progress_info j-allwidth" style="width: 199%;">
