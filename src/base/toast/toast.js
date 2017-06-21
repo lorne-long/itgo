@@ -26,7 +26,7 @@ ToastConstructor.prototype.close = function() {
   this.visible = false;
   this.$el.addEventListener('transitionend', removeDom);
   this.closed = true;
-  returnAnInstance(this);
+   returnAnInstance(this);
 };
 let Toast = (options = {}) => {
   let duration = options.duration ||1500;
@@ -48,5 +48,4 @@ let Toast = (options = {}) => {
   });
   return instance;
 };
-
 export default Toast;

@@ -46,18 +46,16 @@
       </font></div>
     <money-option>存款、取款、转账选项</money-option>
     <tab-menu></tab-menu>
-    <v-sheet @cover="sheet" :model="showSheet" :data="sheetData"></v-sheet>
+    <v-sheet  :modelClick="!0" @cover="showSheet=false" :model="showSheet" :data="sheetData"></v-sheet>
   </div>
 </template>
 <script>
   import  "./index.scss";
   import topMarquee from "components/user-topMarquee"
-  import tabMenu from "./components/discount-menu/index.vue"
-  import moneyOption from "views/money/moneyOption.vue"
-  import vSheet from "base/sheet/sheet.vue"
-
+  import tabMenu from "./components/discount-menu/index"
+  import moneyOption from "views/money/moneyOption"
+  import vSheet from "base/sheet/sheet"
   import  {getAllMoney} from "api/user"
-
   import { mapGetters } from 'vuex'
   export default {
     data() {
@@ -66,7 +64,6 @@
           {
             name: "400-2312314",
             method(){
-              alert(1)
             }
           }
         ],
@@ -74,14 +71,8 @@
         showSheet: false
       };
     },
-    watch: {},
     computed: {
         ...mapGetters(["userData"])
-    },
-    methods: {
-      sheet(val){
-        this.showSheet = val;
-      }
     },
     created(){
       getAllMoney(["Deputy", "MAIN"], (data) => {

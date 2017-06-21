@@ -1,7 +1,6 @@
-// import Vue from 'vue'; //引入vue
+import vueRouter from '@/router'; //引入vue
 import _axios from 'axios'; //引入axios
 import store from '@/store';	//加载状态管理器
-import {$localStorage,$sessionStorage} from '@/util/storage';
 var  ajax=_axios.create({
   baseURL:"http://112.213.126.135:4777",
   method:"get",
@@ -34,12 +33,17 @@ ajax.interceptors.request.use(function (config){
 });
 //响应拦截
 ajax.interceptors.response.use(function(response){
-  // console.log("响应数据：",response);
   if(response.status===200&&!response.data.hasOwnProperty("success")){
     response.data.success=response.data.code=="10000";
   }
   if(response.status===200&&response.data.code=="40001"){//没有登录
     store.dispatch("REMOVE_AUTH");
+    // console.log(vueRouter.currentRoute)
+    // $confirm("系统检测到你未登陆...",{
+    //   confirmText:"立刻登陆"
+    // }).then(()=>{
+    //   vueRouter.push("/login/index");
+    // })
   }
   return response.status===200?response.data:response;
 }, function (error){

@@ -12,35 +12,38 @@
 </template>
 
 <script type="text/babel">
-  import Popup from 'base/cover/cover';
+  import cover from 'base/cover/cover';
   export default {
     name: 'mt-sheet',
-    mixins: [Popup],
+    mixins: [cover],
     props: {
       cancelText: {
         type: String,
         default: '取消'
       },
-      show: {
+      Show: {
         type: Boolean,
         default: false
       },
       data: {
         type: Array,
         default: () => []
+      },
+      showModel:{
+        default:true
       }
     },
     data(){
       return {
-          curShow: false
+        curShow: false
       }
     },
-    watch: {
-      curShow(val) {
-          this.$emit("cover",val);
-      },
+    watch:{
       model(val){
-        this.curShow=val;
+        this.curShow = val;
+      },
+      curShow(val){
+        if(!val) this.$emit("cover",val)
       }
     },
     methods: {
@@ -49,7 +52,7 @@
           item.method(item, index);
         }
         this.curShow=false;
-      }
+      },
     }
   };
 </script>

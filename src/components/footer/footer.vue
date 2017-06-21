@@ -8,7 +8,7 @@
       <i class="iconfont icon-promotion"></i>
       <div>游戏大厅</div>
     </router-link>
-    <router-link :to="{path:'/history'}">
+    <router-link  :to="{path:'/history'}">
       <i class="iconfont icon-cup"></i>
       <div>优惠</div>
     </router-link>
@@ -18,16 +18,15 @@
     </router-link>
   </footer>
 </template>
-<script type="text/ecmascript-6">
+<script>
   export default {
-    name: "footer",
     data() {
       return {};
     }
   };
 </script>
 <style lang="scss">
-  @import "../../assets/scss/mixin.scss";
+  @import "~assets/scss/mixin.scss";
   footer.footer {
     display: flex;
     position: fixed;

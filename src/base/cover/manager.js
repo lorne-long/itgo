@@ -1,7 +1,3 @@
-// import Vue from 'vue';
-
-//import { addClass, removeClass } from 'mint-ui/src/utils/dom';
-
 const getModal = function () {
   let modalDom = manager.modalDom;
   if (manager.hasModal === false) {
@@ -14,7 +10,7 @@ const getModal = function () {
     });
     modalDom.style = "position: fixed;height: 100%; width: 100%;top: 0;left: 0;background: rgba(0,0,0,0.4);"
     modalDom.addEventListener('click', function () {
-      manager.doClose && manager.doClose();
+      manager.modelClick && manager.modelClick();
     });
   }
   return modalDom;
@@ -42,9 +38,8 @@ let manager = {
   nextZIndex: function () {
     return manager.zIndex++;
   },
-  open: function (id, zIndex, dom) {
+  open: function (id, zIndex,dom) {
     if (!id || zIndex === undefined) return;
-
     if (this.modalStack.findIndex((i, item) => {
         return item.id = id;
       }) > -1) {
@@ -91,15 +86,13 @@ let manager = {
 
     }
   },
-  doClose(){
+  modelClick(){
     const item = manager.modalStack[manager.modalStack.length - 1];
     if (!item) return;
     const instance = manager.getInstance(item.id);
-    if (instance && instance.coverClick) {
+    if (instance && instance.modelClick) {
       instance._close();
     }
-  },
-  mounted(){
   }
 };
 export default manager;

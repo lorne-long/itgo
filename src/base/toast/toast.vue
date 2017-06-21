@@ -7,7 +7,7 @@
   </transition>
 </template>
 <style lang="scss">
-  @import "../../assets/scss/mixin.scss";
+  @import "~assets/scss/mixin.scss";
   .mint-toast {
     position: fixed;
     max-width: 80%;
