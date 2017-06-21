@@ -1,44 +1,37 @@
 <template>
-  <div class="loadding" ref="loadding">
+  <div :class="['load-box',className]" v-show="show">
+    <div v-show="data==null" class="load-gif">
       <img src="./load.gif">
-      <p> {{text}}</p>
+      <p>{{text}}</p>
+    </div>
+    <solt v-show="show">
+    </solt>
   </div>
 </template>
-<script type="text/ecmascript-6">
+<script>
+//  import cover from 'base/cover/cover';
   export default {
     data() {
-      return {
-      };
+      return {};
     },
     props:{
-      dataL:{
-        default:''
+      show:{
+        type:Boolean,
+        default:false
       },
       text:{
         type:String,
-        default:"加载中..."
-      }
+        default:""
+      },
+      className:""
     },
     methods:{
-        hide(){
-          this.$refs.loadding.style.display='none';
-        },
-        show(){
-          this.$refs.loadding.style.display='';
-        }
-    },
-    watch:{
-      data(){
-          this.hide();
-      }
     }
-    computed:{}
   };
 </script>
 <style>
-  .loadding{
+  .load-gif {
+    padding-top: 20px;
     text-align: center;
-    background: #fff;
-    vertical-align: middle;
   }
 </style>
