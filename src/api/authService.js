@@ -1,7 +1,5 @@
 import ajax from './index'; //引入vue
 import store from '@/store';	//加载状态管理器
-import storage from '@/util/storage';
-
 
 let checkLogin = "/asp/ajaxGetSessionPersonalData.php";
 /*** 检查登录*/
@@ -23,7 +21,7 @@ export function login(userData) {
   return ajax.post(login, userData);
 }
 export function logOut() {
-  store.dispatch("SET_LOGIN", false);
+  store.dispatch("REMOVE_AUTH");
   return ajax.get(logout);
 }
 export function getAuthImg() {

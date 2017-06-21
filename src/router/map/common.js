@@ -1,3 +1,5 @@
+import {AUTH_NAME} from "@/store/types"//权限名称
+
 //密码路由
 let master = (resolve) => resolve(require('components/master')); //二级路由模板页
 let deposit = (resolve) => resolve(require('views/money/deposit')); //q存款
@@ -17,7 +19,7 @@ export default [{
   component: master,
   redirect: "/money/deposit",
   meta: {
-    needAuth: true //需登录
+    auth: [AUTH_NAME.USER] //需要会员
   },
   children: [
     {
@@ -51,7 +53,7 @@ export default [{
     name: 'pwd',
     component: master,
     meta: {
-      needAuth: true //需登录
+      auth: [AUTH_NAME.USER] //需要会员
     },
     children: [
       {
@@ -85,7 +87,7 @@ export default [{
     name: "datum",
     component: master,
     meta: {
-      needAuth: true //需登录
+      auth: [AUTH_NAME.USER,AUTH_NAME.AGENT] //需要会员
     },
     children: [
       {

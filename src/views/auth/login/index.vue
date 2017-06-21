@@ -38,7 +38,9 @@
 </template>
 <script type="text/ecmascript-6">
   import {login, getAuthImg} from 'api/authService';
-  import choose from 'components/choose';
+  import vChoose from 'components/choose';
+  import {$localStorage, $sessionStorage} from '@/util/storage';
+  import {AUTH_NAME} from "@/store/types"//权限名称
   export default {
     data() {
       return {
@@ -58,24 +60,26 @@
       },
       login() {
         if (!this.check())return;
-        const {rquest} = this.$route.query;
         login(this.data).then(res => {
           if (res.success) {
             if (this.$refs.choose.cheacked) {
-              this.$storage.set("isRememberAccount", this.data.account);
+              $localStorage.set("isRememberAccount", this.data.account);
             } else {
-              this.$storage.remove("isRememberAccount");
+              $localStorage.remove("isRememberAccount");
             }
-            this.$store.dispatch("SET_LOGIN", true);
+            let {rquest} = this.$route.query;
             if (!rquest) {
-              if (res.role == "AGENT") {
-                this.$store.dispatch("SET_AGENT", true);
-                this.$router.push({path: "/agent/index"});
-              } else {
-                this.$router.push({path: "/user"});
+              let {role} = res.data;
+              let $path = "/index";
+              this.$store.dispatch("SET_AUTH", role);
+              if (role == AUTH_NAME.AGENT) {
+                $path = "/agent/index";
+              } else if(role == AUTH_NAME.USER) {
+                $path = "/user/index";
               }
+              this.$router.push({path: $path});
             } else {
-              this.$router.push({path: rquest});
+              this.$router.push({path:rquest});
             }
           } else {
             toast(res.message)
@@ -93,22 +97,29 @@
           toast("验证码不能为空")
         else
           return true;
+      },
+      changeTab(){
+        this.isAgent = this.$route.name == 'agentLogin';
+        if (this.isAgent) {
+          this.data.account = "a_bbb";
+          this.data.password = "aa123456"
+        }
       }
     },
     watch: {
       "$route"(){
-        this.isAgent = this.$route.name == 'agentLogin';
+        this.changeTab()
       }
     },
     created() {
-      if (this.$storage.get("isRememberAccount")) {
+      if ($localStorage.get("isRememberAccount")) {
         this.data.isRemember = true;
-        this.data.account = this.$storage.get("isRememberAccount");
+        this.data.account = $localStorage.get("isRememberAccount");
       }
-      this.isAgent = this.$route.name == 'agentLogin';
+      this.changeTab();
     },
     components: {
-      "v-choose": choose
+      vChoose
     }
   };
 </script>

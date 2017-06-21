@@ -17,6 +17,7 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {},
-    cssSourceMap: false
+    cssSourceMap: false,
+    autoOpenBrowser:true
   }
 }

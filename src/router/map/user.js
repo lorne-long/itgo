@@ -1,3 +1,6 @@
+import {AUTH_NAME} from "@/store/types"
+
+
 let master = (resolve) => resolve(require('components/master')); //二级路由模板页
 let index = (resolve) => resolve(require('user/index/index'));
 let message = (resolve) => resolve(require('views/common/message')); //站内消息
@@ -12,7 +15,7 @@ export default [
     name: "user_index",
     component: index,
     meta: {
-      needAuth: true //需登录
+      auth: [AUTH_NAME.USER]//需要是会员
     }
   },
   {
@@ -20,7 +23,7 @@ export default [
     component: master,
     redirect: "/user/index",
     meta: {
-      needAuth: true //需登录
+      auth: [AUTH_NAME.USER]
     },
     children: [
       {

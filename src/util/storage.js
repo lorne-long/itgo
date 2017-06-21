@@ -1,22 +1,46 @@
-var store = {},
-  _localStorage= window.localStorage||window.sessionStorage;
-if(!window.localStorage){
+var $localStorage=false,$sessionStorage = false,
+  _localStorage = window.localStorage,
+  _sessionStorage = window.sessionStorage;
+
+
+if (!window.localStorage) {
   console.log("不浏览器支持");
-}else{
-  store.set = function(key, val) {
-    return _localStorage.setItem(key,val)
-  }
-  store.get = function(key, val) {
-    return _localStorage.getItem(key)
-  }
-  store.has = function(key) {
-    return store.get(key) !== undefined
-  }
-  store.remove = function(key) {
-    return  _localStorage.removeItem(key)
-  }
-  store.clear = function() {
-    return _localStorage.clear();
+} else {
+  $localStorage = {
+    set: function (key, val) {
+      return _localStorage.setItem(key, val)
+    }, get: function (key, val) {
+      return _localStorage.getItem(key)
+    }, has: function (key) {
+      return this.get(key) !== undefined
+    },
+    remove: function (key) {
+      return _localStorage.removeItem(key)
+    }, clear: function () {
+      return _localStorage.clear();
+    }
   }
 }
-export default  store;
+;
+if (!window.sessionStorage) {
+  console.log("不浏览器支持");
+} else {
+  $sessionStorage = {
+    set: function (key, val) {
+      return _sessionStorage.setItem(key, val)
+    }, get: function (key, val) {
+      return _sessionStorage.getItem(key)
+    },
+    has: function (key) {
+      return this.get(key) !== undefined
+    },
+    remove: function (key) {
+      return _sessionStorage.removeItem(key)
+    }, clear: function () {
+      return _sessionStorage.clear();
+    }
+  }
+}
+function cookieMethods(){
+}
+export  {$localStorage,$sessionStorage} ;

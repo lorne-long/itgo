@@ -1,5 +1,6 @@
 //代理 路由
-// let master_footer = (resolve) => resolve(require('views/index'));
+import {AUTH_NAME} from "@/store/types"//权限名称
+
 let master = (resolve) => resolve(require('components/master')); //二级路由模板页
 let index = (resolve) => resolve(require('views/agent/index/index'));
 let ptcommission = (resolve) => resolve(require('views/agent/ptcommission'));
@@ -12,25 +13,19 @@ export default [
   {
     path: "/agent/index",
     name: 'agent_index',
+    component: index,
     meta: {
-      type: 1
-    },
-    component: index
+      auth: [AUTH_NAME.AGENT] //需要代理用户
+    }
   },
   {
     path: "/agent",
     name: "agent",
     component: master,
     meta: {
-      type: 1
+      auth: [AUTH_NAME.AGENT]//需要是代理
     },
     children: [
-      // {name: '佣金报表', href: {path: "/agent/ptcommission"}},
-      // {name: '会员列表', href: {path: "/agent/subuser"}},
-      // {name: '会员账务', href: {path: "/agent/platform"}},
-      // {name: '额度记录', href: {path: "/agent/creditlog"}},
-      // {name: '个人中心', href: {path: "/agent/profile"}},
-      // {name: '绑定银行卡/折号', href: {path: "/agent/personal"}},
       {
         path: "ptcommission",
         name: "ptcommission",

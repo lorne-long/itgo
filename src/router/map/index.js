@@ -1,6 +1,8 @@
 import agent from './agent';
 import user from './user';
 import common from './common';
+import {AUTH_NAME} from "@/store/types"//权限名称
+
 let index=(resolve) => resolve(require('views/show/index'));//首页
 let history=(resolve) => resolve(require('views/show/history'));
 let preferential=(resolve) => resolve(require('views/show/preferential'));
@@ -40,9 +42,9 @@ export default [
     name:"index",
     component:login,
     redirect:"/login/index",
-    // meta:{
-    //   needFalseLogin:true //登录后不允许进入
-    // },
+    meta:{
+      needFalseLogin:true //登录后不允许进入
+    },
     children:[
       {
         path:"index",
