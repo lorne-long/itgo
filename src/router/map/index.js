@@ -26,6 +26,9 @@ export default [
     path:"/index",
     name:"index",
     component:index,
+    meta:{
+      noCache:true //是否不缓存改组件
+    }
   },
   {
     path:"/history",

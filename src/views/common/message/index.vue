@@ -1,6 +1,6 @@
 <template>
   <div class="layout_item_list02 j-message">
-    <div v-for="(item,i) in data.records" class="item_list">
+    <div v-for="(item,i) in data.pageContents" class="item_list">
       <div class="title_content" @click="showView(item.id,i)">
         <div class="title_content_main">
           <h3>{{item.title}}</h3>

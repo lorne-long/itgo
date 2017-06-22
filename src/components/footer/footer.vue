@@ -36,8 +36,9 @@
     display: flex;
     position: fixed;
     bottom: 0;
+    z-index:10;
     width: 100%;
-  @include f(14 px);
+  @include f(14px);
     border-top: 1px solid #ccc;
     background: url("../../assets/images/bg/ft-bg.jpg") center/100% 100% repeat-x;
   &>a{

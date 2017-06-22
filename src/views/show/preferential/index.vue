@@ -559,6 +559,7 @@
     methods: {},
     computed: {},
     created(){
+      console.log("xxx")
     },
     components: {}
   };

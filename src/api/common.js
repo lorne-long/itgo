@@ -4,7 +4,7 @@ import ajax from 'api/index'
 //获取公告
 let getGameMoney_url="/asp/getNewAnnouncement.php";
 
-let _queryEmail="/mobi/queryEmail.php";//获取消息记录集合
+let _queryEmail="/asp/getMessageByUser.php";//获取消息记录集合
 let _readMsg="/asp/readMsg.php"; //获取单个消息
 
 let _queryHistory="/mobi/queryHistory.php";//记录查询

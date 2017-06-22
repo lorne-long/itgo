@@ -15,12 +15,11 @@
       </tr>
       </tbody>
     </table>
-    <page-By @search=""  :data="data"></page-By>
+    <page-By @search="search"  :data="data"></page-By>
   </div>
 </template>
 <script>
   import pageBy from "./page-by.vue";
-  import loadDing from "base/loadding/loadding.vue";
   export default {
     props:{
       thead:{
@@ -29,7 +28,6 @@
           return [];
         }
       },
-      search:{},
       data:{
         type:Object,
         default(){
@@ -42,9 +40,13 @@
         type:String
       }
     },
+    methods:{
+      search(val){
+        this.$emit("search",val)
+      }
+    },
     components:{
-      pageBy,
-      loadDing
+      pageBy
     }
   }
 </script>
