@@ -1,6 +1,6 @@
 <template>
   <transition>
-    <div class="msg-box" v-show="model">
+    <div class="msg-box" v-show="visible">
       <div class="msg-box-title" v-show="title!=''">
         {{title}}
       </div>
@@ -29,8 +29,11 @@ import cover from 'base/cover/cover';
     },
     methods:{
       action(action) {
-        this.model=false;
+        this.value = false;
         this.callback(action);
+      },
+      close(){
+        this.value=false;
       }
     },
     data() {

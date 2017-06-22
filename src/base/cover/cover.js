@@ -8,8 +8,14 @@ const getDOM=function(dom){
   return dom;
 };
 export default {
+  data(){
+    return{
+      visible:false,
+      opened:false
+    }
+  },
   props:{
-    model:{
+    value:{
       type:Boolean,
       default:false
     },
@@ -30,25 +36,25 @@ export default {
     manager.deregister(this._modelid);
     this._close();
   },
-  created(){
-    if(this.modelClick){
-      this.model=true
-    }
-  },
   methods:{
     _open(){
+      this.visible=true;
+      this.$emit('input', true);
       let dom = getDOM(this.$el);
       manager.open(this._modelid,manager.nextZIndex(),dom);
       this.$el.style.zIndex=manager.nextZIndex();
     },
     _close(){
-      this.$emit("cover",false)
+      this.visible=false;
+      this.$emit("input",false)
       manager.close(this._modelid);
+      this.close&&this.close();
     }
   },
   watch:{
-    model(val) {
+    value(val) {
       if(val){
+        if(!this.showModel)return;
         this._open();
       }else{
         this._close();

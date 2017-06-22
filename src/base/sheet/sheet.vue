@@ -1,6 +1,6 @@
 <template>
   <transition name="sheet-float">
-    <div v-show="curShow" class="sheet">
+    <div v-show="value" class="sheet">
       <ul class="sheet-list" :style="{ 'margin-bottom': cancelText ? '5px' : '0' }">
         <li v-for="( item, index ) in data" class="sheet-listitem" @click.stop="itemClick(item, index)">{{ item.name
           }}
@@ -31,6 +31,9 @@
       },
       showModel:{
         default:true
+      },
+      modelClick:{
+        default:true
       }
     },
     data(){
@@ -38,20 +41,12 @@
         curShow: false
       }
     },
-    watch:{
-      model(val){
-        this.curShow = val;
-      },
-      curShow(val){
-        if(!val) this.$emit("cover",val)
-      }
-    },
     methods: {
       itemClick(item, index) {
         if (item.method && typeof item.method === 'function') {
           item.method(item, index);
         }
-        this.curShow=false;
+        this.$emit("input",val)
       },
     }
   };

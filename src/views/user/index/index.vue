@@ -9,11 +9,10 @@
         {{userData.level}}
       </span>
         <p>
-          主账户&nbsp;&nbsp;&nbsp;<font>{{userData.accountMoney}}&nbsp;&nbsp;&nbsp;&nbsp;副账户&nbsp;&nbsp;<font>{{Deputy}}</font></font>
-        </p><font>
-      </font>
+          主账户&nbsp;&nbsp;&nbsp;<span>{{userData.accountMoney}}</span>&nbsp;&nbsp;&nbsp;副账户&nbsp;&nbsp;<span>{{Deputy}}</span></span>
+        </p>
       </div>
-      <font>
+
         <img class="avata_img" src="./img//avata.png">
         <img class="line_space" src="./img//bg02.png">
         <div class="user_center_menu_link display_flex_h">
@@ -46,7 +45,7 @@
       </font></div>
     <money-option>存款、取款、转账选项</money-option>
     <tab-menu></tab-menu>
-    <v-sheet  :modelClick="!0" @cover="showSheet=false" :model="showSheet" :data="sheetData"></v-sheet>
+    <v-sheet  v-model="showSheet"  :data="sheetData"></v-sheet>
   </div>
 </template>
 <script>

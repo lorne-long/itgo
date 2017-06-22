@@ -39,7 +39,7 @@ export default (to,from,next) =>{
     }
   }
   else if(NEED_AUTH){ //需要登录
-    let USER_AUTH=to.matched.some(function(item,i){  //代理页面需要检查权限
+    let USER_AUTH=to.matched.some(function(item,i){  //用户页面需要检查权限
       return Array.isArray(item.meta.auth)&&item.meta.auth.includes(AUTH_NAME.USER);
     })
     let AGENT_AUTH=to.matched.some(function(item,i){  //代理页面需要检查权限
@@ -51,7 +51,10 @@ export default (to,from,next) =>{
             let {role} = res.data;
             store.dispatch("SET_AUTH",role);
             store.dispatch("SET_USERDATA",res.data);
-            if(USER_AUTH&&role==AUTH_NAME.USER){//如果是用户
+            if(AGENT_AUTH&&USER_AUTH){ //双方都有权限直接进
+              next();
+            }
+            else if(USER_AUTH&&role==AUTH_NAME.USER){//如果是用户
               next();
             }
             else if(AGENT_AUTH&&role==AUTH_NAME.AGENT){ //需要代理用户 并且是代理
@@ -66,10 +69,14 @@ export default (to,from,next) =>{
           }
         }
       ).catch(() =>{
+        store.dispatch("REMOVE_AUTH");//报错清空登录
         next({path:'/login/index',query:{rquest:to.fullPath}});
       });
     }else{
-      if(USER_AUTH&&store.getters.isUser){
+      if(USER_AUTH&&AGENT_AUTH){
+        next();
+      }
+      else if(USER_AUTH&&store.getters.isUser){
         next();
       }
       else if(AGENT_AUTH&&store.getters.isAgent){ //需要代理用户 并且是代理

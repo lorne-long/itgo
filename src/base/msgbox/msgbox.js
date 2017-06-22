@@ -49,7 +49,6 @@ const defaultCallback = action => {
         currentMsg.resolve(action);
       }
     }
-    msgbox.close();
   }
 };
 //实例化一个弹框 挂载在一个空DIV上
@@ -65,7 +64,7 @@ var showNextMsg = function() {
   if (!instance) {//单例模式
     initInstance();
   }
-  if (!instance.model) {
+  if (!instance.value) {
     if (msgQueue.length > 0) {
       currentMsg = msgQueue.shift();//删除并 取得第一个弹框
       var options = currentMsg.options; //获取到配置信息
@@ -81,7 +80,7 @@ var showNextMsg = function() {
       }
       document.body.appendChild(instance.$el); //挂载到页面
       Vue.nextTick(() => {
-         instance.model = true;
+         instance.value = true;
       });
     }
   }
@@ -123,7 +122,7 @@ msgbox.setDefaults = function(defaults) {
 };
 
 //alert弹框 默认一些初始值
-msgbox.$alert = function(message, title, options) {
+msgbox.alert = function(message, title, options) {
   if (typeof title === 'object') {
     options = title;
     title = '';
@@ -132,11 +131,11 @@ msgbox.$alert = function(message, title, options) {
     title: title,
     message: message,
     $type: 'alert',
-    // modelClick:true
+    modelClick:true
   }, options));
 };
 //confirm弹框 默认一些初始值
-msgbox.$confirm = function(message, title, options) {
+msgbox.confirm = function(message, title, options) {
   if (typeof title === 'object') {
     options = title;
     title = '';
@@ -151,9 +150,10 @@ msgbox.$confirm = function(message, title, options) {
 //关闭弹框
 msgbox.close = function() {
   if (!instance) return;
-  instance.model = false;
+  instance.value = false;
   msgQueue = [];
   currentMsg = null;
 };
-export const $alert=msgbox.$alert;
-export const $confirm=msgbox.$confirm;
+export const $alert=msgbox.alert;
+export const $confirm=msgbox.confirm;
+export default {msgbox}

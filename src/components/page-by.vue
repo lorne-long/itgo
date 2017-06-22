@@ -34,15 +34,15 @@
           totalPages:0,//总页数，
           totalRecords:0//总记录条数,
         };
-        if(this.data.hasOwnProperty("total")){
+        if(this.data.hasOwnProperty("total")){ //返回数据有些不一样 不好使啊 草           //"data":{"total":0,"records":[],"size":10,"pageIndex":1
           mydateInit.size=this.data.size;
           mydateInit.pageIndex=this.data.pageIndex;
           mydateInit.numberOfRecordsShown=this.data.records.length;
           mydateInit.totalRecords=this.data.total;
-          let remin= mydateInit.total%mydateInit.pageIndex
+          let remin= mydateInit.totalRecords%mydateInit.pageIndex
           mydateInit.totalPages=remin==0?remin:remin+1;
 
-          //"data":{"total":0,"records":[],"size":10,"pageIndex":1
+
         }else{
           Object.assign(mydateInit,this.data);
         }
