@@ -7,21 +7,21 @@ let getGameMoney_url="/asp/getNewAnnouncement.php";
 let _queryEmail="/asp/getMessageByUser.php";//获取消息记录集合
 let _readMsg="/asp/readMsg.php"; //获取单个消息
 
-let _queryHistory="/mobi/queryHistory.php";//记录查询
 
-export function getNewAnnouncement(){
- return  ajax.get(getGameMoney_url)
+let _getGuestbookCountNew="/asp/getGuestbookCountNew.php"; //获取未读消息
+
+
+export function getGuestbookCountNew(data){
+  return  ajax.get(_getGuestbookCountNew,data)
 }
-
+export function getNewAnnouncement(data){
+ return  ajax.get(getGameMoney_url,data)
+}
 export function queryEmail(data){
   return  ajax.post(_queryEmail,data);
 }
 export function readMsg(data){
   return  ajax.post(_readMsg,data);
-}
-
-export function queryHistory(data){
-  return  ajax.post(_queryHistory,data);
 }
 
 

@@ -34,6 +34,7 @@
     },
     watch:{
       "$route"(to,from){
+        document.title=to.meta.title||to.meta.headName||"itgo";
         const toDepth=to.path.split('/').length;
         const fromDepth=from.path.substring(0,from.path.length-2).split('/').length
         this.transitionName=toDepth<fromDepth ? 'slide_back' : 'slide';

@@ -13,9 +13,11 @@ export default [
   {
     path: "/user/index",
     name: "user_index",
+
     component: index,
     meta: {
       auth: [AUTH_NAME.USER]//需要是会员
+      ,title:"个人中心"
     }
   },
   {

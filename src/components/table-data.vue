@@ -1,21 +1,24 @@
 <template>
-  <div :class="['grid-warper','m-grid',className]" >
-    <table class="m-grid-table">
-      <thead>
-      <tr>
-        <th v-for="(item,i) in thead" @click="item.method||null" :class="item.classNmae">
-          {{ item.name || item }}
-        </th>
-      </tr>
-      </thead>
-      <tbody>
-      <slot></slot>
-      <tr v-show="data" class="table-nodata">
-        <td :colspan="thead.length">无数据</td>
-      </tr>
-      </tbody>
-    </table>
-    <page-By @search="search"  :data="data"></page-By>
+  <div :class="['grid-warper','m-grid',className]">
+    <div class="m-grid-table">
+      <table class="m-grid-table">
+        <thead>
+        <tr>
+          <th v-for="(item,i) in thead" @click="item.method||null" :class="item.classNmae">
+            {{ item.name || item }}
+          </th>
+        </tr>
+        </thead>
+        <tbody>
+        <slot>
+          <tr class="table-nodata">
+            <td :colspan="thead.length">尚未查询/无资料</td>
+          </tr>
+        </slot>
+        </tbody>
+      </table>
+    </div>
+    <page-By @search="search" :data="data"></page-By>
   </div>
 </template>
 <script>
@@ -61,6 +64,7 @@
     text-align: center;
     border-spacing: 0;
     border-collapse: collapse;
+    line-height: 1.5em;
 
   th {
     border-right: 1px #fff solid;
@@ -73,17 +77,14 @@
     color: #fff;
     padding: 0 5px;
 
-  &
-  :last-child {
-    border-right: none
-  }
-
+  &:last-child {
+      border-right: none
+    }
   }
   td {
-    border: 1px #fff solid;
+    border:1px solid #e5e5e5;
     white-space: nowrap;
   }
-
   }
 
   .table-nodata {

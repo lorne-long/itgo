@@ -1,5 +1,5 @@
 <template>
-  <div class="page_content_wrap" >
+  <div class="page_content_wrap">
     <div class="layout_form layout_form03" style="margin-bottom: 1em;">
       <form action="#">
         <div class="form_field_warp">
@@ -21,7 +21,10 @@
           <div class="form_field" v-show="searchData.historyType=='friend'">
             <span class="form_field_label">推荐类型</span>
             <div class="form_field_input">
-              <select>
+              <select v-model="searchData.friendtype">
+                <option value="0">推荐注册成功玩家</option>
+                <option value="1">推荐奖金收入</option>
+                <option value="2">推荐奖金支出</option>
               </select>
             </div>
           </div>
@@ -52,7 +55,7 @@
   </div>
 </template>
 <script>
-  import  {queryHistory} from "api/common";
+  import  {queryHistory} from "api/user";
   import tableData from "components/table-data"
   export default {
     data() {
@@ -65,7 +68,8 @@
           startDate:"",
           endDate:'',
           pageIndex:1,
-          size:10
+          size:10,
+          friendtype:"0"
         }
       };
     },

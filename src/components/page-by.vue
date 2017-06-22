@@ -34,15 +34,13 @@
           totalPages:0,//总页数，
           totalRecords:0//总记录条数,
         };
-        if(this.data.hasOwnProperty("total")){ //返回数据有些不一样 不好使啊 草           //"data":{"total":0,"records":[],"size":10,"pageIndex":1
-          mydateInit.size=this.data.size;
-          mydateInit.pageNumber=this.data.pageIndex;
-          mydateInit.numberOfRecordsShown=this.data.records.length;
-          mydateInit.totalRecords=this.data.total;
-          let remin= mydateInit.totalRecords%mydateInit.pageNumber
-          mydateInit.totalPages=remin==0?remin:remin+1;
-
-
+        if(this.data.hasOwnProperty("total")){ //返回数据有些不一样 不好使啊 草    //"data":{"total":0,"records":[],"size":10,"pageIndex":1
+          mydateInit.size=this.data.size||10;
+          mydateInit.pageNumber=this.data.pageIndex||1;
+          mydateInit.numberOfRecordsShown=this.data.records.length||0;
+          mydateInit.totalRecords=this.data.total||0;
+          let remin= mydateInit.totalRecords/mydateInit.size;  //展示
+          mydateInit.totalPages=remin.toString().indexOf(".")>0?parseInt(int_remin)+1:parseInt(int_remin);
         }else{
           Object.assign(mydateInit,this.data);
         }

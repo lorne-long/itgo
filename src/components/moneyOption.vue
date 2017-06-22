@@ -25,7 +25,7 @@
   };
 </script>
 <style lang="scss">
-  @import "../../assets/scss/mixin.scss";
+  @import "~assets/scss/mixin.scss";
 
   .user_info_nav {
     margin-bottom: r(20);
@@ -54,15 +54,12 @@
   .user_info_nav .flex_1:last-child a .link_wrap {
     border-right: none;
   }
-
   .user_info_nav .flex_1 span {
     vertical-align: middle;
   }
-
   .user_info_nav .flex_1 .icon {
     margin-right: r(34);
   }
-
   .user_info_nav .flex_1:last-child {
     border-right: none;
   }

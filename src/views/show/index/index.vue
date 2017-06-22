@@ -216,10 +216,10 @@
     methods:{},
     computed:{},
     created(){
-      console.log(1)
+
     },
     activated(){
-      console.log(2)
+
     },
     components:{}
   };
