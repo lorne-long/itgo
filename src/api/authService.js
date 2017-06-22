@@ -3,13 +3,13 @@ import store from '@/store';	//加载状态管理器
 
 let checkLogin = "/asp/ajaxGetSessionPersonalData.php";
 /*** 检查登录*/
-let login = "/mobi/login.php";
+let _login = "/mobi/login.php";
 /*** 登录*/
-let logout = '/mobi/logout.php';
+let _logout = '/mobi/logout.php';
 /*** 登出*/
-let register = '/mobi/register.php';
+let _register = '/mobi/register.php';
 /***注册*/
-let _agentReport = "/mobi/agentReport.php"; //代理用户页面一般用户无法访问
+let _registerAgent = '/mobi/registerAgent.php';
 
 /**
  * 用户认证所用到的 API
@@ -18,26 +18,19 @@ export function checkLogin() {
   return ajax.get(checkLogin);
 }
 export function login(userData) {
-  return ajax.post(login, userData);
+  return ajax.post(_login, userData);
 }
 export function logOut() {
   store.dispatch("REMOVE_AUTH");
-  return ajax.get(logout);
+  return ajax.get(_logout);
 }
 export function getAuthImg() {
   return ajax.defaults.baseURL + "/mobi/mobileValidateCode.php?random=" + Math.random();
 }
-
 export function register(data) {
-  return ajax.request(register, Object.assign({
-    phone: "",
-    account: "",
-    imageCode: "",
-    password: "",
-  }, data))
+  return ajax.post(_register,data)
+}
+export function registerAgent(data) {
+  return ajax.post(_registerAgent,data)
 }
 
-
-export function agentReport() {
-  return ajax.post(_agentReport);
-}

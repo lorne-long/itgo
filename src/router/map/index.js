@@ -5,15 +5,17 @@ import {AUTH_NAME} from "@/store/types"//权限名称
 let index=(resolve) => resolve(require('views/show/index'));//首页
 let history=(resolve) => resolve(require('views/show/history'));
 let preferential=(resolve) => resolve(require('views/show/preferential'));
-let login=(resolve) => resolve(require('views/auth'));//代理模板
+
+
+
+let login=(resolve) => resolve(require('views/auth'));//模板
 let login_index=(resolve) => resolve(require('views/auth/login'));//用户登陆
 let login_register=(resolve) => resolve(require('views/auth/register-user'))//用户注册
 let agent_login=(resolve) => resolve(require('views/auth/login')); //代理登陆
 let agent_register=(resolve) => resolve(require('views/auth/register-agent'))//代理注册
 let register_success=(resolve) => resolve(require('views/auth/register-success'))//注册成功提示页面
-let money_deposit=(resolve) => resolve(require('views/money/deposit'))//充值
-let money_personal=(resolve) => resolve(require('views/money/personal'))//提现
-let money_transfer=(resolve) => resolve(require('views/money/transfer'))//转账
+
+
 export default [
   {
     path:"/index",
@@ -61,10 +63,18 @@ export default [
       },
       {
         path:"register",
-        path:"register",
+        name:"register",
         component:login_register,
         meta:{
           title:"会员注册"
+        }
+      },
+      {
+        path:"registersuccess",
+        name:"registersuccess",
+        component:register_success,
+        meta:{
+          title:"注册成功"
         }
       },
       {
@@ -76,8 +86,8 @@ export default [
         }
       },
       {
-        name:"agentregister",
         path:"agentregister",
+        name:"agentregister",
         component:agent_register,
         meta:{
           title:"代理注册"
