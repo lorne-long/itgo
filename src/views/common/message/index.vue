@@ -7,17 +7,18 @@
           <p>{{item.createDate}}</p></div>
       </div>
       <transition name="message">
-      <div class="toggle_content" v-show="viewList['x-'+item.id]">
-        <div class="toggle_content_main">
-          {{viewList[item.id] }}
-        </div>
-      </div>
+          <div :ref="item.id" v-show="!!viewList['x-'+item.id]">
+            <div class="toggle_content_main toggle_content ">
+              {{viewList[item.id] }}
+            </div>
+          </div>
       </transition>
     </div>
   </div>
 </template>
 <script>
   import  {queryEmail, readMsg} from "api/common";
+  import  Vue from "vue";
   export default {
     data() {
       return {
@@ -33,13 +34,16 @@
     },
     methods: {
       showView(item, i){
-        if (this.viewList["x-"+item.id]) {
-          this.viewList["x-"+item.id] = !this.viewList["x-"+item.id];
+        if(typeof this.viewList["x-"+item.id]=="boolean"){
+          this.$set(this.viewList,"x-"+item.id,!this.viewList["x-"+item.id]);
           return;
         }
         readMsg({msgID: item.id}).then((data)=>{
-          this.$set(this.viewList,"x-"+item.id, true);
-          this.viewList[item.id]=data.data.content;
+          this.$set(this.viewList,item.id,data.data.content);
+          Vue.nextTick(()=>{
+              this.$refs[item.id][0].style.height=this.$refs[item.id][0].css("height");
+              this.$set(this.viewList,"x-"+item.id, true);
+          });
         });
       }
     },
@@ -62,12 +66,11 @@
 </script>
 <style>
   .message-enter-active, .message-leave-active {
-    transition: all 1s;
+    transition: all 2s;
     overflow: hidden;
   }
   .message-enter,
   .message-leave-to{
-    transform: scaleY(0);
-    transform-origin:0 0;
+    height: 0!important;
   }
 </style>

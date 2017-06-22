@@ -1,19 +1,9 @@
-/* istanbul ignore next */
 
-
-const SPECIAL_CHARS_REGEXP = /([\:\-\_]+(.))/g;
-const MOZ_HACK_REGEXP = /^moz([A-Z])/;
-const ieVersion = isServer ? 0 : Number(document.documentMode);
-
-const trim = function(string) {
-  return (string || '').replace(/^[\s\uFEFF]+|[\s\uFEFF]+$/g, '');
-};
-NodeList.prototype.addClass = Element.prototype.hasClass = function(csName) {
+NodeList.prototype.hasClass = Element.prototype.hasClass = function(csName) {
   var x = this.className.split(" ") || [];
   return x.indexOf(csName)>-1;
 }
-
-NodeList.prototype.addClass = Element.prototype.classToggle = function(csName) {
+NodeList.prototype.classToggle = Element.prototype.classToggle = function(csName) {
   var item = !this.length ? [this] : [].slice.call(this);
   for(var i = 0; i < item.length; i++) {
     var x = item[i].className.split(" ") || [];
@@ -72,5 +62,11 @@ NodeList.prototype.toggle = Element.prototype.toggle = function() {
   return this;
 }
 Element.prototype.css = function(_style) {
-  return window.getComputedStyle ? w.getComputedStyle(this, null)[_style] : this.currentStyle[_style];
+  if(/(^width$)|(^height$)/.test(_style)){
+    this.style.display="block"
+    let x= window.getComputedStyle ? getComputedStyle(this, null)[_style] : this.currentStyle[_style];
+    this.style.display="none";
+    return x;
+  }
+  return  window.getComputedStyle ? getComputedStyle(this, null)[_style] : this.currentStyle[_style];
 }

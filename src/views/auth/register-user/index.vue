@@ -61,7 +61,7 @@
     methods:{
       checked(){
         let _RegExp=/^(?!(?:\d+|[a-zA-Z]+)$)[\da-zA-Z]{6,16}$/;
-        let _phone=/^((13[0-9])|(14[5|7])|(15([0-3]|[5-9]))|(18[0,5-9]))\\d{8}$/;
+        let _phone=/^((13[0-9])|(14[5|7])|(15([0-3]|[5-9]))|(18[0,5-9]))\d{8}$/;
         if(!_RegExp.test(this.data.account))toast("用户名(6-10位数字和字母)");
         else if(!_RegExp.test(this.data.password))toast("密码(6-10位数字和字母)");
         else if(!_phone.test(this.data.phone))toast("手机号格式不正确");
