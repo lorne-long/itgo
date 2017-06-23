@@ -41,15 +41,6 @@
         this.transitionName=toDepth<fromDepth ? 'slide_back' : 'slide';
       }
     },
-    created(){
-//      $load.open("草怎么回事啊");
-//      $load.close();
-//      $confirm("系统检测到你未登陆...","提示",{
-//        confirmText:"立刻登陆"
-//      }).then(()=>{
-//        vueRouter.push("/login/index");
-//      })
-    },
     components:{
       vFooter,
       ajaxLoad

@@ -1,5 +1,5 @@
 import {AUTH_NAME} from "@/store/types"
-let master=(resolve) => resolve(require('components/master')); //二级路由模板页
+import  master from "components/master" //二级路由模板页
 let index=(resolve) => resolve(require('user/index/index'));
 let message=(resolve) => resolve(require('views/common/message')); //站内消息
 let history=(resolve) => resolve(require('views/user/history'));//记录消息

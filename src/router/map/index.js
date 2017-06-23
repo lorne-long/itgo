@@ -8,7 +8,7 @@ let preferential=(resolve) => resolve(require('views/show/preferential'));
 
 
 
-let login=(resolve) => resolve(require('views/auth'));//模板
+import  login from "views/auth"//模板
 let login_index=(resolve) => resolve(require('views/auth/login'));//用户登陆
 let login_register=(resolve) => resolve(require('views/auth/register-user'))//用户注册
 let agent_login=(resolve) => resolve(require('views/auth/login')); //代理登陆

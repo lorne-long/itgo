@@ -1,6 +1,6 @@
 import {AUTH_NAME} from "@/store/types"//权限名称
-//密码路由
-let master=(resolve) => resolve(require('components/master')); //二级路由模板页
+
+import  master from "components/master" //二级路由模板页
 let deposit=(resolve) => resolve(require('views/money/deposit')); //q存款
 let personal=(resolve) => resolve(require('views/money/personal'));//取款
 let transfer=(resolve) => resolve(require('views/money/transfer'));//转账

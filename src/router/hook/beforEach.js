@@ -3,8 +3,7 @@ import {checkLogin,agentReport} from 'api/authService';
 import {AUTH_NAME} from "@/store/types"//权限名称
 // 权限拦截
 export default (to,from,next) =>{
-  // console.log(to, from)
-  // return next()
+  return next()
   let needFalseLogin=to.matched.some(function(item,i){
     return item.meta.needFalseLogin===true;
   })

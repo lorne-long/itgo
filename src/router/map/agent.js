@@ -1,7 +1,7 @@
 //代理 路由
 import {AUTH_NAME} from "@/store/types"//权限名称
 
-let master = (resolve) => resolve(require('components/master')); //二级路由模板页
+import  master from "components/master"//二级路由模板页
 let index = (resolve) => resolve(require('views/agent/index/index'));
 let ptcommission = (resolve) => resolve(require('views/agent/ptcommission'));
 let subuser = (resolve) => resolve(require('views/agent/subuser'));
