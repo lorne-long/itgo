@@ -37,10 +37,12 @@
                   if(data.success)this.banktxt=data.data;
                 })
               }else{
+
                 this.banktxt="";
               }
           },
           submit(){
+            if(this.bankno=="")return toast("请输入正确的银行卡");
            if(!this.validateBankNo)return toast("银行卡校验未通过");
             bindBankNo({cardNo:this.bankno}).then(data=>{
               if(data.success){

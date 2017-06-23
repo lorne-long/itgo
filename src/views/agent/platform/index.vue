@@ -1,7 +1,7 @@
 <template>
   <div class="page_content_wrap">
     <div class="layout_form layout_form04">
-      <search-form :search="search" :searchData="searchData">
+      <search-form @search="search" :searchData="searchData">
         <div class="form_field date_picker with_arrow_icon">
           <span class="form_field_label">类型</span>
           <div class="form_field_input">
@@ -58,9 +58,9 @@
       }
     },
     methods: {
-      search(){
-
-
+      search(index){
+        if(index&&this.searchData.pageIndex==index)return;
+        this.searchData.pageIndex=index||this.searchData.pageIndex
         queryPlatformDetails(this.searchData).then(res => {
           if (res.success) {
             if(this.searchData.code != "-1"){

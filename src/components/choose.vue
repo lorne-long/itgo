@@ -1,6 +1,6 @@
 <template>
   <label class="switch">
-    <input type="checkbox" v-model="cheacked" style="display: none;" name="remember" value="1">
+    <input type="checkbox" v-model="cheacked" style="display: none;" >
     <div class="slider round"></div>
   </label>
 </template>
@@ -10,9 +10,6 @@
       value:{
         type:Boolean,
         default:false
-      },
-      doChange:{
-        type:Function
       }
     },
     data(){
@@ -23,9 +20,9 @@
     watch:{
       value:(val)=>{
         this.cheacked=val;
-        if(this.doChange){
-          this.doChange();
-        }
+      },
+      cheacked(val){
+        this.$emit("input",val)
       }
     }
   }

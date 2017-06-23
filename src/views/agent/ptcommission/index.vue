@@ -2,10 +2,10 @@
   <!--佣金报表{-->
   <div class="page_content_wrap">
     <div class="layout_form layout_form04">
-      <search-form  :search="search" :searchData="searchData"></search-form>
-      <table-data :thead="thead" :data="data">
+      <search-form  @search="search" :searchData="searchData"></search-form>
+      <table-data :thead="thead" :data="data"  @search="search">
         <tr v-for="(item,i) in data.records">
-          <td>{{data.pageIndex+i+1}}</td>
+          <td>{{data.pageIndex+i}}</td>
           <td>{{getPlatForm(item.platform)}}</td>
           <td>{{item.amount}}</td>
           <td>{{item.createdate|Date}}</td>
@@ -36,14 +36,16 @@
           total:0,
           startDate: "",
           endDate: "",
-          size:10,
+          size:2,
           pageIndex:0,
         }
       }
     },
 
     methods: {
-      search() {
+      search(index) {
+        if(index&&this.searchData.pageIndex==index)return;
+        this.searchData.pageIndex=index||this.searchData.pageIndex;
         queryPtCommission(this.searchData).then(res => {
           if (res.success) {
             this.data = res.data;

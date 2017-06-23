@@ -19,12 +19,12 @@
         <router-link to="/" class="forgot-pwd">忘记密码?</router-link>
         <div class="remember_username">
           <span class="rem_desc">记住用户名</span>
-          <v-choose :value="data.isRemember" ref="choose"></v-choose>
+          <v-choose  v-model="data.isRemember" ref="choose"></v-choose>
         </div>
       </div>
     </div>
     <div class="btn_wrap" @click="login">
-      <a href="javascript:void(0);" class="btn btn01 j-login">登录</a>
+      <a href="javascript:void(0);" class="btn btn01">登录</a>
     </div>
     <router-link v-if="!isAgent" to="/login/agentLogin" class="agent-into">
       <i class="iconfont icon-account"></i>
@@ -67,7 +67,7 @@
         if (!this.check())return;
         login(this.data).then(res => {
           if (res.success) {
-            if (this.$refs.choose.cheacked) {
+            if (this.data.isRemember) {
               $localStorage.set("isRememberAccount", this.data.account);
             } else {
               $localStorage.remove("isRememberAccount");

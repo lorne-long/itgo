@@ -48,7 +48,7 @@
           return toast("请选择结束时间");
         this.searchData.startDate = this.startDate + " 00:00:00";
         this.searchData.endDate = this.endDate + " 00:00:00";
-        this.search();
+        this.$emit("search");
       }
     },
     data()

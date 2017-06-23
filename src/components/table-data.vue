@@ -43,6 +43,7 @@
         type:String
       }
     },
+
     methods:{
       search(val){
         this.$emit("search",val)
@@ -58,7 +59,6 @@
     width: 100%;
     overflow-y: auto;
   }
-
   .m-grid-table {
     width: 100%;
     text-align: center;
@@ -86,7 +86,6 @@
     white-space: nowrap;
   }
   }
-
   .table-nodata {
     height: 100px;
     text-align: center
