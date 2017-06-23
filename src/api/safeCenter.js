@@ -15,13 +15,16 @@ export function checkWithdrawPwd(data){
 }
 
 export function changepws(data){
+  $load.open("正在处理...");
   return  ajax.post(_change_pws,data);
 }
 export function modifyWithdrawPwd(data){
+  $load.open("正在处理...");
   return  ajax.post(_modifyWithdrawPwd,data);
 }
 
 export function bindWithdrawPwd(data){
+  $load.open("正在处理...");
   return  ajax.post(_bindWithdrawPwd,data);
 }
 

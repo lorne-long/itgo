@@ -25,12 +25,15 @@ export function getCustomerSocialInfo(data){
   return  ajax.get(_getCustomerSocialInfo,data);
 }
 export function changeinfo(data){
+  $load.open("正在处理...");
   return  ajax.post(_changeinfo,data);
 }
 export function modifyCustomerSocialInfo(data){
+  $load.open("正在处理...");
   return  ajax.post(_modifyCustomerSocialInfo,data);
 }
 export function completeUserInfo(data){
+  $load.open("正在处理...");
   return  ajax.post(_completeUserInfo,data);
 }
 
