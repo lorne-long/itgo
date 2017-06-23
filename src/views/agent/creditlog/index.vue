@@ -4,7 +4,7 @@
       <div class="layout_form layout_form04">
         <search-form :searchData="searchData"
                      :search="search" ></search-form>
-        <table-data :thead="thead" :data="data">
+        <table-data @seach="search" :thead="thead" :data="data">
           <tr v-for="(item,i) in data.records">
             <td>{{data.pageIndex+i}}</td>
             <td>{{item.type}}</td>
@@ -38,7 +38,8 @@
       }
     },
     methods: {
-      search(){
+      search(index){
+        this.searchData.pageIndex=index||this.searchData.pageIndex;
         queryCreditlogs(this.searchData).then(res => {
           if (res.success) {
               this.data=res.data

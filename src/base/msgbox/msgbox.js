@@ -68,7 +68,6 @@ var showNextMsg = function() {
     if (msgQueue.length > 0) {
       currentMsg = msgQueue.shift();//删除并 取得第一个弹框
       var options = currentMsg.options; //获取到配置信息
-      console.log(options)
       for (var prop in options) { //混合参数
         if (options.hasOwnProperty(prop)) {
           instance[prop] = options[prop];
@@ -130,7 +129,8 @@ msgbox.alert = function(message, title, options) {
     title: title,
     message: message,
     $type: 'alert',
-    modelClick:true
+    modelClick:true,
+    showModel:true,
   }, options));
 };
 //confirm弹框 默认一些初始值
@@ -143,6 +143,7 @@ msgbox.confirm = function(message, title, options) {
     title: title,
     message: message,
     $type: 'confirm',
+    showModel:true,
     showCancel: true
   }, options));
 };

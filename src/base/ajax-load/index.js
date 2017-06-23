@@ -14,17 +14,17 @@ var initInstance=function(){
 let showNext=()=>{
   if(!instance.value){ //只有弹一个 下一个等待
     if(loadQueue.length>0){
-      let setting=loadQueue.shift()
+      let setting=loadQueue.shift();
       for(let prop in setting){
         if(setting.hasOwnProperty(prop)){
           instance[prop]=setting[prop];
         }
       }
-      Vue.nextTick(()=>{
-        if(loadQueue.length==0){
-          instance.value=true;
-        }
-      });
+      // Vue.nextTick(()=>{
+      if(loadQueue.length==0){
+        instance.value=true;
+      }
+      // });
     }
   }
 }
@@ -49,10 +49,8 @@ gifload.open=(text,options={})=>{
   gifload(options);
 }
 gifload.close=()=>{
-
   if(!instance)return;
-  loadQueue.shift();
-
+  showNext();
   if(loadQueue.length==0){
     instance.value=false;
   }

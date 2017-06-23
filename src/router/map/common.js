@@ -80,7 +80,6 @@ export default [{
         meta:{
           headName:"修改登录密码",
           noCache:true //是否不缓存组件
-          ,auth:[AUTH_NAME.USER,AUTH_NAME.AGENT] //会员代理
         }
       },
     ]

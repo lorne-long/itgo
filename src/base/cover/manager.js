@@ -39,7 +39,7 @@ let manager = {
     return manager.zIndex++;
   },
   open: function (id, zIndex,dom) {
-    if (!id || zIndex === undefined) return;
+    if (!id || zIndex === undefined){return;};
     if (this.modalStack.findIndex((i, item) => {
         return item.id = id;
       }) > -1) {
@@ -58,6 +58,7 @@ let manager = {
     this.modalStack.push({id: id, zIndex: zIndex});
   },
   close: function (id) {
+
     const modalStack = this.modalStack,
       modalDom = getModal();
     if (modalStack.length > 0) {
@@ -78,12 +79,13 @@ let manager = {
     }
     if (modalStack.length == 0) {
       setTimeout(() => {
-        if (modalDom.parentNode) modalDom.parentNode.removeChild(modalDom);
-        modalDom.style.display = 'none';
-        manager.hasModal = false;
-        manager.modalDom = undefined;
+        if (modalStack.length == 0) {
+          if (modalDom.parentNode)modalDom.parentNode.removeChild(modalDom);
+          modalDom.style.display = 'none';
+          manager.hasModal = false;
+          manager.modalDom = undefined;
+        }
       }, 0)
-
     }
   },
   modelClick(){

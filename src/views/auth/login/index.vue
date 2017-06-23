@@ -58,6 +58,11 @@
       getimg(e) {
         this.authImg = getAuthImg();
       },
+      reset(msg){
+        this.data.imageCode=""
+        this.getimg()
+        toast(msg);
+      },
       login() {
         if (!this.check())return;
         login(this.data).then(res => {
@@ -82,10 +87,10 @@
               this.$router.push({path:rquest});
             }
           } else {
-            toast(res.message)
+            this.reset(res.message)
           }
         }).catch(error => {
-          toast(error);
+          this.reset("请求失败")
         });
       },
       check() {

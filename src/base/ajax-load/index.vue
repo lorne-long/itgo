@@ -22,9 +22,9 @@
   };
 </script>
 <style>
-  .ajax-load-animate { background: rgba(0,0,0,0.5);
+  .ajax-load-animate {
+    /*background: rgba(0,0,0,0.5);*/
     position: fixed; z-index: 100; top:0px; left: 0; width: 100%; height: 100% }
-
   .animate-item-warp { position: relative;
     height: 150px;
     width: 150px;

@@ -35,12 +35,20 @@
     },
     watch:{
       "$route"(to,from){
-
         document.title=to.meta.title||to.meta.headName||"itgo";
         const toDepth=to.path.split('/').length;
         const fromDepth=from.path.substring(0,from.path.length-2).split('/').length
         this.transitionName=toDepth<fromDepth ? 'slide_back' : 'slide';
       }
+    },
+    created(){
+//      $load.open("草怎么回事啊");
+//      $load.close();
+//      $confirm("系统检测到你未登陆...","提示",{
+//        confirmText:"立刻登陆"
+//      }).then(()=>{
+//        vueRouter.push("/login/index");
+//      })
     },
     components:{
       vFooter,

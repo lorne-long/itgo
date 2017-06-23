@@ -1,12 +1,12 @@
 import vueRouter from '@/router'; //引入vue
 import _axios from 'axios'; //引入axios
 import store from '@/store';	//加载状态管理器
-var  ajax=_axios.create({
+var ajax=_axios.create({
   baseURL:"http://112.213.126.135:4777",
   method:"get",
   timeout:10000,
   responseType:"json",
-  withCredentials: true,  // 跨域是否带Token
+  withCredentials:true,  // 跨域是否带Token
   // cancelToken: new CancelToken(function(cancel){})
   headers:{"Content-Type":"application/x-www-form-urlencoded"}
   // transformRequest: [function (data) {
@@ -22,34 +22,34 @@ var  ajax=_axios.create({
   // }],
 });
 // 请求拦截
-var qs = require('qs');
-ajax.interceptors.request.use(function (config){
- // console.log("处理请求之前的配置",config);
+var qs=require('qs');
+ajax.interceptors.request.use(function(config){
+  // console.log("处理请求之前的配置",config);
   config.data=qs.stringify(config.data)
-  return   config;
-}, function (error){
+  return config;
+},function(error){
   console.log("发送请求失败:"+error);
   return Promise.reject(error);
 });
 //响应拦截
 ajax.interceptors.response.use(function(response){
-  if(response.status===200&&!response.data.hasOwnProperty("success")){
+  if(response.status===200&& !response.data.hasOwnProperty("success")){
     response.data.success=response.data.code=="10000";
   }
+  $load.close();
   if(response.status===200&&response.data.code=="40001"){//没有登录
     store.dispatch("REMOVE_AUTH");
-    // console.log(vueRouter.currentRoute)
-    // $confirm("系统检测到你未登陆...",{
-    //   confirmText:"立刻登陆"
-    // }).then(()=>{
-    //   vueRouter.push("/login/index");
-    // })
+    response.data.message=undefined;
+    if(!/ajaxGetSessionPersonalData\.php$/i.test(response.config.url)){
+      $confirm("系统检测到你未登陆...","提示",{
+        confirmText:"立刻登陆"
+      }).then(()=>{
+        vueRouter.push("/login/index");
+      })
+    }
   }
-  $load.close();
-  return response.status===200?response.data:response;
-}, function (error){
-  //alert(error)
-  console.log("请求数据失败:"+error);
+  return response.status===200 ? response.data : response;
+},function(error){
   $load.close();
   return Promise.reject(error);
 });

@@ -66,7 +66,7 @@
 </script>
 <style>
   .message-enter-active, .message-leave-active {
-    transition: all 2s;
+    transition: all 1s;
     overflow: hidden;
   }
   .message-enter,
