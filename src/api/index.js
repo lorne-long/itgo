@@ -45,10 +45,12 @@ ajax.interceptors.response.use(function(response){
     //   vueRouter.push("/login/index");
     // })
   }
+  $load.close();
   return response.status===200?response.data:response;
 }, function (error){
   //alert(error)
   console.log("请求数据失败:"+error);
+  $load.close();
   return Promise.reject(error);
 });
 export default ajax;

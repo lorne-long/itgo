@@ -18,7 +18,8 @@
   import "./assets/scss/base.scss";
   import  "./assets/scss/font.scss";
   import "./assets/scss/mixin.scss";
-  import footer from 'components/footer/footer';
+  import vFooter from 'components/footer/footer';
+  import ajaxLoad from 'base/ajax-load/';
   import {mapGetters} from 'vuex'
   export default {
     data(){
@@ -27,13 +28,14 @@
       }
     },
     computed:{
-      ...mapGetters(["showFooter"]),
+      ...mapGetters(["showFooter",'ajaxLoad']),
       isExclude(){
         return this.$route.meta.cache ? "" : this.$route.name;
       }
     },
     watch:{
       "$route"(to,from){
+
         document.title=to.meta.title||to.meta.headName||"itgo";
         const toDepth=to.path.split('/').length;
         const fromDepth=from.path.substring(0,from.path.length-2).split('/').length
@@ -41,7 +43,8 @@
       }
     },
     components:{
-      'v-footer':footer
+      vFooter,
+      ajaxLoad
     }
   }
 </script>

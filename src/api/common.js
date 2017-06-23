@@ -12,6 +12,7 @@ let _getGuestbookCountNew="/asp/getGuestbookCountNew.php"; //获取未读消息
 
 
 export function getGuestbookCountNew(data){
+  $load.open();
   return  ajax.get(_getGuestbookCountNew,data)
 }
 export function getNewAnnouncement(data){

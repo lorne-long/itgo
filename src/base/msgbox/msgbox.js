@@ -74,7 +74,6 @@ var showNextMsg = function() {
           instance[prop] = options[prop];
         }
       }
-      console.log(instance)
       if (options.callback === undefined) {
         instance.callback = defaultCallback;
       }
@@ -125,7 +124,7 @@ msgbox.setDefaults = function(defaults) {
 msgbox.alert = function(message, title, options) {
   if (typeof title === 'object') {
     options = title;
-    title = '';
+    title =title.title|| '';
   }
   return msgbox(merge({
     title: title,

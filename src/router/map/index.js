@@ -46,7 +46,7 @@ export default [
   },
   {
     path:"/login",
-    name:"index",
+    name:"login",
     component:login,
     redirect:"/login/index",
     meta:{

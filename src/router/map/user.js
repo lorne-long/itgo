@@ -30,7 +30,7 @@ export default [
     children: [
       {
         path: "personal",
-        name: "personal",
+        name: "user_personal",
         component: personal,
         meta: {
           headName: "个人资料"

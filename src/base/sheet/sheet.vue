@@ -6,7 +6,7 @@
           }}
         </li>
       </ul>
-      <a class="sheet-btn-cancel" @click.stop="curShow=false" v-if="cancelText">{{ cancelText }}</a>
+      <a class="sheet-btn-cancel" @click.stop="curShow=false" v-if="cancelText==''">{{ cancelText }}</a>
     </div>
   </transition>
 </template>
@@ -20,10 +20,6 @@
       cancelText: {
         type: String,
         default: '取消'
-      },
-      Show: {
-        type: Boolean,
-        default: false
       },
       data: {
         type: Array,

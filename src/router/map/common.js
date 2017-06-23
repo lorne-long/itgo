@@ -28,7 +28,7 @@ export default [{
     },
     {
       path:"personal",
-      name:"personal",
+      name:"money_personal",
       component:personal,
       meta:{
         headName:"提现",

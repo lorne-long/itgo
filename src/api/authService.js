@@ -17,7 +17,8 @@ let _registerAgent = '/mobi/registerAgent.php';
 export function checkLogin() {
   return ajax.get(checkLogin);
 }
-export function login(userData) {
+export function login(userData){
+  $load.open("登录中...");
   return ajax.post(_login, userData);
 }
 export function logOut() {
@@ -28,9 +29,11 @@ export function getAuthImg() {
   return ajax.defaults.baseURL + "/mobi/mobileValidateCode.php?random=" + Math.random();
 }
 export function register(data) {
+  $load.open("正在注册...");
   return ajax.post(_register,data)
 }
 export function registerAgent(data) {
+  $load.open("正在注册...");
   return ajax.post(_registerAgent,data)
 }
 

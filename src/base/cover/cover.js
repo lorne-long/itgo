@@ -10,8 +10,7 @@ const getDOM=function(dom){
 export default {
   data(){
     return{
-      visible:false,
-      opened:false
+      visible:false
     }
   },
   props:{
@@ -52,7 +51,7 @@ export default {
     }
   },
   watch:{
-    value(val) {
+    value(val){
       if(val){
         if(!this.showModel)return;
         this._open();
