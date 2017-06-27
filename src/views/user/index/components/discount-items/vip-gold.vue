@@ -31,7 +31,6 @@
     <div class="bottom_info_text">每月仅可自助申请一次哟</div>
   </div>
 </template>
-
 <script>
   import  "./public.scss"
   import  {checkUpgrade,getBetUpgrateVO} from "api/preferential-terms"
@@ -59,7 +58,7 @@
         if(data.success){
             this.data=data.data;
         }else{
-              toast(data.message)
+           toast(data.message)
         }
       }).catch(err=>{
          toast("晋级查询失败");

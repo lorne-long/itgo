@@ -4,7 +4,7 @@
     <div class="layout_form layout_form04">
       <search-form @search="search" :searchData="searchData"></search-form>
       <table-data :thead="thead" :data="data">
-        <tr v-for="(item,i) in data.records">
+        <tr v-for="(item,i) in data.records||[]">
           <td>{{data.pageIndex+i}}</td>
           <td>{{item.loginname}}</td>
           <td>{{item.flag}}</td>

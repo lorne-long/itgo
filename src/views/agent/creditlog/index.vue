@@ -5,7 +5,7 @@
         <search-form :searchData="searchData"
                      @search="search" ></search-form>
         <table-data @seach="search" :thead="thead" :data="data">
-          <tr v-for="(item,i) in data.records">
+          <tr v-for="(item,i) in data.records||[]">
             <td>{{data.pageIndex+i}}</td>
             <td>{{item.type}}</td>
             <td>{{item.remit}}</td>

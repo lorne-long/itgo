@@ -3,7 +3,7 @@ import {checkLogin,agentReport} from 'api/authService';
 import {AUTH_NAME} from "@/store/types"//权限名称
 // 权限拦截
 export default (to,from,next) =>{
-  return next()
+  // return next()
   let needFalseLogin=to.matched.some(function(item,i){
     return item.meta.needFalseLogin===true;
   })
@@ -44,6 +44,7 @@ export default (to,from,next) =>{
     let AGENT_AUTH=to.matched.some(function(item,i){  //代理页面需要检查权限
       return Array.isArray(item.meta.auth)&&item.meta.auth.includes(AUTH_NAME.AGENT);
     })
+
     if(!store.getters.islogin){ //没有登录去检查一次
       checkLogin().then(res =>{
           if(res.success){

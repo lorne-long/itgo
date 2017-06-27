@@ -26,23 +26,26 @@ export function youhui(){
 }
 
 export function getSelfYouHuiObject(data){
+  $load.open("操作中...")
   return  ajax.get(_getSelfYouHuiObject,data);
 }
 
 export function getXimaData(data){
-  return  ajax.get(_getXimaData,data);
+  $load.open("操作中...")
+  return  ajax.post(_getXimaData,data);
 }
 export function doXima(data){
   return  ajax.post(doXima,data);
 }
 
 export function transferInforCoupon(data){
-  return  ajax.get(_transferInforCoupon,data);
+  $load.open("操作中...")
+  return  ajax.post(_transferInforCoupon,data);
 }
 
 
 export function queryPTLosePromo(data){
-  return  ajax.get(_queryPTLosePromo,data);
+  return  ajax.post(_queryPTLosePromo,data);
 }
 
 export function getBetUpgrateVO(data){

@@ -21,7 +21,7 @@
           <td>{{item.amount}}</td>
           <td>{{item.tempCreateTime | Date}}</td>
         </tr>
-        <tr v-if="!show" v-for="(item,i) in data.records">
+        <tr v-if="!show" v-for="(item,i) in data.records||[]">
           <td>{{data.pageIndex + i + 1}}</td>
           <td>{{item.loginname}}</td>
           <td>{{item.tempCreateTime | Date}}</td>

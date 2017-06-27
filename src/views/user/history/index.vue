@@ -45,7 +45,7 @@
       </form>
     </div>
     <table-data :thead="thead" :data="data">
-      <tr v-for="(item,i) in data.records">
+      <tr v-for="(item,i) in data.records||[]">
         <td>{{item.pno}}</td>
         <td>{{item.amount}}</td>
         <td>{{item.flag}}</td>

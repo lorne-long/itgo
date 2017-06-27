@@ -12,7 +12,7 @@
         <tbody>
         <slot>
           <tr class="table-nodata">
-            <td :colspan="thead.length">尚未查询/无资料</td>
+            <td :colspan="thead.length">无资料/尚未查询</td>
           </tr>
         </slot>
         </tbody>

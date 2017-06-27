@@ -10,6 +10,14 @@ let _modifyWithdrawPwd="/asp/modifyWithdrawPwd.php"; //修改支付密码
 let _bindWithdrawPwd="/asp/bindWithdrawPwd.php";//设置支付密码
 
 
+let _updateGameMoney="asp/updateGameMoney.php";//转账
+
+
+export function updateGameMoney(data){
+  $load.open("正在处理...");
+  return  ajax.post(_updateGameMoney,data);
+}
+
 export function checkWithdrawPwd(data){
   return  ajax.get(_checkWithdrawPwd,data);
 }

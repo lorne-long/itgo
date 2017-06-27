@@ -7,10 +7,10 @@ import {$localStorage,$sessionStorage} from '@/util/storage';
 Vue.use(Vuex);
 export default new Vuex.Store({
   state:{ //不要直接访问state
-    ajaxLoad:0, //ajax加载数量
     showFooter:true,//是否显示底部
     authList:[], //权限列表
     isSetPayPwd:false, //是否设置支付密码
+
     userData:{
       qq:"qq",
       loginname:"loginname",
@@ -22,9 +22,6 @@ export default new Vuex.Store({
     }
   },
   getters:{
-    ajaxLoad(state,getters){
-       return state.ajaxLoad>0;
-    },
     showFooter(state,getters){
       Vue.nextTick(()=>{
           document.querySelector("body").style.paddingBottom=(state.showFooter?"51px":"0");
@@ -59,11 +56,6 @@ export default new Vuex.Store({
   },
   mutations:{
     [types.SET_FOOTER](state,val){
-      if(val){
-
-      }else{
-
-      }
       state.showFooter=val;
     },
     [types.SET_USERDATA](state,val){
@@ -109,7 +101,6 @@ export default new Vuex.Store({
         if(data.success){
           commit(types.SET_USERDATA,data.data);
         }else{
-          commit()
         }
       })
     }

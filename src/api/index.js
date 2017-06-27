@@ -37,7 +37,7 @@ ajax.interceptors.response.use(function(response){
     response.data.success=response.data.code=="10000";
   }
   $load.close();
-  if(response.status===200&&response.data.code=="40001"){//没有登录
+  if(response.status===200&&/40001/.test(response.data.code)){//没有登录
     store.dispatch("REMOVE_AUTH");
     response.data.message=undefined;
     if(!/ajaxGetSessionPersonalData\.php$/i.test(response.config.url)){
@@ -50,6 +50,7 @@ ajax.interceptors.response.use(function(response){
   }
   return response.status===200 ? response.data : response;
 },function(error){
+  alert(1)
   $load.close();
   return Promise.reject(error);
 });
