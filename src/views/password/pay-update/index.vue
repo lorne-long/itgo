@@ -11,9 +11,9 @@
           </div>
           <div class="form_field with_right_label form_field_password">
             <span class="form_field_label">新密码</span>
-            <div class="form_field_input"><input v-model="originalPwd" type="password" placeholder="6位数字"
+            <div class="form_field_input"><input ref="pwd" v-model="originalPwd" type="password" placeholder="6位数字"
                                                  class="j-newpassword" maxlength="6"></div>
-            <span class="right_label"></span>
+            <span @touchstart="$refs.pwd.type='text'" @touchend="$refs.pwd.type='password'" class="right_label"></span>
           </div>
         </div>
         <div class="btn_wrap">

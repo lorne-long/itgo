@@ -12,11 +12,11 @@ export default new Vuex.Store({
     isSetPayPwd:false, //是否设置支付密码
 
     userData:{
-      qq:"qq",
-      loginname:"loginname",
-      accountName:"accountName",
-      phone:"phone",
-      email:"email",
+      qq:"",
+      loginname:"",
+      accountName:"",
+      phone:"",
+      email:"",
       accountMoney:0,
       level:0
     }
@@ -59,6 +59,13 @@ export default new Vuex.Store({
       state.showFooter=val;
     },
     [types.SET_USERDATA](state,val){
+      if(val.level){
+        if(val.level.match(/\d+/g)!=null){
+          val.level=parseInt(val.level.match(/\d+/g)[0])-1;
+        }else{
+          val.level=0;
+        }
+      }
       Object.assign(state.userData,val||{});
     },
     [types.SET_AUTH](state,val){ //设置权限

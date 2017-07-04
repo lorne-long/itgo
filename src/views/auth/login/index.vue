@@ -7,8 +7,8 @@
       </p>
       <p>
         <i class="iconfont icon-account"></i>
-        <input v-model="data.password" placeholder="密码" type="password"/>
-        <span class="r-icon iconfont icon-account"></span>
+        <input ref="pwd" v-model="data.password" placeholder="密码" type="password"/>
+        <span @touchstart="$refs.pwd.type='text'" @touchend="$refs.pwd.type='password'" class="r-icon iconfont icon-account right_label"></span>
       </p>
       <p>
         <i class="iconfont icon-account"></i>
@@ -16,7 +16,7 @@
         <img class="r-icon" :src="authImg" @click="getimg"/>
       </p>
       <div class="clearfix operate-links">
-        <router-link to="/" class="forgot-pwd">忘记密码?</router-link>
+        <router-link to="/help/forgotpwd" class="forgot-pwd">忘记密码?</router-link>
         <div class="remember_username">
           <span class="rem_desc">记住用户名</span>
           <v-choose  v-model="data.isRemember" ref="choose"></v-choose>
@@ -65,8 +65,9 @@
       },
       login() {
         if (!this.check())return;
-        login(this.data).then(res => {
+        login(this.data).then(res =>{
           if (res.success) {
+            this.data.imageCode='';
             if (this.data.isRemember) {
               $localStorage.set("isRememberAccount", this.data.account);
             } else {
@@ -87,10 +88,10 @@
             } else {
               this.$router.push({path:rquest});
             }
-          } else {
+          }else {
             this.reset(res.message)
           }
-        }).catch(error => {
+        }).catch(error =>{
           this.reset("请求失败")
         });
       },
@@ -105,10 +106,13 @@
           return true;
       },
       changeTab(){
-        this.isAgent = this.$route.name == 'agentLogin';
-        if (this.isAgent) {
+        this.isAgent = this.$route.name=='agentLogin';
+        if(this.isAgent) {
           this.data.account = "a_bbb";
           this.data.password = "aa123456"
+        }else{
+          this.data.account = "woodytest";
+          this.data.password = "aa123456789"
         }
       }
     },
@@ -116,6 +120,9 @@
       "$route"(){
         this.changeTab()
       }
+    },
+    activated(){
+      this.getimg();
     },
     created() {
       if ($localStorage.get("isRememberAccount")) {

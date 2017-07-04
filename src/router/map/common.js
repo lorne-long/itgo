@@ -8,6 +8,14 @@ let payupdate=(resolve) => resolve(require('views/password/pay-update'));//支�
 let payset=(resolve) => resolve(require('views/password/pay-set'));//支付密码设置
 let loginupdate=(resolve) => resolve(require('views/password/login-update'));//支付密码设置
 let addBank=(resolve) => resolve(require('views/common/addBank'));  //银行卡绑定
+
+
+let backCall=(resolve) => resolve(require('views/common/back-Call'));  //银行卡绑定
+
+let forgotpwd=(resolve) => resolve(require('views/common/forgot-pwd'));  //忘记密码
+
+
+
 export default [{
   path:"/money",
   name:'money',
@@ -89,8 +97,8 @@ export default [{
     name:"datum",
     component:master,
     meta:{
-      auth:[AUTH_NAME.USER,AUTH_NAME.AGENT] ////会员 -代理
-    },
+    auth:[AUTH_NAME.USER,AUTH_NAME.AGENT] ////会员 -代理
+  },
     children:[
       {
         path:"addbank",
@@ -100,7 +108,29 @@ export default [{
           headName:"绑定银行卡",
           noCache:true //不缓存该组件
         }
+      }, {
+        path:"backCall",
+        name:"backCall",
+        component:backCall,
+        meta:{
+          headName:"电话回拨"
+        }
       }
+    ]
+  },
+  {
+    path:"/help",
+    name:"help",
+    component:master,
+    children:[
+      {
+        path:"forgotpwd",
+        name:"forgotpwd",
+        component:forgotpwd,
+        meta:{
+          headName:"忘记密码"
+        }
+      },
     ]
   }
 ]

@@ -1,5 +1,5 @@
 <template>
-  <div class="m-grid-footer">
+  <div class="m-grid-footer" v-show="mydata.totalRecords!=0">
     <div class="m-grid-pagination">
       <div class="m-grid-pagination-left">
         <div class="m-grid-pagination-first flaticon-media25" @click="pageFun(1)"></div>

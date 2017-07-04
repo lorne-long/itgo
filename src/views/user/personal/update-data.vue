@@ -13,7 +13,7 @@
           </div>
           <div class="form_field">
             <span class="form_field_label">出生日期</span>
-            <div class="form_field_input"><input :value="userData.email" readonl type="text"></div>
+            <div class="form_field_input"><input :value="userData.birthday|conceal(2,2) " readonly type="text"></div>
           </div>
           <div class="form_field">
             <span class="form_field_label">微信</span>
@@ -83,9 +83,9 @@
       ...mapGetters(["userData"])
     },
     created(){
-      getCustomerSocialInfo().then(data => {
-        if (data.success) {
-          this.detail = data.data;
+      getCustomerSocialInfo().then(res => {
+        if (res.success) {
+          this.detail = res.data;
           this.newDetail.email=this.detail.email;
         } else {
           toast(data.message)

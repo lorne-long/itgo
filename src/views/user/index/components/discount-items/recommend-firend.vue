@@ -3,7 +3,7 @@
     <form-tip>
       在您专属链接注册的好友，<br>
       当日30%的负盈利彩金将在次日派发给您！
-      <a href="/static/preferential.jsp" slot="link" class="text_red">详情 &gt;</a>
+      <router-link to="/preferential" class="text_red"  slot="link">详情</router-link>
     </form-tip>
 
 
@@ -20,6 +20,7 @@
 <script>
   import  "./public.scss";
   import  {queryFriendBonue} from "api/preferential-terms";
+  import formTip from "components/form-tip.vue"
   export default {
     data() {
       return {
@@ -48,16 +49,15 @@
       })
     },
     components:{
-      "form-tip":require("./form-tip.vue")
+      formTip
     }
   };
 </script>
 
 <style lang="scss">
-  @import "../../../../../assets/scss/mixin";
+  @import "~assets/scss/mixin";
 
   .recommend-firend {
-
   .user_refer_link_wrap,.item_list {
     margin: r(30) 0;
     padding: r(30);

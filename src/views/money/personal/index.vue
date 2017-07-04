@@ -41,7 +41,7 @@
               取款金额会在1小时内到达您的绑定银行账户。</p>
           </div>
           <div class="btn_wrap no_padding">
-            <a href="/static/accountHistory.jsp" class="btn btn01">查看取款记录</a>
+            <a href="static/accountHistory.jsp" class="btn btn01">查看取款记录</a>
           </div>
         </div>
       </div>

@@ -26,7 +26,7 @@ export function logOut() {
   return ajax.get(_logout);
 }
 export function getAuthImg() {
-  return ajax.defaults.baseURL + "/mobi/mobileValidateCode.php?random=" + Math.random();
+  return  "/mobi/mobileValidateCode.php?random=" + Math.random();
 }
 export function register(data) {
   $load.open("正在注册...");

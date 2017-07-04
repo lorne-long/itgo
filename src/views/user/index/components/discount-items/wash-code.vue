@@ -1,14 +1,11 @@
 <template>
-
-
   <div class="user_rebate_content user_center_nav_content">
-        <form-tip>
-          所有平台 (非旋转类) 可随时自助洗码。<br>
-          若当日没有洗码，次日自动派发到主账户！
-          <a href="/static/preferential.jsp" slot="link" class="text_red">详情 &gt;</a>
-        </form-tip>
-    <div class="user_rebate_step01 user_center_nav_content_step show">
-      <div class="layout_form no_padding with_last_border">
+    <form-tip>
+      所有平台 (非旋转类) 可随时自助洗码。<br>
+      若当日没有洗码，次日自动派发到主账户！
+      <router-link to="/preferential" class="text_red" slot="link">详情</router-link>
+    </form-tip>
+      <div class="layout_form no_padding with_last_border"  v-show="!show">
         <div class="form_field_warp">
           <div class="form_field form_field_no_label">
             <div class="form_field_input">
@@ -28,31 +25,30 @@
           <a href="javascript:void(0);" @click="search" class="btn btn02" id="user_rebate_step01_submit_btn">查询</a>
         </div>
       </div>
-    </div>
-    <div class="user_rebate_step02 user_center_nav_content_step mt20" v-show="show">
-      <div class="layout_form no_padding with_last_border">
+    <div class="layout_form no_padding with_last_bordermt20"  v-show="show">
         <p class="total_touzhue">
           总有效投注额{{validAmount}}
         </p>
         <div class="layout_text_side rebate_game_info">
           <div class="left_text">
-            <p >
+            <p>
               洗码比率 {{rate}}
             </p>
           </div>
           <div class="right_text text_red">{{ximaAmount}}</div>
         </div>
         <div class="form_btn_wrap">
-          <a href="javascript:void(0)" class="btn btn01" @click="doXima" >确定洗码</a>
+          <a href="javascript:void(0)" class="btn btn01" @click="doXima">确定洗码</a>
+          <a href="javascript:void(0)" class="btn btn03" @click="show=false">重新选择</a>
         </div>
       </div>
-    </div>
   </div>
 </template>
 
 <script>
   import  "./public.scss"
-  import { getXimaData} from "api/preferential-terms"
+  import {getXimaData} from "api/preferential-terms"
+  import formTip from "components/form-tip.vue"
   export default {
     data() {
       return {
@@ -65,26 +61,26 @@
     },
     methods:{
       search(){
-        if(this.type==""){
-          toast("请选择游戏平台!");
-          return;
-        }
-        getXimaData({gameId:this.type}).then((data)=>{
+        if(this.type=="") return toast("请选择游戏平台!");
+        getXimaData({gameId:this.type}).then(data=>{
           if(data.success){
             this.validAmount=data.data.validAmount;
             this.ximaAmount=data.data.ximaAmount;
             this.rate=data.data.rate;
             this.show=true;
-         }else{
-          toast(data.message);
-        }
+          }else{
+            toast(data.message);
+          }
         }).catch(()=>{
           toast("请求错误请稍后重新尝试...");
         })
       },
       doXima(){
-        doXima({gameId:this.type}).then(()=>{
-          toast(data.message);
+        doXima({gameId:this.type}).then(res=>{
+          toast(res.message);
+          if(res.success){
+            this.show=false;
+          }
         }).catch(()=>{
           toast("洗码失败请重新尝试...");
         })
@@ -94,13 +90,7 @@
     created(){
     },
     components:{
-      "form-tip": require("./form-tip.vue")
+      formTip
     }
   };
 </script>
-
-<style lang="scss">
-  @import "../../../../../assets/scss/mixin";
-
-
-</style>

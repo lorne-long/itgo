@@ -16,6 +16,7 @@ let _queryHistory="/mobi/queryHistory.php";//记录查询
 
 
 export function queryHistory(data){
+  $load.open("正在查询...");
   return  ajax.post(_queryHistory,data);
 }
 export function ajaxGetSessionPersonalData(data){

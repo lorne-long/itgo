@@ -76,13 +76,13 @@
           <div class="main_nav_with_arrow ul_auto_wrap align_center">
             <ul class="title j-title">
               <li data-num="0" class="active"><a href="javascript:void(0);" class="layout_image_with_text"><img
-                src="/static/images/icons/icon_alipay.png" width="40" height="40"><span
+                src="static/images/icons/icon_alipay.png" width="40" height="40"><span
                 class="img_text">支付宝支付</span></a><span class="arrow_down"></span></li>
               <li data-num="1"><a href="javascript:void(0);" class="layout_image_with_text"><img
-                src="/static/images/icons/icon_online_deposit.png" width="40" height="40"><span
+                src="static/images/icons/icon_online_deposit.png" width="40" height="40"><span
                 class="img_text">网银支付</span></a><span class="arrow_down"></span></li>
               <li data-num="2"><a href="javascript:void(0);" class="layout_image_with_text"><img
-                src="/static/images/icons/icon_weixin.png" width="40" height="40"><span class="img_text">微信支付</span></a><span
+                src="static/images/icons/icon_weixin.png" width="40" height="40"><span class="img_text">微信支付</span></a><span
                 class="arrow_down"></span></li>
             </ul>
           </div>

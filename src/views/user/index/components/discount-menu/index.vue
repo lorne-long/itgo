@@ -79,7 +79,7 @@
     width: r(176);
     margin-right: r(20);
     border: 1px solid #ddd;
-    border-radius: 10px;
+    border-radius:7px;
   @include f($f14);
   &.active {
     background: url("img/bg04.png") no-repeat;

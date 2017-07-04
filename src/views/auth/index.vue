@@ -31,7 +31,7 @@
     },
     methods: {
       cheack(){
-        this.showAgent = /[(agentLogin)|(agentregister)]$/.test(this.$route.name);
+        this.showAgent = /(\/agentLogin)|(\/agentregister)$/.test(this.$route.path);
       }
     }
   }

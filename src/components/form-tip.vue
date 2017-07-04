@@ -16,7 +16,7 @@
     };
 </script>
 <style lang="scss">
-  @import "../../../../../assets/scss/mixin";
+  @import "~assets/scss/mixin";
   .form_tip {
     padding: r(30);
     background: #fff5d9;

@@ -9,7 +9,7 @@
       </router-link>
       <div class="bank_card_item bankImg13" v-for="(item,i) in list">
         <div class="bank_card_info"><h3>{{item.bankname}}</h3>
-          <img src="/static/images/bg/bg06.png" class="space">
+          <img src="static/images/bg/bg06.png" class="space">
           <p class="bank_card_num">**** **** **** {{item.bankno}}</p>
           <p class="bank_name">{{userData.accountName}}</p></div>
       </div>

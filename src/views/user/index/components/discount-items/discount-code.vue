@@ -24,6 +24,7 @@
 <script>
   import  "./public.scss"
   import  {transferInforCoupon} from "api/preferential-terms"
+  import formTip from "components/form-tip.vue"
   export default {
     data() {
       return {
@@ -57,7 +58,7 @@
     created(){
     },
     components:{
-      "form-tip": require("./form-tip.vue")
+      formTip
     }
   };
 </script>

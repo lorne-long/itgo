@@ -28,7 +28,7 @@ ToastConstructor.prototype.close = function() {
   this.closed = true;
    returnAnInstance(this);
 };
-let Toast = (options = {}) => {
+let Toast = (options= {}) => {
   if(options==undefined||options=="")return;
   let duration = options.duration ||1500;
   let instance = getAnInstance();

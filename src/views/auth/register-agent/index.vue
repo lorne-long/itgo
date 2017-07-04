@@ -92,7 +92,7 @@
         registerAgent(this.data).then((res)=>{
           this.getimg()
           if(res.success){
-            this.$router.replace("/login/registersuccess");
+            this.$router.replace({path:"/login/registersuccess",query:{account:this.data.account}});
           }else{
             toast(res.message);
           }

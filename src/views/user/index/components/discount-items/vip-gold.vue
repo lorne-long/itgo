@@ -3,41 +3,50 @@
     <form-tip>
       每月5日系统自动审核升降级，达到晋级条件<br>
       即可直接申请。真情回报，无投注额要求
-      <a href="/static/preferential.jsp" slot="link" class="text_red">详情 &gt;</a>
+      <router-link to="/preferential" class="text_red"  slot="link">详情</router-link>
     </form-tip>
     <div class="ul_auto_wrap">
-      <div class="user_vip_progress_info j-allwidth" style="width: 199%;">
-        <div class="present_box ">
+      <div class="user_vip_progress_info" :style="{width:widthAll}" >
+        <div class="present_box " :style="{'margin-left':100/num*lineNum+'%'}">
           <div class="present_box_content">
             本月投注额<br>
             <span class="money_text text_red ">
-              {{data.betList[data.betList.length-1].bet}}
+              {{thisMonthMoney}}
             </span>
           </div>
           <div class="present_box_arrow"></div>
         </div>
         <div class="progress_info">
-          <div class="progress_info_val j-progress_info_val" style="width: 0%;"></div>
+          <div class="progress_info_val" :style="{width:lineWidth}"></div>
         </div>
-        <div class="user_vip_level_info">
-          <div v-for="(item,i) in data.upgradeThresholdList" class="fl" style="width16%">
-            <div class="level_info_label text_red">VIP {{item.levelName}}</div>
-            <div class="level_info_text">{{item.upgradethreshold}}</div>
+        <div class="user_vip_level_info" >
+          <div v-for="(item,i) in data.upgradeThresholdList" class="fl" :style="{width:100/num+'%'}">
+            <div class="level_info_label text_red">{{item.levelName}}</div>
+            <div class="level_info_text">{{
+             item.money|stringSplit
+              }}</div>
           </div>
         </div>
       </div>
     </div>
-    <a href="javascript:void(0);" @click="submit" class="btn btn01 btn_disable">申请礼金</a>
+    <a href="javascript:void(0);" @click="submit" :class='["btn","btn01",{"btn_disable02":lineNum<1&&!(lineNum==1&&userData.level==0)}]'>申请礼金</a>
     <div class="bottom_info_text">每月仅可自助申请一次哟</div>
   </div>
 </template>
 <script>
   import  "./public.scss"
   import  {checkUpgrade,getBetUpgrateVO} from "api/preferential-terms"
+  import formTip from "components/form-tip.vue"
+  import { mapGetters } from 'vuex'
   export default {
     data() {
       return {
-            data:{ }
+            data:{
+              upgradeThresholdList:[],
+              betList:[{bet:0}]
+            },
+            levelCount:0, //所有的等级数量
+            thisMonthMoney:0//本月投注额
       };
     },
     props:{},
@@ -46,32 +55,68 @@
         checkUpgrade().then(data=>{
             toast(data.message)
         })
+      },
+      moneyEdit(data){ //保级金额处理
+        let level=this.userData.level;
+        this.data=data;
       }
     },
-    computed:{
-      username(){
-        return this.$store.state.userData.loginname;
+    computed: {
+      ...mapGetters(["userData"]),
+      num(){
+        let num=this.levelCount;
+        num= num-this.userData.level+1;
+        num-=(!this.userData.level?1:0);
+        return num;
+      },
+      widthAll(){
+        return this.num*33+1+"%"
+      },
+      lineNum(){
+        return  this.data.upgradeThresholdList.filter(item=>{
+          return item.money&&this.thisMonthMoney>=item.money;
+        }).length;
+      },
+      lineWidth(){ //红色线条宽度
+        let nextMoney=this.data.upgradeThresholdList.filter(item=>{ //找到第一个大于本月金额的等级
+          return item.money&&this.thisMonthMoney<item.money;
+        });
+        nextMoney=!nextMoney.length?this.thisMonthMoney:nextMoney[0].money; //0不能当除数   下面要被除  所以等于除数本身就好了 也就是this.thisMonthMoney
+        return (100/this.num*this.lineNum)+(this.thisMonthMoney/nextMoney *(100/this.num)) +"%"
       }
     },
     created(){
-      getBetUpgrateVO({username:this.username}).then(data=>{
-        if(data.success){
-            this.data=data.data;
+      getBetUpgrateVO({username:this.userData.loginname}).then(res=>{
+        if(res.success){
+          this.data=res.data;
+          this.levelCount= res.data.upgradeThresholdList.length;  //所有等级的数量
+          this.thisMonthMoney=this.data.betList[this.data.betList.length-1].bet; //本月投注额
+          this.data.upgradeThresholdList=this.data.upgradeThresholdList.filter((item,i)=>{   //数据处理
+            if(item.level==this.userData.level)
+            {
+              item.levelName="保级";
+              item.money=item.retainthreshold;
+            }else if(item.level>this.userData.level){
+              item.levelName="VIP "+(item.level+1);
+              item.money=item.upgradethreshold;
+            }
+            return item.level>=this.userData.level;
+          });
         }else{
-           toast(data.message)
+          toast(res.message)
         }
       }).catch(err=>{
+        console.log(err)
          toast("晋级查询失败");
       })
     },
     components:{
-      "form-tip":require("./form-tip.vue")
+      formTip
     }
   };
 </script>
-
 <style lang="scss">
-  @import "../../../../../assets/scss/mixin";
+  @import "~assets/scss/mixin";
   .vip-gold {
   .ul_auto_wrap {
     width: 100%;
@@ -85,7 +130,6 @@
     margin-top: r(120);
     position: relative;
   }
-
   .progress_info {
     position: relative;
     margin: r(14) 0;
@@ -155,6 +199,9 @@
   }
 
   .bottom_info_text { margin-top: r(30); text-align: center; @include f($f13) display: block; color: #999; }
-
-  }
+  .btn_disable02 {
+    background-color: #ddd;
+    border-color: #ddd;
+    color: #fff;
+  }  }
 </style>

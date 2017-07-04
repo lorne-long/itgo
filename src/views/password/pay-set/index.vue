@@ -10,8 +10,8 @@
           <div class="form_field with_right_label form_field_password">
             <span class="form_field_label">支付密码</span>
             <div class="form_field_input">
-              <input v-model="withdrawPwd" type="password" placeholder="6位数字"   maxlength="6"></div>
-            <span class="right_label"></span>
+              <input v-model="withdrawPwd" ref="pwd" type="password" placeholder="6位数字"   maxlength="6"></div>
+            <span @touchstart="$refs.pwd.type='text'" @touchend="$refs.pwd.type='password'" class="right_label"></span>
           </div>
         </div>
         <div class="btn_wrap">

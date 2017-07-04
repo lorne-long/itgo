@@ -8,10 +8,10 @@
         </div>
         <div class="form_field with_icon_label form_field_password with_right_label">
           <span class="form_field_label"><span class="icon icon_password"></span></span>
-          <div class="form_field_input"><input v-model="data.password" type="password"
+          <div class="form_field_input"><input ref="pwd" v-model="data.password" type="password"
                                                placeholder="密码(6-16位数字和字母）"
                                                maxlength="16"></div>
-          <span class="right_label"></span>
+          <span class="right_label" @touchstart="$refs.pwd.type='text'" @touchend="$refs.pwd.type='password'"></span>
         </div>
         <div class="form_field with_icon_label">
           <span class="form_field_label"><span class="icon icon_phone"></span></span>
@@ -75,7 +75,7 @@
         register(this.data).then((res)=>{
           this.getimg()
             if(res.success){
-              this.$router.replace("/login/registersuccess");
+              this.$router.replace({path:"/login/registersuccess",query:{account:this.data.account}});
             }else{
               toast(res.message);
              }

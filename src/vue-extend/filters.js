@@ -6,27 +6,38 @@ import Vue from 'vue'
 
 import {DateFormat} from "@/util/prototype"
 
-Vue.filter('toFixed',function dateTimeFormatter(val,_number='2'){
+//保留二位小数点 不四舍五入 无小数点 自动加 .00
+Vue.filter('toFixed',function(val,_number=2){
   let _val= parseFloat(val).toString();
     _val=isNaN(_val)?"0":_val;
    _val+=_val.indexOf(".")>-1?"00":".00";
   return _val.replace(new RegExp('(\\d*\\.\\d{'+_number+'})\\d*','g'),"$1")
 });
 
-Vue.filter('Date',function dateTimeFormatter(val,format='yyyy-MM-dd'){
+//转换日期格式格式
+Vue.filter('Date',function(val,format='yyyy-MM-dd'){
   return new Date(val).format(format);
 });
 
-Vue.filter('conceal',function dateTimeFormatter(val,start=1,end=0,replaceval='*'){
+//隐藏字符  abcd  默认隐藏为   a***
+//start前面显示几个  end后显示  replaceval隐藏*
+Vue.filter('conceal',function(val,start=1,end=0,replaceval='*'){
   if(start+end>val.toString().length){
     start=1;
     end=0;
   }
-   return val.replace(
+   return val.toString().replace(
     new RegExp("(.{"+start+"})(.*)(.{"+end+"})"),function(x,a,b,c){
       return a+b.toString().replace(/./g,replaceval)+c;
     }
   )
 });
+
+//分割字符串    例如  金额 10000换为 10，000 字符串相同
+Vue.filter('stringSplit',function(val,num=3,rpl=','){
+ return val.toString().replace(new RegExp("(\\w)(?=(\\w{"+num+"})+(?!\\w))",'g'), "$1"+rpl)
+});
+
+
 
 export  default {}

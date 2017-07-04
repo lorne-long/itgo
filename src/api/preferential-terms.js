@@ -20,18 +20,21 @@ let _canClaimBirthdayCoupon="/canClaimBirthdayCoupon.php"; //查询生日礼金
 let _claimBirthdayCoupon="/claimBirthdayCoupon.php"; //领取生日礼金
 let _queryFriendBonue="/mobi/queryFriendBonue.php";//推荐好久
 
+let _claimLosePromo="/mobi/claimLosePromo.php ";//处理救援金
 
+export function claimLosePromo(data){
+  $load.open("处理中...")
+  return  ajax.post(_claimLosePromo,data);
+}
 export function youhui(){
-  return  ajax.post(_youhui);
+  return  ajax.get(_youhui);
 }
-
 export function getSelfYouHuiObject(data){
-  $load.open("操作中...")
-  return  ajax.get(_getSelfYouHuiObject,data);
+  $load.open("处理中...")
+  return  ajax.post(_getSelfYouHuiObject,data);
 }
-
 export function getXimaData(data){
-  $load.open("操作中...")
+  $load.open("处理中...")
   return  ajax.post(_getXimaData,data);
 }
 export function doXima(data){
@@ -39,15 +42,13 @@ export function doXima(data){
 }
 
 export function transferInforCoupon(data){
-  $load.open("操作中...")
+  $load.open("处理中...")
   return  ajax.post(_transferInforCoupon,data);
 }
-
 
 export function queryPTLosePromo(data){
   return  ajax.post(_queryPTLosePromo,data);
 }
-
 export function getBetUpgrateVO(data){
   return  ajax.post(_getBetUpgrateVO,data);
 }

@@ -16,7 +16,12 @@ module.exports = {
     port: 8080,
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    proxyTable: {},
+    proxyTable: {
+      "**/*.php":{
+        target:"http://112.213.126.135:4777",
+        changeOrigin:true
+      }
+     },
     cssSourceMap: false,
     autoOpenBrowser:true
   }

@@ -70,14 +70,6 @@ export default [
         }
       },
       {
-        path:"registersuccess",
-        name:"registersuccess",
-        component:register_success,
-        meta:{
-          title:"注册成功"
-        }
-      },
-      {
         path:"agentLogin",
         name:"agentLogin",
         component:agent_login,
@@ -94,6 +86,14 @@ export default [
         }
       }
     ]
+  },
+  {
+    path:"/login/registersuccess",
+    name:"registersuccess",
+    component:register_success,
+    meta:{
+      title:"注册成功"
+    }
   },
   ...agent,
   ...user,
