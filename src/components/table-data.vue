@@ -1,5 +1,5 @@
 <template>
-  <div :class="['grid-warper','m-grid',className]">
+  <div v-show="thead.length!=0" :class="['grid-warper','m-grid',className]">
     <div class="m-grid-table">
       <table class="m-grid-table">
         <thead>
@@ -32,6 +32,7 @@
         }
       },
       data:{
+        myHead:[],
         type:Object,
         default(){
           return {
@@ -43,7 +44,11 @@
         type:String
       }
     },
-
+    watch:{
+      data(val){
+        this.myHead=this.thead;
+      }
+    },
     methods:{
       search(val){
         this.$emit("search",val)

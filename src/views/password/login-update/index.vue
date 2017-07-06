@@ -50,13 +50,12 @@
           },
           submit(){
             if(!this.check())return;
-            changepws(
-                {
-                  password: md5(md5(this.password)),
-                  confirm_password: md5(md5(this.confirm_password)),
-                  new_password: md5(md5(this.new_password)),
-                }
-            ).then(data=>{
+//            {
+//              password: md5(md5(this.password)),
+//                confirm_password: md5(md5(this.confirm_password)),
+//              new_password: md5(md5(this.new_password)),
+//            }
+            changepws(this.$data).then(data=>{
               if(data.success){
                   toast(data.message);
                   this.password=this.confirm_password=this.new_password=""

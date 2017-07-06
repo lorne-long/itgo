@@ -15,7 +15,6 @@ const getModal = function () {
   }
   return modalDom;
 };
-
 let instances = {};
 let manager = {
   hasModal: false,
@@ -40,8 +39,8 @@ let manager = {
   },
   open: function (id, zIndex,dom) {
     if (!id || zIndex === undefined){return;};
-    if (this.modalStack.findIndex((i, item) => {
-        return item.id = id;
+    if (this.modalStack.findIndex((item) => {
+        return item.id == id;
       }) > -1) {
       return;
     }
@@ -58,7 +57,6 @@ let manager = {
     this.modalStack.push({id: id, zIndex: zIndex});
   },
   close: function (id) {
-
     const modalStack = this.modalStack,
       modalDom = getModal();
     if (modalStack.length > 0) {

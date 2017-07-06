@@ -104,9 +104,10 @@ export default new Vuex.Store({
       commit(types.SET_USERDATA,val);
     },
     [types.UPDATE_USERDATA]({commit},val){
-      ajaxGetSessionPersonalData().then(data =>{
-        if(data.success){
-          commit(types.SET_USERDATA,data.data);
+      ajaxGetSessionPersonalData().then(res =>{
+        if(res.success){
+          commit(types.SET_USERDATA,res.data);
+          commit(types.SET_AUTH,res.data.role);
         }else{
         }
       })

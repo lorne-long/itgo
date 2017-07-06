@@ -6,12 +6,12 @@
           <div class="form_field form_field_password">
             <span class="form_field_label">原密码</span>
             <div class="form_field_input">
-              <input type="password" v-model="newPwd" class="j-password" maxlength="6">
+              <input type="password" v-model="originalPwd" class="j-password" maxlength="6">
             </div>
           </div>
           <div class="form_field with_right_label form_field_password">
             <span class="form_field_label">新密码</span>
-            <div class="form_field_input"><input ref="pwd" v-model="originalPwd" type="password" placeholder="6位数字"
+            <div class="form_field_input"><input ref="pwd" v-model="newPwd" type="password" placeholder="6位数字"
                                                  class="j-newpassword" maxlength="6"></div>
             <span @touchstart="$refs.pwd.type='text'" @touchend="$refs.pwd.type='password'" class="right_label"></span>
           </div>
