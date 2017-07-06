@@ -1,10 +1,10 @@
 <template>
   <div style="background: #fff; overflow: hidden">
     <div class="main_nav_with_arrow ul_auto_wrap">
-      <!--<a href="javascript:void(0);" class="layout_image_with_text active">-->
-      <!--<img src="./img/icon01.png">-->
-      <!--<span class="img_text">体验金</span>-->
-      <!--</a>-->
+      <a href="javascript:void(0);" @click="actives='experience_gold'" :class="{active:actives=='experience_gold'}" class="layout_image_with_text active">
+      <img src="./img/icon01.png">
+      <span class="img_text">体验金</span>
+      </a>
       <a href="javascript:void(0);" @click="actives='save_send'" :class="{active:actives=='save_send'}">
         <img src="./img/icon02.png">
         <span>存送优惠</span>
@@ -45,11 +45,12 @@
   let vip_gold=(resolve) => resolve(require('../discount-items/vip-gold'));
   let birthday_gold=(resolve) => resolve(require('../discount-items/birthday-gold'));
   let recommend_firend=(resolve) => resolve(require('../discount-items/recommend-firend'));
+  let experience_gold =(resolve) => resolve(require('../discount-items/experience-gold '));
   export default {
     data() {
       return{
-        actives:'save_send',
-        items:{save_send,wash_code,discount_code,help_gold,vip_gold,birthday_gold,recommend_firend}
+        actives:'experience_gold',
+        items:{save_send,wash_code,discount_code,help_gold,vip_gold,birthday_gold,recommend_firend,experience_gold}
       };
     }
   };

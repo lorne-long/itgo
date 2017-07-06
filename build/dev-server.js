@@ -68,50 +68,6 @@ devMiddleware.waitUntilValid(() =>{
   _resolve()
 })
 var server=app.listen(port)
-// var ttt=express();
-// app.get('*',function(req,res){
-//   var post_options={
-//     host:'http://112.213.126.135:',
-//     port:'4777',
-//     path:"/mobi/login.php",
-//     'method':'Post',
-//     headers:{
-//       'Content-Type':'application/x-www-form-urlencoded',
-//     }
-//   };
-//   http.request(post_options,function(res){
-//     res.setEncoding('utf8');
-//     res.on('data',function(chunk){
-//       console.log('Response: '+chunk);
-//       onetimetoken_data=JSON.parse(chunk);
-//       callback(chunk);
-//     });
-//   });
-//   res.json(post_data);
-//   res.end();
-// });
-// // POST method route
-// app.post('/',function(req,res){
-//   var post_options={
-//     host:'http://112.213.126.135:',
-//     port:'4777',
-//     path:"/mobi/login.php",
-//     'method':'Post',
-//     headers:{
-//       'Content-Type':'application/x-www-form-urlencoded',
-//     }
-//   };
-//   http.request(post_options,function(res){
-//     res.setEncoding('utf8');
-//     res.on('data',function(chunk){
-//       onetimetoken_data=JSON.parse(chunk);
-//       callback(chunk);
-//     });
-//   });
-//   res.json(post_data);
-//   res.end();
-// });
-// app.listen(3000);
 module.exports={
   ready:readyPromise,
   close:() =>{

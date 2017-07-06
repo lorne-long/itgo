@@ -47,7 +47,7 @@
 
 <script>
   import  "./public.scss"
-  import {getXimaData} from "api/preferential-terms"
+  import {getXimaData,doXima} from "api/preferential-terms"
   import formTip from "components/form-tip.vue"
   export default {
     data() {

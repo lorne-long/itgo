@@ -1,8 +1,8 @@
 <template>
   <marquee>
-        <span v-for="(item,i) in data"
-              :data-content="item.content">
-          {{item.title}}</span>
+    <router-link v-for="(item,i) in data" to="/notice">
+      <span>{{item.title}}</span>
+    </router-link>
   </marquee>
 </template>
 <script>
@@ -13,15 +13,10 @@
         data: []
       };
     },
-    props: {},
-    methods: {},
     created(){
       getNewAnnouncement().then(data => {
         this.data = data.data;
       });
-    },
-    components: {}
+    }
   };
 </script>
-<style>
-</style>

@@ -5,72 +5,6 @@
         <option value="thirdPay">第三方存款</option>
         <option value="zzhk">秒存转账（手机、网银转账/支付宝转账）</option>
       </select>
-      <div class="zzhk_type" v-show="depositType=='zzhk'">
-        <div class="layout_form layout_form04 j-step1 mt20">
-          <div class="form_tip form_tip_with_link display_flex_h flex_align_center">
-            <div class="form_tip_text flex_1">
-              秒存转账<span style="color: red">（支持手机转账/网银转账/支付宝转账）</span><br>
-              1.支付宝转账请选择两小时到账功能！使用次日到帐，支付成功之后请联系在线客服匹配您的款项<br>
-              2.每日23:30-00:30支付宝转账存在延迟，请尽量选择其他方式进行存款
-            </div>
-          </div>
-          <div class="form_field_warp">
-            <div class="form_field with_right_label">
-              <span class="form_field_label">存款姓名：</span>
-              <div class="form_field_input ml90"><input type="text" class="j-mcName"></div>
-            </div>
-            <div class="form_field with_right_label">
-              <span class="form_field_label">存款金额：</span>
-              <div class="form_field_input ml90"><input type="text" class="j-mcPrice"></div>
-              <span class="right_label">元</span>
-            </div>
-          </div>
-          <div class="btn_wrap">
-            <a href="javascript:void(0);" class="btn btn01 j-mcSubmit">提交</a>
-          </div>
-        </div>
-
-        <div class="layout_form layout_form_readonly sec_box mt20 j-step2 hidden">
-          <div class="form_field_warp">
-            <h3>我们的收款账户</h3>
-            <div class="form_field">
-              <span class="form_field_label">银行类别</span>
-              <div class="form_field_input"><span class="j-myCardType"></span></div>
-            </div>
-            <div class="form_field">
-              <span class="form_field_label">开户人</span>
-              <div class="form_field_input mDP">
-                <input type="text" id="myName" class="j-myCardAccountName" readonly="readonly">
-                <strong class="btn-copy" data-clipboard-action="copy" data-clipboard-target="#myName">复制</strong>
-              </div>
-            </div>
-            <div class="form_field">
-              <span class="form_field_label">银行卡号</span>
-              <div class="form_field_input mDP">
-                <input type="text" id="myCardno" readonly="readonly">
-                <strong class="btn-copy" data-clipboard-action="copy" data-clipboard-target="#myCardno">复制</strong>
-              </div>
-            </div>
-          </div>
-          <div class="form_field_warp">
-            <h3>您的存款信息</h3>
-            <div class="form_field">
-              <span class="form_field_label">存款姓名</span>
-              <div class="form_field_input"><span class="j-yourName"></span></div>
-            </div>
-            <div class="form_field">
-              <span class="form_field_label">存款金额</span>
-              <div class="form_field_input"><span class="j-yourPrice"></span></div>
-            </div>
-          </div>
-
-          <div class="btn_wrap">
-            <a href="javascript:void(0);" class="btn btn01 j-overPlay">我已成功付款</a>
-          </div>
-        </div>
-
-
-      </div>
       <div class="page_content_wrap thirdPay_type" v-show="depositType=='thirdPay'">
         <div class="sec_box j-sec_box">
           <div class="main_nav_with_arrow ul_auto_wrap align_center">
@@ -178,10 +112,12 @@
         <div class="btn_wrap j-btn hidden"><a href="javascript:void(0);" class="btn btn01 j-submit" data-num="2">提交</a>
         </div>
       </div>
+      <sec-save v-show="depositType!='thirdPay'"></sec-save>
     </div>
   </div>
 </template>
 <script>
+  import secSave from "./components/sec-save"
   export default {
     data() {
       return {
@@ -191,7 +127,10 @@
     },
     props:{},
     methods:{},
-    computed:{}
+    computed:{},
+    components:{
+      secSave
+    }
   };
 </script>
 <style>

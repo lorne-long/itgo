@@ -1,7 +1,7 @@
 <template>
   <div class="page_content_wrap">
     <div class="sec_box layout_transfer_account">
-      <div class="select-top">
+
         <div class="to_account display_flex_h flex_align_center">
           <div class="label">
             <span class="label-text text_red">  转出</span>
@@ -17,8 +17,7 @@
             </select>
           </div>
         </div>
-      </div>
-      <div>
+
         <div class="to_account display_flex_h flex_align_center">
           <div class="label">
             <span class="label-text text_green">转入</span>
@@ -26,14 +25,16 @@
           </div>
           <div class="flex_1">
             <div v-show="type!=0">{{accountMoney}} 元</div>
-            <select v-show="type==0" v-model="data.transferGameIn" class="without_style with_arrow hd-value select">
+            <select v-show="type==0" v-model="data.transferGameIn" ref="transferGameIn" class="without_style with_arrow hd-value select">
               <option v-for="item in array1" :value="item.value">
                 {{item.text}}
               </option>
             </select>
+            <div v-show="type==0&&targetCredit!=0" class="balance-txt">{{targetCredit}} 元</div>
           </div>
+
         </div>
-      </div>
+
       <span class="icon icon_transfer02" @click="changType"></span>
     </div>
     <div class="layout_form layout_form03">
@@ -66,6 +67,7 @@
       return {
         array1:transferGameIn,
         array2:transferGameOut,
+        targetCredit:0,
         type:0,//0表示转入游戏账户  1表示转入主账户
         accountMoney:"",
         gameMoney:0,
@@ -77,18 +79,28 @@
       };
     },
     watch:{
+      "data.transferGameIn"(val){
+        if(val=="")
+          return this.targetCredit=0;
+        getAllMoney({gameCode:val}).then(res=>{
+          if(res.success){
+            this.targetCredit=res.data;
+          }else{
+            this.targetCredit=res.message;
+          }
+        })
+      },
       "data.transferGameOut"(val){
         if(this.type!=0){
           if(val=="")return;
           let options=this.$refs.transOut.options;
-          options[options.selectedIndex].text="正在查询金额..."
+          options[options.selectedIndex].text="正在查询账号余额..."
           getAllMoney({gameCode:val}).then(res=>{
             if(res.success){
               options[options.selectedIndex].text=transferGameIn[options.selectedIndex].text+" ("+res.data+")元";
             }else{
               options[options.selectedIndex].text=res.message;
             }
-
           }).catch(err=>{
             options[options.selectedIndex].text="查询金额失败..."
           })
@@ -146,4 +158,26 @@
   }
 </script>
 <style>
+  .layout_transfer_account .balance-txt{
+    font-size: 1.8rem;
+    color: #3d3d3d;
+    text-align: right;
+    text-align-last: right;
+    position: absolute;
+    right: 10rem;
+    top: 20px;
+  }
+  .layout_transfer_account  .to_account{
+    position: relative;
+  }
+  .layout_transfer_account .select-top .to_account{
+    border-bottom: 1px solid #ccc;
+  }
+
+  .layout_transfer_account .to_account .select{
+    float: right;
+    width: auto;
+    padding: 0 30px 0 0;
+    height:auto;
+  }
 </style>

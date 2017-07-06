@@ -29,7 +29,6 @@
         showSheet: false
       };
     },
-
     components: {
       moneyOption,
       tabMenu,

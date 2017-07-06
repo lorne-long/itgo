@@ -5,9 +5,6 @@ import {AUTH_NAME} from "@/store/types"//权限名称
 let index=(resolve) => resolve(require('views/show/index'));//首页
 let history=(resolve) => resolve(require('views/show/history'));
 let preferential=(resolve) => resolve(require('views/show/preferential'));
-
-
-
 import  login from "views/auth"//模板
 let login_index=(resolve) => resolve(require('views/auth/login'));//用户登陆
 let login_register=(resolve) => resolve(require('views/auth/register-user'))//用户注册
@@ -15,6 +12,8 @@ let agent_login=(resolve) => resolve(require('views/auth/login')); //代理登�
 let agent_register=(resolve) => resolve(require('views/auth/register-agent'))//代理注册
 let register_success=(resolve) => resolve(require('views/auth/register-success'))//注册成功提示页面
 
+
+let notice=(resolve) => resolve(require('views/show/notice'))//网站公告
 
 export default [
   {
@@ -42,6 +41,15 @@ export default [
     component:preferential,
     meta:{
       title:"优惠"
+    }
+  },
+  {
+    path:"/notice",
+    name:"notice",
+    component:notice,
+    meta:{
+      title:"网站公告",
+      headName:"网站公告"
     }
   },
   {

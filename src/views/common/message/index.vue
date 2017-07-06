@@ -57,18 +57,14 @@
           toast(data.message);
         }
       })
-    },
-    components: {
-      'back-header': require("components/header_back/header_back")
     }
   }
-
 </script>
 <style>
   .message-enter-active, .message-leave-active {
-    transition: all 1s;
-    overflow: hidden;
-  }
+       transition: all 1s;
+       overflow: hidden;
+     }
   .message-enter,
   .message-leave-to{
     height: 0!important;
