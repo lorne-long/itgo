@@ -14,9 +14,9 @@
       };
     },
     created(){
-      getNewAnnouncement().then(data => {
-        this.data = data.data;
-      });
+//      getNewAnnouncement().then(data => {
+//        this.data = data.data;
+//      });
     }
   };
 </script>

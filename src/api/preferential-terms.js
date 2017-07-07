@@ -23,7 +23,12 @@ let _queryFriendBonue="/mobi/queryFriendBonue.php";//推荐好久
 let _claimLosePromo="/mobi/claimLosePromo.php ";//处理救援金
 let _commitPT8Self='/asp/commitPT8Self.php';
 
+let _transferInforFriend='/asp/transferInforFriend.php';
 
+export function transferInforFriend(data){
+  $load.open("正在领取...")
+  return  ajax.post(_transferInforFriend,data);
+}
 export function commitPT8Self(data){
   $load.open("正在领取...")
   return  ajax.post(_commitPT8Self,data);

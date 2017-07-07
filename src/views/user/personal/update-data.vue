@@ -34,15 +34,24 @@
               <span @click="upData('email')" v-show="detail.email==''" class="edit ">修改</span></div>
           </div>
         </div>
+
+        <div v-if="userData.phoneValidStatus==0">
+          <br>
+          <a href="javascript:void(0);" class="btn btn01" @click="verify=true">手机验证</a>
+          <br>
+            <v-verify v-model="verify"></v-verify>
+        </div>
       </div>
     </div>
     <bank-list></bank-list>
   </div>
 </template>
-
 <script>
-  import {modifyCustomerSocialInfo, getCustomerSocialInfo} from 'api/user';
+  import {modifyCustomerSocialInfo, getCustomerSocialInfo,endSms4TYJ,checkPhoneCode} from 'api/user';
   import { mapGetters } from 'vuex'
+  import vVerify from './components/verify'
+  import  bankList from 'components/bank-list/index'
+
   export default {
     data() {
       return {
@@ -56,13 +65,8 @@
           weixin: "",
           email: ""
         },
-
+        verify:false
       };
-    },
-    computed: {
-      showEmail(){
-        return false
-      }
     },
     methods: {
       upData(type){
@@ -93,7 +97,7 @@
       })
     },
     components: {
-      "bank-list": require("components/bank-list/index")
+      vVerify,bankList
     }
   };
 </script>

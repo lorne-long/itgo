@@ -2,13 +2,13 @@
   <!--佣金报表{-->
   <div class="page_content_wrap">
     <div class="layout_form layout_form04">
-      <search-form  @search="search" :searchData="searchData"></search-form>
+      <search-form  :data="defaultData"   @search="search"></search-form>
       <table-data :thead="thead" :data="data"  @search="search">
-        <tr v-for="(item,i) in data.records||[]">
-          <td>{{data.pageIndex+i}}</td>
-          <td>{{getPlatForm(item.platform)}}</td>
+        <tr v-for="(item,i) in data.pageContents||[]">
+          <td>{{(data.pageNumber-1)*data.size+i+1}}</td>
+          <td>{{getPlatForm(item.id.platform)}}</td>
           <td>{{item.amount}}</td>
-          <td>{{item.createdate|Date}}</td>
+          <td>{{item.id.createdate|Date}}</td>
           <td>{{item.profitall}}</td>
           <td>{{item.couponfee}}</td>
           <td>{{item.ximafee}}</td>
@@ -21,32 +21,34 @@
   </div>
   <!--}佣金报表-->
 </template>
-
 <script>
   import tableData from "components/table-data"
   import searchForm from "components/search-form"
-  import {queryPtCommission} from "api/agent"
+  import {searchPtCommissionsData} from "api/agent"
   export default {
-    name: 'hello',
     data () {
       return {
         thead: ['序','平台','日佣金','数据日期', '输赢额度', '优惠额度', '洗码额度','平台费','投注额', '执行时间'],
         data: {},
         searchData: {
-          total:0,
-          startDate: "",
-          endDate: "",
-          size:2,
-          pageIndex:0,
+          starttime: "",
+          endtime: "",
+          size:10,
+          pageIndex:1,
+        },
+        defaultData:{
+          startDate:"",
+          endDate:""
         }
       }
     },
-
     methods: {
       search(index) {
         if(index&&this.searchData.pageIndex==index)return;
         this.searchData.pageIndex=index||this.searchData.pageIndex;
-        queryPtCommission(this.searchData).then(res => {
+        this.searchData.starttime=this.defaultData.startDate;
+        this.searchData.endtime=this.defaultData.endDate;
+        searchPtCommissionsData(this.searchData).then(res => {
           if (res.success) {
             this.data = res.data;
           }else{

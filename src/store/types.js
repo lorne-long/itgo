@@ -3,8 +3,11 @@ export const UPDATE_USERDATA = 'UPDATE_USERDATA'//更新用户信息
 export const SET_AUTH = 'SET_AUTH'//初始化 权限
 export const ADD_AUTH = 'ADD_AUTH'//添加权限
 export const REMOVE_AUTH = 'REMOVE_AUTH' //删除权限
-
+export const LOGIN_OUT = 'LOGIN_OUT' //退出
 export const SET_FOOTER = 'SET_FOOTER' //设置底部是否显示
+
+export const SET_PAYPWD = 'SET_PAYPWD' //设置支付密码
+export const GET_PAYPWD = 'GET_PAYPWD' //设置支付密码
 
 export const IS_LOGIN = 'IS_LOGIN' //是否登录名称
 export const AUTH_NAME = {

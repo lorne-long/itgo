@@ -1,7 +1,11 @@
 import Vue from 'vue'; //引入vue
 import Vuex from 'vuex'; //引入vue
+import router from '@/router'; //引入vue
 // import types from '@/util/types'; //mutations
 import {ajaxGetSessionPersonalData} from 'api/user'; //mutations
+
+import {checkWithdrawPwd} from 'api/safeCenter'; //mutations
+import {logOut} from 'api/authService'; //mutations
 import * as types from './types'; //引入vue
 import {$localStorage,$sessionStorage} from '@/util/storage';
 Vue.use(Vuex);
@@ -10,15 +14,21 @@ export default new Vuex.Store({
     showFooter:true,//是否显示底部
     authList:[], //权限列表
     isSetPayPwd:false, //是否设置支付密码
-
     userData:{
-      qq:"",
-      loginname:"",
-      accountName:"",
-      phone:"",
-      email:"",
-      accountMoney:0,
-      level:0
+      qq:"",//true string
+      loginname:"",// true string
+      accountName:"",//t true string 姓名，通过该字段是否有值可判断是否已设置过用户信息
+      phone:"",//true string
+      level:0,//true string 用户等级
+      email:"",// false string
+      accountMoney:0,// true string
+      role :"",//true string 角色
+      birthday:"",//false string 生日
+      levelNumber:"",//true number 等级（数字）
+      deputyCredit:"",//true number 副账户余额
+      phoneValidStatus:"",//true string 手机号是否验证
+      mobileNum :"",//true string 手机号
+      referWebsite:"",//
     }
   },
   getters:{
@@ -27,6 +37,16 @@ export default new Vuex.Store({
           document.querySelector("body").style.paddingBottom=(state.showFooter?"51px":"0");
       })
       return state.showFooter;
+    },
+    isSetPayPwd(state,getters){
+      if(!state.isSetPayPwd){ //异步的一种获取
+        checkWithdrawPwd().then(res=>{
+          if(res.success){
+            state.isSetPayPwd=res.data=='1';
+          }
+        })
+      }
+      return  state.isSetPayPwd;
     },
     userData(state,getters){ //其有可能进行过滤
       return state.userData;
@@ -58,14 +78,10 @@ export default new Vuex.Store({
     [types.SET_FOOTER](state,val){
       state.showFooter=val;
     },
+    [types.SET_PAYPWD](state,val){
+      state.isSetPayPwd=val
+    },
     [types.SET_USERDATA](state,val){
-      if(val.level){
-        if(val.level.match(/\d+/g)!=null){
-          val.level=parseInt(val.level.match(/\d+/g)[0])-1;
-        }else{
-          val.level=0;
-        }
-      }
       Object.assign(state.userData,val||{});
     },
     [types.SET_AUTH](state,val){ //设置权限
@@ -94,41 +110,34 @@ export default new Vuex.Store({
     }
   },
   actions:{
-    [types.REMOVE_AUTH]({commit},val){
-      commit(types.REMOVE_AUTH,val);
+    [types.LOGIN_OUT]({commit},val){ //退出登录
+      commit(types.REMOVE_AUTH);
+      logOut().then(res=>{
+        router.push("/")
+      }).catch(res=>{
+        toast("请重试")
+      })
     },
-    [types.SET_AUTH]({commit},val){
-      commit(types.SET_AUTH,val);
-    },
-    [types.SET_USERDATA]({commit},val){
-      commit(types.SET_USERDATA,val);
+    [types.GET_PAYPWD](){  // 获取登录密码
+       return  new Promise((resolve, reject)=>{
+         checkWithdrawPwd().then(res=>{
+               if(res.success){
+                 commit(types.SET_PAYPWD,res.data=="1");
+               }
+               return resolve(res)
+             }).catch(err=>{
+                reject(err)
+             })
+       })
     },
     [types.UPDATE_USERDATA]({commit},val){
-      ajaxGetSessionPersonalData().then(res =>{
+      return  ajaxGetSessionPersonalData().then(res =>{
         if(res.success){
           commit(types.SET_USERDATA,res.data);
           commit(types.SET_AUTH,res.data.role);
-        }else{
         }
-      })
+      });
     }
   }
 });
-//
-// //使用
-// new Vue({
-// 	store,
-// 	computed: {
-// 		doneTodosCount() {
-// 			return this.$store.getters.doneTodosCount
-// 		}
-// 	},
-// 	computed:{
-// //		...mapGetters(["DataCount","filterdata"])
-// //		mapGetters({
-// //		  // 映射 this.doneCount 为 store.getters.doneTodosCount
-// //		  doneCount: 'doneTodosCount'
-// //		})
-// 	}
-// })
 

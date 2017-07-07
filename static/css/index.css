@@ -1149,7 +1149,6 @@ input:checked + .slider:before {
 	color: #f66;
 }
 .dialog_wrap {
-	display: none;
 	position: fixed;
 	top: 0;
 	left: 0;

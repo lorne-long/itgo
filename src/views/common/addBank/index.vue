@@ -13,7 +13,7 @@
           </div>
         </div>
         <div class="form_btn_wrap">
-          <a href="javascript:void(0);" @click="submit" class="btn btn01 j-submit">保存</a>
+          <a href="javascript:void(0);" @click="submit" class="btn btn01">保存</a>
         </div>
       </div>
     </div>

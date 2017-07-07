@@ -9,7 +9,7 @@ function resolve (dir) {
 
 module.exports = {
   entry: {
-    app: './src/main.js'
+    app:["babel-polyfill", "./src/main.js"]
   },
   externals:{
     "touclick":"http://js.touclick.com/js.touclick?b=b85d9b8e-adfb-47da-a58d-8f30cef74f1a"

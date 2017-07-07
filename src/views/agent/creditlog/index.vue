@@ -2,11 +2,11 @@
   <!--额度记录{-->
     <div class="page_content_wrap">
       <div class="layout_form layout_form04">
-        <search-form :searchData="searchData"
+        <search-form :data="searchData"
                      @search="search" ></search-form>
         <table-data @seach="search" :thead="thead" :data="data">
-          <tr v-for="(item,i) in data.records||[]">
-            <td>{{data.pageIndex+i}}</td>
+          <tr v-for="(item,i) in data.pageContents||[]">
+            <td>{{(data.pageNumber-1)*data.size+i+1}}</td>
             <td>{{item.type}}</td>
             <td>{{item.remit}}</td>
             <td>{{item.credit}}</td>
@@ -33,7 +33,7 @@
           startDate: "", //true string
           endDate: "",// true string
           size: 10, //true string
-          pageIndex: 0, //true string
+          pageIndex:1//true string
         }
       }
     },

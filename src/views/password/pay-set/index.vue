@@ -23,12 +23,16 @@
 <script>
   import  md5  from "MD5";
   import  {bindWithdrawPwd,checkWithdrawPwd}  from "api/safeCenter";
+  import {mapGetters,mapActions} from 'vuex'
   export default {
     data() {
       return {
         withdrawPwd:'',
         loginPwd:""
       };
+    },
+    computed:{
+     ...mapGetters(["userData"])
     },
     methods:{
       checkForm(){
@@ -44,6 +48,7 @@
         }).then((data)=>{
           if(data.success){
             toast("设置成功");
+           this.$store.commit("SET_PAYPWD")
             const {rquest}= this.$route.query;
             if(rquest){
               this.$router.push({path:rquest});
@@ -57,12 +62,14 @@
         })
       }
     },
-    created(){
-      checkWithdrawPwd().then(data=>{ //如果已经设置了就去修改防止强跳
-        if(data.success&&data.data=="1"){
-          this.$router.replace("/pwd/payupdate");
+    beforeRouteEnter (to, from, next) {
+      checkWithdrawPwd().then(res=>{
+        if(res.success&&res.data=='1'){
+           next("/pwd/payupdate");
+         }else{
+          next()
         }
-      })
+       })
     }
   };
 </script>

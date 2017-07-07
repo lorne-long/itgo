@@ -25,37 +25,33 @@
 <script>
   //  import {propssync} from "@/vue-extend/mixins.js"
   export default {
-    props: {
-      search: {
-        type: Function
-      },
-      className: {
-        type: String
-      },
-      searchData: {
-        type: Object
-      },
-    },
-    created(){
-      this.endDate = this.searchData.endDate || new Date().format("yyyy-MM-dd");
-      this.startDate = this.searchData.startDate || new Date().addDay(-70).format("yyyy-MM-dd");
-    },
-    methods: {
-      submit(){
-        if (this.startDate == "")
-          return toast("请选择开始时间");
-        if (this.endDate == "")
-          return toast("请选择结束时间");
-        this.searchData.startDate = this.startDate + " 00:00:00";
-        this.searchData.endDate = this.endDate + " 00:00:00";
-        this.$emit("search");
+    data(){
+      return {
+        startDate:"",
+        endDate:""
       }
     },
-    data()
-    {
-      return {
-        startDate: "",
-        endDate: ""
+    props:{
+      className:{
+        type:String
+      },
+      data:{
+        type:Object
+      }
+    },
+    created(){
+      this.endDate=this.data.endDate||new Date().format("yyyy-MM-dd");
+      this.startDate=this.data.startDate||new Date().addDay(-70).format("yyyy-MM-dd");
+    },
+    methods:{
+      submit(){
+        if(this.startDate=="")
+          return toast("请选择开始时间");
+        if(this.endDate=="")
+          return toast("请选择结束时间");
+        this.data.startDate=this.startDate+" 00:00:00";
+        this.data.endDate=this.endDate+" 00:00:00";
+        this.$emit("search");
       }
     }
   }

@@ -29,7 +29,7 @@
         </div>
       </div>
     </div>
-    <a href="javascript:void(0);" @click="submit" :class='["btn","btn01",{"btn_disable02":lineNum<1&&!(lineNum==1&&userData.level==0)}]'>申请礼金</a>
+    <a href="javascript:void(0);" @click="submit" :class='["btn","btn01",{"btn_disable02":lineNum<1&&!(lineNum==1&&userData.levelNumber==0)}]'>申请礼金</a>
     <div class="bottom_info_text">每月仅可自助申请一次哟</div>
   </div>
 </template>
@@ -57,7 +57,7 @@
         })
       },
       moneyEdit(data){ //保级金额处理
-        let level=this.userData.level;
+        let level=this.userData.levelNumber;
         this.data=data;
       }
     },
@@ -65,8 +65,8 @@
       ...mapGetters(["userData"]),
       num(){
         let num=this.levelCount;
-        num= num-this.userData.level+1;
-        num-=(!this.userData.level?1:0);
+        num= num-this.userData.levelNumber+1;
+        num-=(!this.userData.levelNumber?1:0);
         return num;
       },
       widthAll(){
@@ -92,15 +92,15 @@
           this.levelCount= res.data.upgradeThresholdList.length;  //所有等级的数量
           this.thisMonthMoney=this.data.betList[this.data.betList.length-1].bet; //本月投注额
           this.data.upgradeThresholdList=this.data.upgradeThresholdList.filter((item,i)=>{   //数据处理
-            if(item.level==this.userData.level)
+            if(item.level==this.userData.levelNumber)
             {
               item.levelName="保级";
               item.money=item.retainthreshold;
-            }else if(item.level>this.userData.level){
+            }else if(item.level>this.userData.levelNumber){
               item.levelName="VIP "+(item.level+1);
               item.money=item.upgradethreshold;
             }
-            return item.level>=this.userData.level;
+            return item.level>=this.userData.levelNumber;
           });
         }else{
           toast(res.message)

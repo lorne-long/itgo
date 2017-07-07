@@ -1,10 +1,10 @@
 <template>
   <div class="user_center_content">
-    <div class="page_notice j-marquee">
+    <div class="page_notice">
       <top-marquee></top-marquee>
     </div>
     <account-top v-model="showSheet">头部内容</account-top>
-    <money-option>存款、取款、转账选项</money-option>
+    <!--<money-option>存款、取款、转账选项</money-option>-->
     <tab-menu></tab-menu>
     <v-sheet  v-model="showSheet"  :data="sheetData"></v-sheet>
   </div>

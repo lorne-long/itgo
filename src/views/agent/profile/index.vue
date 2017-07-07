@@ -11,16 +11,16 @@
 
 <script>
   import tabMenu from "components/tab-menu";
-  import {checkWithdrawPwd} from 'api/safeCenter';
   import profile from "./components/profile";
   import loginUpdate from "views/password/login-update";
   import payUpdate from "views/password/pay-update";
-
+  import paySet from "views/password/pay-set";
+  import {mapGetters} from 'vuex'
   export default {
     data () {
       return {
         tabPanel: profile,
-        tabMenuData: [
+        tabMenuData:[
           {
             name: "个人资料",
             params: profile
@@ -36,17 +36,20 @@
         ]
       }
     },
+    watch:{
+      isSetPayPwd(){}
+    },
+    computed:{
+       ...mapGetters(["isSetPayPwd"])
+    },
     methods: {
       tabmenu(val,i){
-          this.tabPanel=val;
-      }
-    },
-    beforeCreate(to, from, next){
-      checkWithdrawPwd().then(data => {
-        if (!data.success) {
-          this.$router.push("/pwd/payset")
+        if(i==1&&!this.isSetPayPwd){
+          this.tabPanel=paySet
+        }else{
+          this.tabPanel=val.params;
         }
-      })
+      }
     },
     components: {
       tabMenu

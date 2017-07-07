@@ -3,7 +3,6 @@ import {checkLogin,agentReport} from 'api/authService';
 import {AUTH_NAME} from "@/store/types"//权限名称
 // 权限拦截
 export default (to,from,next) =>{
-
   // return next()
   let needFalseLogin=to.matched.some(function(item,i){
     return item.meta.needFalseLogin===true;
@@ -50,8 +49,8 @@ export default (to,from,next) =>{
       checkLogin().then(res =>{
           if(res.success){
             let {role} = res.data;
-            store.dispatch("SET_AUTH",role);
-            store.dispatch("SET_USERDATA",res.data);
+            store.commit("SET_AUTH",role);
+            store.commit("SET_USERDATA",res.data);
             if(AGENT_AUTH&&USER_AUTH){ //双方都有权限直接进
               next();
             }
@@ -65,13 +64,13 @@ export default (to,from,next) =>{
             }
             //设置权限
           }else{ //没有登录跳到登录页面
-            store.dispatch("REMOVE_AUTH");
+            store.commit("REMOVE_AUTH");
             toast(res.message)
             next({path:'/login/index',query:{rquest:to.fullPath}});
           }
         }
       ).catch(() =>{
-        store.dispatch("REMOVE_AUTH");//报错清空登录
+        store.commit("REMOVE_AUTH");//报错清空登录
         next({path:'/login/index',query:{rquest:to.fullPath}});
       });
     }else{

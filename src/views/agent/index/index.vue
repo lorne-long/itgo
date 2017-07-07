@@ -13,7 +13,9 @@
       </div>
     </div>
     <row-list :data="rowdata"></row-list>
-    <div class="btn_wrap" style="margin-top: 1em"><a @click="logOut" href="javascript:;" class="btn btn01">退出</a></div>
+    <div class="btn_wrap" style="margin-top: 1em"><a
+                                                     @click="$store.dispatch('LOGIN_OUT')"
+                                                     href="javascript:;" class="btn btn01">退出</a></div>
   </div>
 </template>
 <script>

@@ -78,7 +78,7 @@
               let {role} = res.data;
               let $path = "/index";
               this.$store.dispatch("UPDATE_USERDATA");
-              this.$store.dispatch("SET_AUTH", role);
+              this.$store.commit("SET_AUTH", role);
               if (role == AUTH_NAME.AGENT) {
                 $path = "/agent/index";
               } else if(role == AUTH_NAME.USER) {

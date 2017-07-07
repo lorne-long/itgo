@@ -22,7 +22,7 @@ export function login(userData){
   return ajax.post(_login, userData);
 }
 export function logOut() {
-  store.dispatch("REMOVE_AUTH");
+  $load.open("正在退出...");
   return ajax.get(_logout);
 }
 export function getAuthImg() {

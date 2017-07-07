@@ -1,7 +1,7 @@
 <template>
   <div class="page_content_wrap">
     <div class="layout_form layout_form04">
-      <search-form @search="search" :searchData="searchData">
+      <search-form @search="search" :data="searchData">
         <div class="form_field date_picker with_arrow_icon">
           <span class="form_field_label">类型</span>
           <div class="form_field_input">
@@ -14,7 +14,7 @@
       </search-form>
       <table-data :thead="thead" :data="data">
         <tr v-if="show" v-for="(item,i) in data.records">
-          <td>{{data.pageIndex + i + 1}}</td>
+          <td>{{(data.pageNumber-1)*data.size+i+1}}</td>
           <td>{{item.loginname}}</td>
           <td>{{item.platform}}</td>
           <td>{{item.bettotal}}</td>
@@ -52,7 +52,7 @@
           startDate: "", //true string
           endDate: "",// true string
           size: 10, //true string
-          pageIndex: 0, //true string
+          pageIndex:1, //true string
           code: '-1'
         }
       }

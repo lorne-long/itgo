@@ -2,8 +2,8 @@
   <div class="page_content_wrap">
     <div class="main_nav_with_arrow ul_auto_wrap main_nav_with_arrow_Julien">
       <ul>
-        <li class="active j-sms" data-href="tiyanjin_content">
-          <a href="static/forgotPassword.jsp" class="layout_image_with_text">
+        <li class="active" data-href="tiyanjin_content">
+          <a  href="javascript:void(0);" class="layout_image_with_text">
             <img src="static/images/icons/icon_mobile.png" width="40" height="40">
             <span class="img_text">短信找回</span>
           </a>

@@ -40,22 +40,20 @@
     width: 100%;
   @include f(14px);
     border-top: 1px solid #ccc;
-    background: url("../../assets/images/bg/ft-bg.jpg") center/100% 100% repeat-x;
+    background:#fff;
   &>a{
     text-align: center;
     display: flex;
-    color: #21a1a6;
+    color: #666;
     height: r(100);
-    background: url("../../assets/images/gt-bg.jpg") center right no-repeat;
     justify-content: center;
     flex-direction: column;
     width: 25%;
 
     &.active {
-      color: #feb;
-      border-top-color: #feb;
+      color: #f33;
+      border-top-color: #f33;
     }
-
   }
     .iconfont { @include f(20 px); }
   }

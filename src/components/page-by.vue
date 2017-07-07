@@ -12,7 +12,7 @@
         <div class="m-grid-pagination-last flaticon-media25" @click="pageFun(mydata.totalPages)"></div>
       </div>
     </div>
-    <div class="m-grid-footer-text">共{{mydata.totalPages}}页，共{{mydata.totalRecords}}笔</div>
+    <div class="m-grid-footer-text">共{{mydata.totalRecords}}笔,共{{mydata.totalPages}}页</div>
   </div>
 </template>
 <script>
@@ -34,16 +34,7 @@
           totalPages:0,//总页数，
           totalRecords:0//总记录条数,
         };
-        if(this.data.hasOwnProperty("total")){ //返回数据有些不一样 不好使啊 草    //"data":{"total":0,"records":[],"size":10,"pageIndex":1
-          mydateInit.size=this.data.size||2;
-          mydateInit.pageNumber=this.data.pageIndex||1;
-          mydateInit.numberOfRecordsShown=this.data.records.length||0;
-          mydateInit.totalRecords=this.data.total||0;
-          let remin= mydateInit.totalRecords/mydateInit.size;  //展示
-          mydateInit.totalPages=remin.toString().indexOf(".")>0?parseInt(remin)+1:parseInt(remin);
-        }else{
-          Object.assign(mydateInit,this.data);
-        }
+        Object.assign(mydateInit,this.data);
         return mydateInit;
       }
     },

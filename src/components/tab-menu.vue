@@ -6,9 +6,9 @@
          :class="['tab-menu-item',{active:index==i}]"
          :style="{width:100/data.length+'%'}"
     >
-      <solt>
+      <slot>
         {{item.name}}
-      </solt>
+      </slot>
     </div>
   </div>
 </template>
@@ -44,7 +44,7 @@
       {
         this.index = i;
         if (item.params) {
-          this.$emit("tabmenu", item.params)
+          this.$emit("tabmenu", item,i)
         }
       }
     },

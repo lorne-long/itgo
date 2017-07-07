@@ -2,10 +2,10 @@
   <!--会员列表{-->
   <div class="page_content_wrap">
     <div class="layout_form layout_form04">
-      <search-form @search="search" :searchData="searchData"></search-form>
+      <search-form @search="search" :data="searchData"></search-form>
       <table-data :thead="thead" :data="data">
         <tr v-for="(item,i) in data.records||[]">
-          <td>{{data.pageIndex+i}}</td>
+          <td>{{(data.pageNumber-1)*data.size+i+1}}</td>
           <td>{{item.loginname}}</td>
           <td>{{item.flag}}</td>
           <td>{{item.credit}}</td>
@@ -32,7 +32,7 @@
           startDate: "",
           endDate: "",
           size: 10,
-          pageIndex: 0,
+          pageIndex: 1,
         }
       }
     },

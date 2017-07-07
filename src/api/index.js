@@ -2,7 +2,7 @@ import vueRouter from '@/router'; //引入vue
 import _axios from 'axios'; //引入axios
 import store from '@/store';	//加载状态管理器
 var ajax=_axios.create({
-  // baseURL:"http://112.213.126.135:4777",
+  baseURL:"http://112.213.126.135:4777",
   method:"get",
   timeout:10000,
   responseType:"json",
@@ -37,8 +37,11 @@ ajax.interceptors.response.use(function(response){
     response.data.success=response.data.code=="10000";
   }
   $load.close();
+  if(response.data.code=="20006"&&response.data.message.indexOf("登录")>-1){
+    alert("请喊我.....")
+  }
   if(response.status===200&&/40001/.test(response.data.code)){//没有登录
-    store.dispatch("REMOVE_AUTH");
+    store.commit("REMOVE_AUTH");
     response.data.message='';
     if(!/ajaxGetSessionPersonalData\.php$/i.test(response.config.url)){
       $confirm("系统检测到你未登陆...","提示",{

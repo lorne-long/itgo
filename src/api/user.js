@@ -13,8 +13,17 @@ let  _completeUserInfo="/asp/completeUserInfo.php";  //完善用户信息
 let _ajaxGetSessionPersonalData="/asp/ajaxGetSessionPersonalData.php";/***获取用户资料*/
 
 let _queryHistory="/mobi/queryHistory.php";//记录查询
+let _endSmsTYJ ="/asp/sendSms4TYJ.php";//发送短信
+let _checkPhoneCode ="/asp/checkPhoneCode.php";//验证手机号
 
-
+export function checkPhoneCode(data){
+  $load.open("正在验证...");
+  return  ajax.post(_checkPhoneCode,data);
+}
+export function endSmsTYJ(data){
+  $load.open("正在发送短信...");
+  return  ajax.post(_endSmsTYJ,data);
+}
 export function queryHistory(data){
   $load.open("正在查询...");
   return  ajax.post(_queryHistory,data);

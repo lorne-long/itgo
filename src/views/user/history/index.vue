@@ -107,7 +107,6 @@
             }];
           case "couponRecords":
             return this.thead=[{name:'赠送',value:'gifTamount'},{name:'存款',value:'amount'}];
-
           case "deputyRecords":
             return this.thead=[{name:'附言',value:'depositId'},{name:'银行',value:'bankname'},{
               name:'状态',

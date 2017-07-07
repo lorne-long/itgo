@@ -1,7 +1,7 @@
 <template>
   <div style="background: #fff; overflow: hidden">
     <div class="main_nav_with_arrow ul_auto_wrap">
-      <a href="javascript:void(0);" @click="actives='experience_gold'" :class="{active:actives=='experience_gold'}" class="layout_image_with_text active">
+      <a href="javascript:void(0);" @click="actives='experience_gold'" :class="['layout_image_with_text',{active:actives=='experience_gold'}]" class="">
       <img src="./img/icon01.png">
       <span class="img_text">体验金</span>
       </a>

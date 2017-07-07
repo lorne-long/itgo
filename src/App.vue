@@ -41,6 +41,9 @@
         this.transitionName=toDepth<fromDepth ? 'slide_back' : 'slide';
       }
     },
+    created(){
+      this.$store.dispatch("UPDATE_USERDATA")
+    },
     components:{
       vFooter,
       ajaxLoad

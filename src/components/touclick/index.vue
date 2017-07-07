@@ -1,6 +1,5 @@
 <template>
   <div v-show="showDom" ref="verifyWarp" style="margin:50px auto 30px; width: 320px;">
-
   </div>
 </template>
 <script>

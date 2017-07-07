@@ -5,17 +5,19 @@
         <div class="form_field_warp">
           <div class="form_field">
             <span class="form_field_label">真实姓名{{userData.accountName}}</span>
-            <div class="form_field_input"><input  v-model="Data.accountName" type="text" placeholder="填写后无法修改，与银行卡持卡人一致" class="j-accountName">
+            <div class="form_field_input"><input  v-model="Data.accountName" type="text" placeholder="填写后无法修改，与银行卡持卡人一致"/>
             </div>
           </div>
           <div class="form_field">
             <span class="form_field_label">手机号码</span>
-            <div class="form_field_input"><input type="text" :value="userData.phone" readonly></div>
+            <div class="form_field_input">
+              <input type="text" v-model="userData.phone" readonly>
+            </div>
           </div>
           <div class="form_field date_picker with_arrow_icon">
             <span class="form_field_label">出生日期</span>
             <div class="form_field_input">
-              <input class="date_picker_real" v-model="Data.birthday" type="date"  placeholder="请选择">
+              <input type="date"  v-model="Data.birthday"   placeholder="请选择" />
             </div>
           </div>
           <div class="form_field">
@@ -25,6 +27,22 @@
                      @input="getBank" maxlength="19"></div>
           </div>
           <div class="cardTips">{{banktxt}}</div>
+          <div class="form_field">
+            <span class="form_field_label">微信</span>
+            <div class="form_field_input">
+              <input type="text" placeholder="用于接收优惠信息，非必填项"
+               v-model="Data.wexin"
+              >
+            </div>
+          </div>
+          <div class="form_field">
+            <span class="form_field_label">qq</span>
+            <div class="form_field_input"><input type="text" placeholder="用于接收优惠信息，非必填项" v-model="Data.qq"></div>
+          </div>
+          <div class="form_field">
+            <span class="form_field_label">电子邮箱</span>
+            <div class="form_field_input"><input type="text" placeholder="用于接收优惠信息，非必填项" v-model="Data.email"></div>
+          </div>
         </div>
         <div class="form_tip text_align_left">
           请注意，检测如有同ip同姓名，或银行卡已被使用时，将
@@ -49,16 +67,19 @@
           accountName: "", //true string
           bankno: "", //true string
           email: "", //true string
-          qq: ""
+          qq: "",
+          wexin:""
         }
       }
     },
     methods: {
       checked(){
         if (this.Data.birthday == "") toast("请输入生日");
-        else if (this.Data.accountName == "") toast("请输入生日");
+        else if (this.Data.accountName == "") toast("请输入真实姓名");
         else if (this.Data.bankno == "") toast("请输入银行卡号");
         else if (!this.validateBankNo) toast("银行卡号检测未通过");
+        else if (this.Data.qq == "") toast("请输入真实姓名");
+        else if (this.Data.email == "") toast("请输入真实姓名");
 //        else if (this.Data.email == "") toast("请输入邮箱");
 //        else if (this.Data.qq == "") toast("请输入QQ");
         else {
@@ -92,6 +113,6 @@
     },
     computed: {
       ...mapGetters(["userData"])
-    },
+    }
   }
 </script>
