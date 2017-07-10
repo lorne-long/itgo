@@ -19,7 +19,7 @@
     },
     computed:{
       componentChoose(){
-        return this.$store.getters.userData.accountName=='' ? further : update;
+        return this.$store.getters.userData.accountName==''?further:update;
       }
     }
   };

@@ -37,7 +37,7 @@
               <option value="TTG">TTG</option>
               <option value="NT">NT</option>
               <option value="MG">MG</option>
-              <option value="AGIN">捕鱼</option>
+              <option value="PNG">PNG</option>
             </select>
           </div>
         </div>

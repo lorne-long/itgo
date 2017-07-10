@@ -4,7 +4,11 @@ import common from './common';
 import {AUTH_NAME} from "@/store/types"//权限名称
 let index=(resolve) => resolve(require('views/show/index'));//首页
 let history=(resolve) => resolve(require('views/show/history'));
+let slotgame=(resolve) => resolve(require('views/show/slotgame/index'));//游戏大厅
 let preferential=(resolve) => resolve(require('views/show/preferential'));
+
+
+
 import  login from "views/auth"//模板
 let login_index=(resolve) => resolve(require('views/auth/login'));//用户登陆
 let login_register=(resolve) => resolve(require('views/auth/register-user'))//用户注册
@@ -41,6 +45,18 @@ export default [
     component:preferential,
     meta:{
       title:"优惠"
+    }
+  },
+  {
+    path:"/slotgame/:type?",
+    name:"slotgame",
+    component: slotgame,
+    children:[
+      // { path: '/slotgame/:type?', component: slotgame},
+      // { path: '', component: slotgame}
+    ],
+    meta:{
+      title:"游戏平台"
     }
   },
   {

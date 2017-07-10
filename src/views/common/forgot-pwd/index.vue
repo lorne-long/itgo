@@ -44,6 +44,8 @@
 </template>
 <script>
   import {getbackPwdByDx_dc} from "api/common";
+  import {endSmsTYJ} from "api/user";
+
   import touClick from "components/touclick";
   let _phone=/^((13[0-9])|(14[5|7])|(15([0-3]|[5-9]))|(18[0,5-9]))\d{8}$/;
   export default {
@@ -54,7 +56,8 @@
         phone:"15896542132", // true string
         check_address:"sverify-5-2-0", // true string
         token:"99da842a-40d4-4f10-9a221499131241289", //true string
-        name:"adfad"
+        name:"adfad",
+        check_key:""
       };
     },
     methods:{
@@ -66,14 +69,14 @@
         }
       },
       success(obj,tc){
-        this.token=obj.token;
+        this.check_key=this.token=obj.token;
         this.check_address=obj.checkAddress;
         this.sid=obj.sid;
         getbackPwdByDx_dc(this.$data).then(res=>{
+          this.showVerify=false;
           if(res.success){
             tc.destory();
           }else{
-            this.showVerify=false;
             toast(res.message)
           }
         }).catch(err=>{

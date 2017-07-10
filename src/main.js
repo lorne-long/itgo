@@ -7,8 +7,16 @@ import prototype from './util/prototype';//加载原型方法
 import components from 'base/index.js';//装载公共模板
 import filters from './vue-extend/filters';//装载过滤器
 import directives from './vue-extend/directives';//装载过滤器
-import mixins from './vue-extend/mixins';//装载过滤器
-
+import mixins from './vue-extend/mixins';//装载过滤器+
+import fastclick from 'fastclick' //快速点击
+fastclick.attach(document.body)
+import VueAwesomeSwiper from 'vue-awesome-swiper'
+Vue.use(VueAwesomeSwiper)
+import VueLazyload from 'vue-lazyload'
+Vue.use(VueLazyload, {
+  // error: require('static/images/bank_loading.gif'),
+  loading:   require('static/images/bank_loading.gif'),
+})
 Vue.config.productionTip = false;
 
 import App from './App.vue';//引入app.vue

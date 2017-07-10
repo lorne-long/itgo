@@ -1,5 +1,5 @@
 <template>
-  <label class="switch">
+  <label class="switch" @click="cheacked=!cheacked">
     <input type="checkbox" v-model="cheacked" style="display: none;" >
     <div class="slider round"></div>
   </label>

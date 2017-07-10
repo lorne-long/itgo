@@ -2,13 +2,13 @@ import vueRouter from '@/router'; //引入vue
 import _axios from 'axios'; //引入axios
 import store from '@/store';	//加载状态管理器
 var ajax=_axios.create({
-  baseURL:"http://112.213.126.135:4777",
+  // baseURL:"http://112.213.126.135:4777",
   method:"get",
   timeout:10000,
   responseType:"json",
   withCredentials:true,  // 跨域是否带Token
   // cancelToken: new CancelToken(function(cancel){})
-  headers:{"Content-Type":"application/x-www-form-urlencoded"}
+  headers:{"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"}
   // transformRequest: [function (data) {
   //   // 这里可以在发送请求之前对请求数据做处理，比如form-data格式化等，这里可以使用开头引入的Qs（这个模块在安装axios的时候就已经安装了，不需要另外安装）
   //   data = Qs.stringify({});

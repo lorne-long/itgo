@@ -26,7 +26,7 @@
             </div>
           </div>
           <div class="btn_wrap">
-            <a href="javascript:void(0);" @click="showPay" class="btn btn01 j-submit">提交</a>
+            <a href="javascript:void(0);" @click="showPay" class="btn btn01">提交</a>
           </div>
         </div>
         <div class="bottom_link">
@@ -69,7 +69,7 @@
           <div class="sec_box">
             <img class="icon_top" src="static/images/icons/icon_ok.png" width="78" height="79">
             <h3>取款申请成功</h3>
-            <p class="result_text">金额 <span class="j-getMoney">{{sumitData.amount}}</span></p>
+            <p class="result_text">金额 <span>{{sumitData.amount}}</span></p>
             <div class="space_border"></div>
             <p class="info_text">工作人员正在为您处理，如果您的各项资料正确，
               取款金额会在1小时内到达您的绑定银行账户。</p>
@@ -79,16 +79,16 @@
           </div>
         </div>
       </div>
-      <div class="dialog_wrap dialog_with_icon" v-show="showSetPay">
+      <div class="dialog_wrap dialog_with_icon" v-show="!isSetPayPwd&&showSetPay">
         <div class="dialog_main">
-          <div class="icon_wrap"><img src="/static/images/icons/icon_warn.png" width="79" height="79"></div>
+          <div class="icon_wrap"><img src="static/images/icons/icon_warn.png" width="79" height="79"></div>
           <div class="dialog_content">
             <p>您还没有设置支付密码，<br>
               <span class="text_black02">请先完成支付密码设置。</span></p>
           </div>
           <div class="btn_wrap">
             <router-link to="/pwd/payset" class="btn btn01 btn_ok">确定</router-link>
-            <a href="javascript:void(0)" class="btn btn02 j-cancel mt10">取消</a>
+            <a href="javascript:void(0)" class="btn btn02  mt10" @click="showSetPay=false">取消</a>
           </div>
         </div>
       </div>
@@ -105,7 +105,7 @@
         step:0,
         bankList:[],
         bankText:"",
-        showSetPay:false,
+        showSetPay:true,
         sumitData:{
           amount:"",
           cardId:"",
@@ -118,7 +118,7 @@
         this.bankText=this.$refs.carddom.options[this.$refs.carddom.options.selectedIndex].text;
       },
       isSetPayPwd(val){
-        this.showSetPay=!val;
+//        alert(val)
       }
     },
     methods:{
@@ -140,8 +140,7 @@
       submit(){
         if(!this.checkForm())return;
         if(this.sumitData.payPassword=="") return toast("请输入支付密码!");
-        thirdWithdraw(
-          {
+        thirdWithdraw({
             amount:this.sumitData.amount,
             cardId:this.sumitData.cardId,
             payPassword:md5(md5(this.sumitData.payPassword)) //因为密码要加密 这种方式易懂     监控变化也可以  或者Object.assign()合并也可以
@@ -149,9 +148,8 @@
         ).then((data)=>{
           if(data.success
           ){
-            this.step=3;
-            this.sumitData.amount='';
-            this.sumitData.payPassword='';
+            this.step=2;
+           this.sumitData.payPassword='';
           }
           toast(data.message);
         }).
@@ -162,19 +160,29 @@
       }
     },
     computed:{
-      ...mapGetters(["userData","isSetPayPwd"])
+      ...mapGetters(["userData","isSetPayPwd","isAgent","isUser"])
     },
-    created(){
-      findUserBankList().then((res)=>{
-        if(res.success){
-          this.bankList=res.result;
-        }
-        else{
-          toast("获取银行卡失败")
-        }
-      }).catch((err)=>{
-        toast("获取银行卡失败")
-      })
+      created(){
+      this.showSetPay=true;
+//      if(this.isUser&&this.userData.accountName==""){
+      if(false){
+        this.$router.replace("/user/personal")
+      }else{
+          findUserBankList().then((res)=>{
+            if(res.success){
+              if(res.result.length>0){
+               this.bankList=res.result;
+              }else{
+//                this.$router.replace("/datum/addbank")
+              }
+            }
+            else{
+              toast("获取银行卡失败")
+            }
+          }).catch((err)=>{
+            toast("获取银行卡失败")
+          })
+      }
     }
   };
 </script>

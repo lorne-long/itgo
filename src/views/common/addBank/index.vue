@@ -37,7 +37,6 @@
                   if(data.success)this.banktxt=data.data;
                 })
               }else{
-
                 this.banktxt="";
               }
           },
@@ -47,6 +46,7 @@
             bindBankNo({cardNo:this.bankno}).then(data=>{
               if(data.success){
                 this.bankno="";
+                this.$router.back();
               }else{
                 toast(data.message);
               }

@@ -22,6 +22,7 @@ Vue.filter('Date',function(val,format='yyyy-MM-dd'){
 //隐藏字符  abcd  默认隐藏为   a***
 //start前面显示几个  end后显示  replaceval隐藏*
 Vue.filter('conceal',function(val,start=1,end=0,replaceval='*'){
+  if(val=="")return "";
   if(start+end>val.toString().length){
     start=1;
     end=0;

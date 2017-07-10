@@ -13,7 +13,7 @@
           </div>
           <div class="form_field">
             <span class="form_field_label">出生日期</span>
-            <div class="form_field_input"><input :value="userData.birthday|conceal(2,2) " readonly type="text"></div>
+            <div class="form_field_input"><input :value="userData.birthday|Date" readonly type="text"></div>
           </div>
           <div class="form_field">
             <span class="form_field_label">微信</span>
@@ -24,17 +24,18 @@
           <div class="form_field">
             <span class="form_field_label">qq</span>
             <div class="form_field_input">
-              <input v-model="newDetail.qq" :placeholder="detail.qq|conceal(2,2)" type="text">
+              <input v-model.number="newDetail.qq" :placeholder="detail.qq|conceal(2,2)" type="text">
               <span @click="upData('qq')" class="edit">修改</span></div>
           </div>
           <div class="form_field">
             <span class="form_field_label">电子邮箱</span>
             <div class="form_field_input">
-              <input v-model="newDetail.email" :readonly="detail.email!=''" placeholder="填写电子邮箱"  type="text">
+              <input v-model="newDetail.email" :readonly="detail.email!=''"
+                     :placeholder="detail.email|conceal(0,detail.email.length-detail.email.indexOf('@'))"
+                     type="text">
               <span @click="upData('email')" v-show="detail.email==''" class="edit ">修改</span></div>
           </div>
         </div>
-
         <div v-if="userData.phoneValidStatus==0">
           <br>
           <a href="javascript:void(0);" class="btn btn01" @click="verify=true">手机验证</a>
@@ -58,15 +59,17 @@
         newDetail: {
           qq: "",
           weixin: "",
-          email: ""
+          email:''
         },
         detail: {
           qq: "",
           weixin: "",
-          email: ""
+          email:''
         },
         verify:false
       };
+    },
+    watch:{
     },
     methods: {
       upData(type){
@@ -86,11 +89,10 @@
     computed: {
       ...mapGetters(["userData"])
     },
-    created(){
+    activated(){
       getCustomerSocialInfo().then(res => {
         if (res.success) {
           this.detail = res.data;
-          this.newDetail.email=this.detail.email;
         } else {
           toast(data.message)
         }

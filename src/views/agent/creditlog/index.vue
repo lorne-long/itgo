@@ -39,7 +39,6 @@
     },
     methods: {
       search(index){
-        if(index&&this.searchData.pageIndex==index)return;
         this.searchData.pageIndex=index||this.searchData.pageIndex;
         queryCreditlogs(this.searchData).then(res => {
           if (res.success) {

@@ -89,7 +89,6 @@
       }
     },
     created(){
-      console.log(this.$route)
       queryFriendBonue().then(data=>{
         this.money=data.data.money;
         this.url=data.data.url;

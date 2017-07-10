@@ -48,7 +48,7 @@
         }).then((data)=>{
           if(data.success){
             toast("设置成功");
-           this.$store.commit("SET_PAYPWD")
+            this.$store.commit("SET_PAYPWD",true)
             const {rquest}= this.$route.query;
             if(rquest){
               this.$router.push({path:rquest});

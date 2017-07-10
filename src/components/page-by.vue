@@ -52,6 +52,7 @@
         this.pageFun(--this.mydata.pageNumber);
       },
       next(){
+
         if(this.mydata.pageNumber>=this.mydata.totalPages)return
         this.pageFun(++this.mydata.pageNumber);
       }

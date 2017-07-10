@@ -44,7 +44,6 @@
         props:{
           value:Boolean
         },
-
         methods:{
           success(obj,tc){
             tc.destory();

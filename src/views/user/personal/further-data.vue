@@ -4,7 +4,7 @@
       <div class="layout_form sec_box">
         <div class="form_field_warp">
           <div class="form_field">
-            <span class="form_field_label">真实姓名{{userData.accountName}}</span>
+            <span class="form_field_label">真实姓名</span>
             <div class="form_field_input"><input  v-model="Data.accountName" type="text" placeholder="填写后无法修改，与银行卡持卡人一致"/>
             </div>
           </div>
@@ -78,10 +78,9 @@
         else if (this.Data.accountName == "") toast("请输入真实姓名");
         else if (this.Data.bankno == "") toast("请输入银行卡号");
         else if (!this.validateBankNo) toast("银行卡号检测未通过");
-        else if (this.Data.qq == "") toast("请输入真实姓名");
-        else if (this.Data.email == "") toast("请输入真实姓名");
-//        else if (this.Data.email == "") toast("请输入邮箱");
-//        else if (this.Data.qq == "") toast("请输入QQ");
+        else if (this.Data.email == "") toast("请输入正确的邮箱");
+        else if (this.Data.wexin == "") toast("请输入邮箱");
+        else if (this.Data.qq == "") toast("请输入QQ");
         else {
           return true;
         }
@@ -99,7 +98,7 @@
         }
       },
       submit(){
-        if (!this.checked())return;
+       if (!this.checked())return;
         completeUserInfo(this.Data).then(data => {
           if (data.success) {
               this.$store.dispatch("UPDATE_USERDATA");

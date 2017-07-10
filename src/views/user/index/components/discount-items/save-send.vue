@@ -10,11 +10,7 @@
       <span class="right_label">元</span></p>
       <p><select v-model="Type">
         <option value="">选择游戏平台</option>
-        <option value="PT">PT</option>
-        <option value="QT">QT</option>
-        <option value="DT">DT</option>
-        <option value="MG">MG</option>
-        <option value="TTG">TTG</option>
+        <option v-for="item in platformData" :value="item">{{item}}</option>
       </select></p>
       <p><select v-model="submitData.youhuiConfigId">
         <option value="">选择优惠幅度</option>
@@ -32,7 +28,7 @@
     </div>
     <div class="display_flex_h layout_2_line_label_text">
       <div class="flex_1"><p class="label_text">投注限额</p>
-        <p class="item_value text_red"><span class="j-touzhuLimit">{{touzhuLimit|toFixed }}</span> 元</p></div>
+        <p class="item_value text_red"><span>{{touzhuLimit|toFixed }}</span> 元</p></div>
       <div class="flex_1"></div>
     </div>
     <a href="javascript:void(0);" @click="submit" class="btn btn01">确定转入</a>
@@ -46,6 +42,7 @@
     data() {
       return {
         listData:[], //优惠数据
+
         percentMoney:0,  //可获得红利
         limitMoney:0, //取款流水要求
         touzhuLimit:0,//投注限额
@@ -82,7 +79,6 @@
         _data=_data[0];
         this.submitData.youHuiType=this.submitData.platform=_data.title;
         let _remit=Math.min(this.submitData.remit*_data.percent,_data.limitMoney);
-        ;
         let _limitMoney=_data.betMultiples*(parseFloat(_remit)+parseFloat(this.submitData.remit));
         _remit=_remit<0 ? 0 : _remit;
         this.percentMoney=_remit;
@@ -117,6 +113,16 @@
           this.submitData.youhuiConfigId=filterList[0].id;
         }
         return filterList;
+      },
+      platformData(){
+        let pf=[]
+        this.listData.forEach(item=>{
+          if(!pf.includes(item.platform)){
+              pf.push(item.platform)
+          }
+        });
+        console.log(pf)
+        return pf;
       }
     },
     created(){

@@ -1689,7 +1689,6 @@ header .deco_zz {
 	padding-right: 10px;margin-bottom:4.5em;
 }
 .promotion_content_main {
-	display: none;
 	padding-top: 5px;
 	padding-left: 10px;
 	padding-right: 10px;
@@ -2323,7 +2322,6 @@ select.without_style.history_select {
 	box-sizing: border-box;
 }
 .slot_game_filter_bar .flex_5 .select-list{
-	display: none;
 	position: absolute;
 	left: 0;
 	right: 0;
@@ -2352,7 +2350,6 @@ select.without_style.history_select {
 	background-repeat: no-repeat;
 }
 .filter_dropdown_content {
-	display: none;
 	position: absolute;
 	top: 43px;
 	left: 0;

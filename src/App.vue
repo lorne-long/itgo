@@ -28,7 +28,7 @@
       }
     },
     computed:{
-      ...mapGetters(["showFooter",'ajaxLoad']),
+      ...mapGetters(["showFooter"]),
       isExclude(){
         return this.$route.meta.cache ? "" : this.$route.name;
       }

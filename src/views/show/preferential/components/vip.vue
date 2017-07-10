@@ -1,0 +1,97 @@
+<template>
+  <div class="promotion_content_main"><h3 class="icon_with_text"><span class="icon icon_red_circle"></span><span>晋级及保级条件:</span></h3>
+    <table class="yh-table">
+      <tbody>
+      <tr>
+        <th>等级</th>
+        <th>申请条件</th>
+        <th>保级要求</th>
+      </tr>
+      <tr>
+        <td>银牌VIP</td>
+        <td>月投注额10万</td>
+        <td rowspan="5"> 月投注额30%
+        </td>
+      </tr>
+      <tr>
+        <td>金牌VIP</td>
+        <td>月投注额50万</td>
+      </tr>
+      <tr>
+        <td>钻石VIP</td>
+        <td>月投注额100万</td>
+      </tr>
+      <tr>
+        <td>至尊VIP</td>
+        <td>月投注额200万</td>
+      </tr>
+      <tr>
+        <td>特邀VIP</td>
+        <td>特邀玩家</td>
+      </tr>
+      </tbody>
+    </table>
+    <h3 class="icon_with_text"><span class="icon icon_red_circle"></span><span>VIP特权:</span></h3>
+    <table class="yh-table">
+      <tbody>
+      <tr>
+        <th>特权类型</th>
+        <th>新会员</th>
+        <th>银牌VIP</th>
+        <th>金牌VIP</th>
+        <th>钻石VIP</th>
+        <th>至尊VIP</th>
+        <th>特邀VIP</th>
+      </tr>
+      <tr>
+        <td>每月免费筹码（无流水要求）</td>
+        <td>无</td>
+        <td>18</td>
+        <td>38</td>
+        <td>58</td>
+        <td>128</td>
+        <td>288</td>
+      </tr>
+      <tr>
+        <td>生日礼金</td>
+        <td>38</td>
+        <td>58</td>
+        <td>188</td>
+        <td>888</td>
+        <td>1888</td>
+        <td>2888</td>
+      </tr>
+      <tr>
+        <td>晋级礼金</td>
+        <td>无</td>
+        <td>88</td>
+        <td>188</td>
+        <td>588</td>
+        <td>888</td>
+        <td>1888</td>
+      </tr>
+      <tr>
+        <td>返水上限</td>
+        <td>28888</td>
+        <td>28888</td>
+        <td>28888</td>
+        <td>28888</td>
+        <td>128888</td>
+        <td>328888</td>
+      </tr>
+      </tbody>
+    </table>
+    <h3 class="icon_with_text"><span class="icon icon_red_circle"></span><span>活动规则:</span></h3>
+    <p>
+      1、每个月5号系统自动审核进行升级，员有达到晋级的条件，即可享受系统自动晋级。<br/>
+      2、会员每个月只享有一次晋级的机会，且各等级晋级礼金每位玩家只可以获得一次。<br/>
+      3、所有会员申请优惠的会员等级按照每个月5号的等级为准。<br/>
+      4、未达到保级要求将自动降一级，且将不再另行通知。<br/>
+      5、本网站拥有本活动的最终解释权以及随时更改活动的权利<br/>
+    </p></div>
+</template>
+<script>
+  export  default {
+    data(){return {}}
+  }
+</script>

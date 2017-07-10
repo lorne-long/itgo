@@ -4,11 +4,11 @@
       <i class="iconfont icon-index"></i>
       <div>首页</div>
     </router-link>
-    <router-link :to="{path:'preferential'}">
+    <router-link :to="{path:'/slotgame'}">
       <i class="iconfont icon-promotion"></i>
       <div>游戏大厅</div>
     </router-link>
-    <router-link :to="{path:'/history'}">
+    <router-link :to="{path:'/preferential'}">
       <i class="iconfont icon-cup"></i>
       <div>优惠</div>
     </router-link>

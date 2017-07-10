@@ -30,5 +30,12 @@ Date.prototype.format = function (fmt) { //author: meizz
 Date.prototype.addDay=function(days){
    return  new Date(this.getTime()+days*86400*1000);
 }
-
+if (!Date.prototype.getWeekNumber) {
+  Date.prototype.getWeekNumber = function(){
+    var d = new Date(+this);
+    d.setHours(0,0,0,0);
+    d.setDate(d.getDate()+4-(d.getDay()||7));
+    return Math.ceil((((d-new Date(d.getFullYear(),0,1))/8.64e7)+1)/7);
+  };
+}
 export const DateFormat=Date.prototype.format

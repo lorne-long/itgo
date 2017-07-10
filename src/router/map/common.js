@@ -108,13 +108,6 @@ export default [{
           headName:"绑定银行卡",
           noCache:true //不缓存该组件
         }
-      }, {
-        path:"backCall",
-        name:"backCall",
-        component:backCall,
-        meta:{
-          headName:"电话回拨"
-        }
       }
     ]
   },
@@ -131,6 +124,14 @@ export default [{
           headName:"忘记密码"
         }
       },
+      {
+        path:"backCall",
+        name:"backCall",
+        component:backCall,
+        meta:{
+          headName:"电话回拨"
+        }
+      }
     ]
   }
 ]

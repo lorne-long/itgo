@@ -26,20 +26,12 @@
     <div class="btn_wrap" @click="login">
       <a href="javascript:void(0);" class="btn btn01">登录</a>
     </div>
-    <router-link v-if="!isAgent" to="/login/agentLogin" class="agent-into">
-      <i class="iconfont icon-account"></i>
-      代理入口
-    </router-link>
-    <router-link v-if="isAgent" to="/login/index" class="agent-into">
-      <i class="iconfont icon-account"></i>
-      会员入口
-    </router-link>
   </div>
 </template>
 <script type="text/ecmascript-6">
   import {login, getAuthImg} from 'api/authService';
   import vChoose from 'components/choose';
-  import {$localStorage, $sessionStorage} from '@/util/storage';
+  import {$localStorage} from '@/util/storage';
   import {AUTH_NAME} from "@/store/types"//权限名称
   export default {
     data() {
@@ -54,6 +46,9 @@
         }
       };
     },
+    activated(){
+      this.getimg();
+    },
     methods: {
       getimg(e) {
         this.authImg = getAuthImg();
@@ -67,7 +62,7 @@
         if (!this.check())return;
         login(this.data).then(res =>{
           if (res.success) {
-            this.data.imageCode='';
+            this.data.imageCode=this.data.password='';
             if (this.data.isRemember) {
               $localStorage.set("isRememberAccount", this.data.account);
             } else {
@@ -96,40 +91,17 @@
         });
       },
       check() {
-        if (this.data.account == "")
-          toast("用户名不能为空")
-        else if (this.data.password == "")
-          toast("密码不能为空")
-        else if (this.data.imageCode == "")
-          toast("验证码不能为空")
-        else
-          return true;
-      },
-      changeTab(){
-        this.isAgent = this.$route.name=='agentLogin';
-        if(this.isAgent) {
-          this.data.account = "a_bbb";
-          this.data.password = "aa123456"
-        }else{
-          this.data.account = "woodytest";
-          this.data.password = "aa123456789"
-        }
+        if (this.data.account == "")toast("用户名不能为空")
+        else if (this.data.password == "")toast("密码不能为空")
+        else if (this.data.imageCode == "")toast("验证码不能为空")
+        else  return true;
       }
-    },
-    watch: {
-      "$route"(){
-        this.changeTab()
-      }
-    },
-    activated(){
-      this.getimg();
     },
     created() {
       if ($localStorage.get("isRememberAccount")) {
         this.data.isRemember = true;
-        this.data.account = $localStorage.get("isRememberAccount");
+        this.data.account=$localStorage.get("isRememberAccount");
       }
-      this.changeTab();
     },
     components: {
       vChoose

@@ -2,7 +2,7 @@
   <div class="page_content_wrap user_profile_content">
     <div class="sec_box bank_card_list normal_padding box_border_box">
       <h2>{{text}}</h2>
-      <router-link to="/datum/addbank" v-if="showAdd" tag="div"
+      <router-link to="/datum/addbank" v-if="list.length<3" tag="div"
                    style="box-sizing: border-box"
                    class="bank_card_item add_card">
         <span class="add_text text_red">+ 添加银行卡</span>

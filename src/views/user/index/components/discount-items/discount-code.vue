@@ -14,6 +14,7 @@
         <option value="QT">QT</option>
         <option value="DT">DT</option>
         <option value="MG">MG</option>
+        <option value="PNG">PNG</option>
       </select></p>
       <p><input type="text" v-model="couponCode" id="couponCode" maxlength="20" placeholder="优惠代码"></p>
     </div>

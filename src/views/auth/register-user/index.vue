@@ -29,12 +29,6 @@
         <a href="javascript:void(0);" class="btn btn01" @click="register">立即开户</a>
       </div>
     </div>
-    <div class="other_link_wrap">
-      <router-link to="/login/agentLogin" class="agent-into">
-        <i class="iconfont icon-account"></i>
-        代理入口
-      </router-link>
-    </div>
   </div>
 </template>
 <script>
@@ -85,7 +79,7 @@
       },
       getimg(e) {
         this.authImg=getAuthImg();
-      },
+      }
     }
   }
 </script>

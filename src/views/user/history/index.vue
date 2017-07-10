@@ -40,12 +40,12 @@
           </div>
         </div>
         <div class="form_btn_wrap">
-          <a href="javascript:;" @click="search" class="btn btn01">查询</a>
+          <a href="javascript:;" @click="search(1)" class="btn btn01">查询</a>
         </div>
       </form>
     </div>
-    <table-data :thead="thead" :data="data">
-      <tr v-for="(item,i) in data.records||[]">
+    <table-data :thead="thead" @search="search" :data="data">
+      <tr v-for="(item,i) in data.pageContents||[]">
           <td v-for="one in thead">
             {{item[one.value]}}
           </td>
@@ -78,7 +78,8 @@
       }
     },
     methods:{
-      search(){
+      search(index){
+        this.searchData.pageIndex=index||this.searchData.pageIndex;
           this.changeType(this.searchData.historyType)
           this.showData= !this.showData;
           queryHistory(this.searchData).then((res)=>{

@@ -13,7 +13,7 @@ export default new Vuex.Store({
   state:{ //不要直接访问state
     showFooter:true,//是否显示底部
     authList:[], //权限列表
-    isSetPayPwd:false, //是否设置支付密码
+    isSetPayPwd:null, //是否设置支付密码
     userData:{
       qq:"",//true string
       loginname:"",// true string
@@ -39,7 +39,7 @@ export default new Vuex.Store({
       return state.showFooter;
     },
     isSetPayPwd(state,getters){
-      if(!state.isSetPayPwd){ //异步的一种获取
+      if(state.isSetPayPwd==null){ //异步的一种获取
         checkWithdrawPwd().then(res=>{
           if(res.success){
             state.isSetPayPwd=res.data=='1';
@@ -81,8 +81,8 @@ export default new Vuex.Store({
     [types.SET_PAYPWD](state,val){
       state.isSetPayPwd=val
     },
-    [types.SET_USERDATA](state,val){
-      Object.assign(state.userData,val||{});
+    [types.SET_USERDATA](state,val={}){
+       Object.assign(state.userData,val||{});
     },
     [types.SET_AUTH](state,val){ //设置权限
       if(typeof val==='string'){
@@ -112,6 +112,7 @@ export default new Vuex.Store({
   actions:{
     [types.LOGIN_OUT]({commit},val){ //退出登录
       commit(types.REMOVE_AUTH);
+      commit(types.SET_PAYPWD,null)
       logOut().then(res=>{
         router.push("/")
       }).catch(res=>{
