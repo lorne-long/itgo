@@ -3039,14 +3039,6 @@ select.without_style.history_select {
 	position: relative;
 }
 
-#textC >span{
-	left: 0;
-}
-#textC span{
-	position: absolute;
-	font-weight: bold;
-}
-
 .cny{
 	display: inline-block;
 	width: 15px;

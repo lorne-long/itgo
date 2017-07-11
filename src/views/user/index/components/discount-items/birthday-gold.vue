@@ -32,8 +32,12 @@
     computed:{},
     created(){
       canClaimBirthdayCoupon().then(data=>{
+        if(data.success){
           this.isSubmit=data.success;
+           this.message="领取礼金"
+        }else{
           this.message=data.message;
+        }
       })
     },
     components:{

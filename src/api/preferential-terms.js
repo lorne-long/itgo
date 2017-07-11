@@ -21,7 +21,7 @@ let _claimBirthdayCoupon="/claimBirthdayCoupon.php"; //领取生日礼金
 let _queryFriendBonue="/mobi/queryFriendBonue.php";//推荐好久
 
 let _claimLosePromo="/mobi/claimLosePromo.php ";//处理救援金
-let _commitPT8Self='/asp/commitPT8Self.php';
+let _commitPTSelf='/asp/commitPT8Self.php';
 
 let _transferInforFriend='/asp/transferInforFriend.php';
 
@@ -29,9 +29,9 @@ export function transferInforFriend(data){
   $load.open("正在领取...")
   return  ajax.post(_transferInforFriend,data);
 }
-export function commitPT8Self(data){
+export function commitPTSelf(data){
   $load.open("正在领取...")
-  return  ajax.post(_commitPT8Self,data);
+  return  ajax.post(_commitPTSelf,data);
 }
 export function claimLosePromo(data){
   $load.open("处理中...")

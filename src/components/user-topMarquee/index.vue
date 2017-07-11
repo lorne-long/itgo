@@ -1,7 +1,7 @@
 <template>
   <div class="page_notice" v-show="data.length>0">
   <marquee>
-    <router-link v-for="(item,i) in data" to="/notice">
+    <router-link v-for="(item,i) in data" :key="item.id" to="/notice">
       <span>{{item.title}}</span>
     </router-link>
   </marquee>

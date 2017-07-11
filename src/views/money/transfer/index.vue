@@ -12,7 +12,7 @@
             <select ref="transOut" v-model="data.transferGameOut"
                     class="without_style with_arrow select j-moneyAccount">
               <option v-for="item in array2" :value="item.value">
-                {{item.text}}
+                {{item.name}}
               </option>
             </select>
           </div>
@@ -27,7 +27,7 @@
             <div v-show="type!=0">{{accountMoney}} 元</div>
             <select v-show="type==0" v-model="data.transferGameIn" ref="transferGameIn" class="without_style with_arrow hd-value select">
               <option v-for="item in array1" :value="item.value">
-                {{item.text}}
+                {{item.name}}
               </option>
             </select>
             <div v-show="type==0&&targetCredit!=0" class="balance-txt">{{targetCredit}} 元</div>
@@ -42,8 +42,9 @@
         <div class="form_field_warp">
           <div class="form_field">
             <span class="form_field_label">金额</span>
-            <div class="form_field_input"><input v-model.number="data.transferGameMoney" type="text"
-                                                 placeholder="请输入转账金额"></div>
+            <div class="form_field_input">
+              <input v-model.number="data.transferGameMoney" type="text" placeholder="请输入转账金额">
+            </div>
           </div>
         </div>
       </form>
@@ -57,15 +58,15 @@
   import {mapGetters} from 'vuex'
   import {updateGameMoney} from "api/safeCenter"
   import  {getAllMoney} from "api/user"
-  let transferGameIn=[
-    {value:"",text:"选择游戏平台"},{value:"PT",text:"PT账户"},{value:"MG",text:"MG账户"},{value:"TTG",text:"TTG账户"},
-    {value:"NT",text:"NT账户"},{value:"QT",text:"QT账户"},{value:"DT",text:"DT账户"},{value:"AGIN",text:"捕鱼账户"},
-  ]
-  let transferGameOut=[{value:"MAIN",text:"主账户"},{value:"DEPUTY",text:"副账户"}];
+  import  {platformData} from "@/util/data"
+  platformData[0].value!=""&&platformData.splice(0,0,{value:"",name:"选择游戏平台"});
+
+  let transferGameOut=[{value:"MAIN",name:"主账户"},{value:"DEPUTY",name:"副账户"}];
+
   export default {
     data() {
       return {
-        array1:transferGameIn,
+        array1:platformData,
         array2:transferGameOut,
         targetCredit:0,
         type:0,//0表示转入游戏账户  1表示转入主账户
@@ -75,7 +76,8 @@
           transferGameOut:"MAIN", //转出账号
           transferGameMoney:"",
           transferGameIn:""//转入
-        }
+        },
+        optionmoney: 0//下拉框金钱
       };
     },
     watch:{
@@ -88,6 +90,8 @@
           }else{
             this.targetCredit=res.message;
           }
+        }).catch(err=>{
+          this.targetCredit="查询错误";
         })
       },
       "data.transferGameOut"(val){
@@ -96,11 +100,8 @@
           let options=this.$refs.transOut.options;
           options[options.selectedIndex].text="正在查询账号余额..."
           getAllMoney({gameCode:val}).then(res=>{
-            if(res.success){
-              options[options.selectedIndex].text=transferGameIn[options.selectedIndex].text+" ("+res.data+")元";
-            }else{
-              options[options.selectedIndex].text=res.message;
-            }
+              this.optionmoney=res.success?res.data-0:0;
+              options[options.selectedIndex].text=res.success?(platformData[options.selectedIndex].name+" ("+res.data+")元"):res.message;
           }).catch(err=>{
             options[options.selectedIndex].text="查询金额失败..."
           })
@@ -108,25 +109,22 @@
           if(val=="MAIN")
             this.accountMoney=this.userData.accountMoney;
           else{
-            getAllMoney({gameCode:"Deputy"}).then((res)=>{ //副账户
-              if(res.success) this.accountMoney=res.data;
-              else{
-                this.accountMoney=res.message;
-              }
+            getAllMoney({gameCode:val}).then((res)=>{ //副账户
+                this.accountMoney=res.success?res.data:res.message;
             }).catch(err=>{
               this.accountMoney=0;
             });
           }
         }
+      },
+      "userData.accountMoney"(val){
+        this.accountMoney=val
       }
     },
     computed:{
       ...mapGetters(["userData"])
     },
     created(){
-      this.accountMoney=this.userData.accountMoney;
-    },
-    activated(){
       this.accountMoney=this.userData.accountMoney;
     },
     methods:{
@@ -136,6 +134,21 @@
         if(this.data.transferGameOut=="" &&this.type!=0)return toast("请选择游戏平台");
         updateGameMoney(this.data).then(res=>{
             toast(res.message);
+            if(res.success){
+              if(data.transferGameOut!="DEPUTY")this.$store.dispatch("UPDATE_USERDATA"); //主账户转账 才更新信息
+              if(this.type==1){
+                let options=this.$refs.transOut.options;
+                this.optionmoney-=this.data.transferGameMoney-0;
+                options[options.selectedIndex].text=(platformData[options.selectedIndex].name+" ("+this.optionmoney.$to+")元");
+                this.accountMoney-=0;//转int
+                this.accountMoney+=this.data.transferGameMoney-0;
+              }
+              else{
+                this.accountMoney-=this.data.transferGameMoney;
+                this.targetCredit-=0;
+                this.targetCredit+=this.data.transferGameMoney-0;
+              }
+            }
         }).catch(err=>{
           toast("转入失败");
         })
@@ -143,13 +156,13 @@
       changType(){ //切换转入转出
         this.type=this.type==0 ? 1 : 0;
         if(this.type==0){
-          this.array1=transferGameIn;
-            this.array2=transferGameOut;
+          this.array1=platformData;
+          this.array2=transferGameOut;
           this.data.transferGameOut="MAIN"
           this.data.transferGameIn="";
         }else{
           this.array1=transferGameOut;
-          this.array2=transferGameIn;
+          this.array2=platformData;
           this.data.transferGameIn="MAIN"
           this.data.transferGameOut="";
         }

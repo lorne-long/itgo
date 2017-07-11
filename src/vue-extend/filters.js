@@ -8,10 +8,7 @@ import {DateFormat} from "@/util/prototype"
 
 //保留二位小数点 不四舍五入 无小数点 自动加 .00
 Vue.filter('toFixed',function(val,_number=2){
-  let _val= parseFloat(val).toString();
-    _val=isNaN(_val)?"0":_val;
-   _val+=_val.indexOf(".")>-1?"00":".00";
-  return _val.replace(new RegExp('(\\d*\\.\\d{'+_number+'})\\d*','g'),"$1")
+  return val.toString().$toFixed(_number)
 });
 
 //转换日期格式格式
@@ -36,7 +33,7 @@ Vue.filter('conceal',function(val,start=1,end=0,replaceval='*'){
 
 //分割字符串    例如  金额 10000换为 10，000 字符串相同
 Vue.filter('stringSplit',function(val,num=3,rpl=','){
- return val.toString().replace(new RegExp("(\\w)(?=(\\w{"+num+"})+(?!\\w))",'g'), "$1"+rpl)
+ return val.toString().strSplit(num,rpl)
 });
 
 

@@ -121,7 +121,6 @@
               pf.push(item.platform)
           }
         });
-        console.log(pf)
         return pf;
       }
     },

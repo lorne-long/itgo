@@ -11,13 +11,9 @@
             <div class="form_field_input">
               <select class="j-plat" v-model="type">
                 <option value="">选择游戏平台</option>
-                <option value="PT">PT</option>
-                <option value="QT">QT</option>
-                <option value="DT">DT</option>
-                <option value="TTG">TTG</option>
-                <option value="NT">NT</option>
-                <option value="MG">MG</option>
-                <option value="PNG">PNG</option>
+                <option v-for="item in platformData" :value="item.value">
+                  {{item.name}}
+                </option>
               </select>
             </div>
           </div>
@@ -50,10 +46,12 @@
   import  "./public.scss"
   import {getXimaData,doXima} from "api/preferential-terms"
   import formTip from "components/form-tip.vue"
+  import  {platformData} from "@/util/data"
   export default {
     data() {
       return {
         type:"",
+        platformData,
         validAmount:0,
         ximaAmount:0,
         rate:0,

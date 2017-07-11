@@ -8,13 +8,10 @@
       <p><input type="text" v-model.number="couponRemit" placeholder="请填写转入金额" name="couponRemit"  maxlength="10"><span class="right_label">元</span></p>
       <p><select  v-model="couponType" id="couponType">
         <option value=""> 请选择 </option>
-        <option value="PT">PT</option>
-        <option value="TTG">TTG</option>
-        <option value="NT">NT</option>
-        <option value="QT">QT</option>
-        <option value="DT">DT</option>
-        <option value="MG">MG</option>
-        <option value="PNG">PNG</option>
+
+        <option v-for="item in platformData" :value="item.value">
+          {{item.name}}
+        </option>
       </select></p>
       <p><input type="text" v-model="couponCode" id="couponCode" maxlength="20" placeholder="优惠代码"></p>
     </div>
@@ -26,9 +23,11 @@
   import  "./public.scss"
   import  {transferInforCoupon} from "api/preferential-terms"
   import formTip from "components/form-tip.vue"
+  import  {platformData} from "@/util/data"
   export default {
     data() {
       return {
+        platformData,
         couponType:"", // true string
         couponRemit:"", //true string
         couponCode:"",//true string

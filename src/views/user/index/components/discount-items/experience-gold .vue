@@ -31,13 +31,10 @@
           <span class="form_field_label">选择游戏平台</span>
           <div class="form_field_input">
             <select  v-model="platform">
-              <option value="PT">PT</option>
-              <option value="QT">QT</option>
-              <option value="DT">DT</option>
-              <option value="TTG">TTG</option>
-              <option value="NT">NT</option>
-              <option value="MG">MG</option>
-              <option value="PNG">PNG</option>
+              import  {platformData} from "@/util/data"
+              <option v-for="item in platformData" :value="item.value">
+                {{item.name}}
+              </option>
             </select>
           </div>
         </div>
@@ -57,23 +54,25 @@
 </template>
 <script>
   import formTip from "components/form-tip.vue"
-  import  {commitPT8Self} from "api/preferential-terms"
+  import  {commitPTSelf} from "api/preferential-terms"
+  import  {platformData} from "@/util/data"
   export default {
     data() {
       return {
         step:1,
+        platformData,
         platform:"PT"
       };
     },
     methods:{
       submit(){
-        commitPT8Self({platform:this.platform}).then(res=>{
+        commitPTSelf({platform:this.platform}).then(res=>{
           toast(res.message);
           if(res.success){
             this.step=3;
           }
         }).catch(err=>{
-          toast("领取体验金失败");
+          toast("领取体验金失败了");
         })
       }
     },

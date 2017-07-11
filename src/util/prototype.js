@@ -38,4 +38,17 @@ if (!Date.prototype.getWeekNumber) {
     return Math.ceil((((d-new Date(d.getFullYear(),0,1))/8.64e7)+1)/7);
   };
 }
+//保留二位小数点 不四舍五入
+String.prototype.$toFixed=function(_number=2){
+  let _val=this;
+   _val= parseFloat(val).toString();
+  _val=isNaN(_val)?"0":_val;
+  _val+=_val.indexOf(".")>-1?"00":".00";
+  return _val.replace(new RegExp('(\\d*\\.\\d{'+_number+'})\\d*','g'),"$1")
+}
+//分割字符串  123456789分割成 12,345,678
+String.prototype.strSplit=function(num=3,rpl=","){
+  return this.toString().replace(new RegExp("(\\w)(?=(\\w{"+num+"})+(?!\\w))",'g'), "$1"+rpl)
+}
+
 export const DateFormat=Date.prototype.format

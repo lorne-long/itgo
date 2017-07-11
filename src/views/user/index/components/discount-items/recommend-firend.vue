@@ -23,13 +23,10 @@
         <div class="form_field form_field_no_label">
           <div class="form_field_input">
             <select  v-model="myData.platform">
-              <option value="PT">PT</option>
-              <option value="TTG">TTG</option>
-              <option value="NT">NT</option>
-              <option value="QT">QT</option>
-              <option value="MG">MG</option>
-              <option value="DT">DT</option>
-              <option value="PNG">PNG</option>
+
+              <option v-for="item in platformData" :value="item.value">
+                {{item.name}}
+              </option>
             </select>
           </div>
         </div>
@@ -49,9 +46,11 @@
   import  "./public.scss";
   import  {queryFriendBonue,transferInforFriend} from "api/preferential-terms";
   import formTip from "components/form-tip.vue"
+  import  {platformData} from "@/util/data"
   export default {
     data() {
       return {
+        platformData,
         step:1,
         money:0,
         url:"",

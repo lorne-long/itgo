@@ -20,12 +20,9 @@
           <div class="form_field_input">
             <select v-model="submitData.platform">
               <option value="">选择游戏平台</option>
-              <option value="PT">PT</option>
-              <option value="QT">QT</option>
-              <option value="DT">DT</option>
-              <option value="TTG">TTG</option>
-              <option value="NT">NT</option>
-              <option value="MG">MG</option>
+              <option v-for="item in platformData" :value="item.value">
+                {{item.name}}
+              </option>
             </select>
           </div>
         </div>
@@ -42,9 +39,11 @@
   import  "./public.scss"
   import  {queryPTLosePromo,claimLosePromo} from "api/preferential-terms";
   import formTip from "components/form-tip.vue"
+  import  {platformData} from "@/util/data"
   export default {
     data() {
       return {
+        platformData,
         listData:[],
         searchLogData:{
           pageIndex:1,

@@ -140,11 +140,8 @@
         if(this.inputVal=="")return;
         this.showloadding=true;
         this.showNoData=false;
-        let val=this.inputVal;
+        this.fillterData=this.inputData;
         this.inputData=[];
-        this.fillterData=this.allGames.filter(item=>{
-          return item.name.includes(val)||item.eName.toLowerCase().includes(val);
-        });
         !this.fillterData.length&&this.notFound();
         this.showloadding=false;
       }
