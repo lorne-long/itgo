@@ -3,7 +3,7 @@
     <div class="user_info_name">
       <span class="user_name_text">{{userData.loginname}}</span>
       <span v-if="!isAgent" class="vip_value">VIP {{userData.levelNumber+1}} </span>
-      <p v-if="!isAgent">主账户&nbsp&nbsp;<span>{{userData.accountMoney}}</span>&nbsp&nbsp;&nbsp&nbsp;副账户<span>&nbsp&nbsp;{{Deputy}}</span>
+      <p v-if="!isAgent">主账户&nbsp&nbsp;<span>{{userData.accountMoney}}</span>&nbsp&nbsp;&nbsp&nbsp;副账户<span>&nbsp&nbsp;{{userData.deputyCredit}}</span>
       </p>
       <p v-else>总佣金&nbsp;&nbsp;&nbsp;&nbsp;{{slotAccount}}</p>
     </div>
@@ -45,7 +45,6 @@
   export default {
     data() {
       return {
-        Deputy:0,
         newMsg:false,
         showSheet:false,
         sheetData:[
@@ -76,22 +75,14 @@
     },
     methods:{
       loadData(){
-        if(!this.isAgent){
-          getAllMoney({gameCode:"Deputy"}).then((res)=>{ //副账户
-            this.Deputy=res.data;
-          });
-        }
         getGuestbookCountNew().then(res=>{  //未读消息
           this.newMsg=res.data>0;
         })
-      },
+      }
     },
     created(){
       this.loadData();
     },
-//    activated (){
-//      this.loadData()
-//    },
     computed:{
       ...mapGetters(["userData","isAgent"])
     }

@@ -11,11 +11,11 @@
       <div class="form_field_warp">
         <div class="form_field with_right_label">
           <span class="form_field_label">存款姓名：</span>
-          <div class="form_field_input ml90"><input v-model="myData.accountName" type="text" ></div>
+          <div class="form_field_input ml90"><input v-model="myData.accountName" placeholder="请输入存款人姓名" type="text" ></div>
         </div>
         <div class="form_field with_right_label">
           <span class="form_field_label">存款金额：</span>
-          <div class="form_field_input ml90"><input v-model.number="myData.amount" type="text"></div>
+          <div class="form_field_input ml90"><input v-model.number="myData.amount" placeholder="请输入存款金额" type="text"></div>
           <span class="right_label">元</span>
         </div>
       </div>
@@ -34,14 +34,14 @@
           <span class="form_field_label">开户人</span>
           <div class="form_field_input mDP">
             <input type="text" :value="orderData.accountname"  readonly="readonly">
-            <strong class="btn-copy" data-clipboard-action="copy" data-clipboard-target="#myName">复制</strong>
+            <strong class="btn-copy" @click="orderData.accountname.$copy()" >复制</strong>
           </div>
         </div>
         <div class="form_field">
           <span class="form_field_label">银行卡号</span>
           <div class="form_field_input mDP">
             <input type="text" :value="orderData.bankno" readonly="readonly">
-            <strong class="btn-copy" data-clipboard-action="copy" data-clipboard-target="#myCardno">复制</strong>
+            <strong class="btn-copy"  @click="orderData.bankno.$copy()">复制</strong>
           </div>
         </div>
       </div>
@@ -49,20 +49,20 @@
         <h3>您的存款信息</h3>
         <div class="form_field">
           <span class="form_field_label">存款姓名</span>
-          <div class="form_field_input"><span>{{myData.accountName}}</span></div>
+          <div class="form_field_input"><span>{{orderData.uaccountname}}</span></div>
         </div>
         <div class="form_field">
           <span class="form_field_label">存款金额</span>
-          <div class="form_field_input"><span>{{myData.amount}}</span></div>
+          <div class="form_field_input"><span>{{orderData.amount}}</span></div>
         </div>
       </div>
       <div class="btn_wrap">
         <a href="javascript:void(0);" @click="payTrue=false" class="btn btn01">我已成功付款</a>
       </div>
     </div>
-    <div class="dialog_wrap dialog_with_icon hidden" v-show="!alreadyExist">
+    <div class="dialog_wrap dialog_with_icon" v-show="!alreadyExist">
       <div class="dialog_main">
-        <div class="icon_wrap"><img src="/mobile/images/icons/icon_warn.png" width="79" height="79"></div>
+        <div class="icon_wrap"><img src="static/images/icons/icon_warn.png" width="79" height="79"></div>
         <div class="dialog_content">
           <h2 style="color: red;">提示：您存在未处理的订单</h2>
           <p>1. 如果您已经支付且超过10分钟，请联系在线客服处理该笔订单</p>
@@ -88,7 +88,9 @@
               },
               orderData:{
                 bankno:"",
-                accountname:""
+                accountname:"",
+                uaccountname:'',
+                amount:''
               },
               payTrue:false,
               alreadyExist:true
@@ -109,7 +111,7 @@
                     this.orderData=res.data;
                     let type=res.data.type;
                     if(type=="UNPAID_ORDER"){
-                      this.alreadyExist=true;
+                      this.alreadyExist=false;
                     }else if (type=='NEW_ORDER'){
                       this.payTrue=true;
                     } else if ('BANKCARD_NOTAVAILABLE'== type) {

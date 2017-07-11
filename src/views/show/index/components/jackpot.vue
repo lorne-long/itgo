@@ -3,14 +3,20 @@
     <a href="/user/longin">
       <img src="static/images/index/iron_man.png" alt="大奖彩金池，点击抢">
       <span class="money_text">
-      <span class="cny">￥</span>
-      <span class="text_bold" id="textC">
-          <transition-group name="monys">
-              <span v-for="item in myData" :key="item">
-                {{item}}
-              </span>
-          </transition-group>
-      </span>
+        <span class="cny">￥</span>
+        <div class="text_bold" id="textC">
+
+                  <div v-for="item in myData"   >
+                    <transition name="monys">
+                        <div class="rate-moeny" :key="item">
+                              <span v-for="num in getAry(item)">
+                                {{num}}
+                              </span>
+                        </div>
+                    </transition>
+                </div>
+
+        </div>
       </span>
     </a>
   </div>
@@ -20,30 +26,47 @@
   export default {
     data() {
       return {
-        myData:"537273000.00".strSplit()
+        myData:0
       };
     },
     watch:{},
     props:{},
     activated(){
     },
-    methods:{},
-    computed:{},
-    created(){
-      setTimeout(()=>{
-        this.myData="537273123.45".strSplit()
-      },2000)
-//      NumbersAnimate.NumberInit(this.$refs.textC);
+    methods:{
+       random(dom){
+         let nowDate=new Date().getTime().toString().substr(-11)*0.01;
+         this.myData=nowDate.toString().$toFixed().strSplit();
+         setTimeout(()=>{
+           this.random();
+         },4000)
+      },
+      getAry(item){
+        if(isNaN(item))return [item];
+        item-=0;
+        let ary=[];
+        ary.push(item)
+        for(let i=0;i<=item;i++){
+          ary.push(i);
+        }
+        return ary;
+      }
     },
-    components:{}
-  };
+    created(){
+      this.random();
+    }
+  }
 </script>
 <style>
-  #textC span{ float: left;margin:0 0.5px}
-  .monys-enter-active ,.monys-leave-active {
-    transition: all 0.5s ease;
+  #textC { height: 23px !important;}
+  #textC > div { float: left; margin: 0 0.5px; position: relative; }
+  #textC div .rate-moeny {color:#fff; position: relative; }
+  #textC div .rate-moeny span { display: block; }
+  .monys-enter-to{
+    transform: translateY(-100%);
+    margin-top:25px;
   }
-  .monys-enter, .monys-leave-to{
-    transform:translateY(-200%);
+  .monys-enter-active{
+    transition: all 1.5s ease-out;
   }
 </style>

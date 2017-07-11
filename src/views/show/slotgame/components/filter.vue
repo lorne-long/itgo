@@ -17,7 +17,7 @@
   let platform={
     title:"全部平台",filter:"category",active:"",
     data:[
-      {name:"全部平台",value:""},{name:"PT",value:"PT"},{name:"MG",value:"MG"},{name:"DT",value:"DT"},{name:"NT",value:"NT" },{name:"QT",value:"QT"}
+      {name:"全部平台",value:""},{name:"PT",value:"PT"},{name:"MG",value:"MGS"},{name:"DT",value:"DT"},{name:"NT",value:"NT" },{name:"QT",value:"QT"}
       ,{name:"PNG",value:"PNG"}]
   }
   let line={

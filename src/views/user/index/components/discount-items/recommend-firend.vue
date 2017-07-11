@@ -7,9 +7,9 @@
       <router-link to="/preferential" class="text_red" slot="link">详情</router-link>
     </form-tip>
     <div v-show="step==1">
-      <div class="user_refer_link_wrap" @click="copy">
+      <div class="user_refer_link_wrap" @click="friendLink.$copy()">
         您的专属推荐链接 (点击可复制)
-        <div class="link_ref" ref="linkurl">{{friendLink}}</div>
+        <div class="link_ref" ref="linkurl" @click="">{{friendLink}}</div>
       </div>
       <div class="item_list" @click="step=2" >
         <a href="javascript:;">
@@ -67,16 +67,16 @@
       }
     },
     methods:{
-      copy(){
-        var save=(e)=>{
-          e.clipboardData.setData('text/plain',this.$refs.linkurl.innerHTML);
-          e.preventDefault();
-        }
-        document.addEventListener('copy',save);
-        document.execCommand('copy');
-        document.removeEventListener('copy',save);
-        toast('复制成功');
-      },
+//      copy(){
+//        var save=(e)=>{
+//          e.clipboardData.setData('text/plain',this.$refs.linkurl.innerHTML);
+//          e.preventDefault();
+//        }
+//        document.addEventListener('copy',save);
+//        document.execCommand('copy');
+//        document.removeEventListener('copy',save);
+//        toast('复制成功');
+//      },
       submit(){
         if(this.myData.money=="")return toast("请输入金额")
         if(this.myData.money>this.money)return toast("推荐奖励金额不足")

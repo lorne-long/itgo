@@ -113,6 +113,22 @@ export default new Vuex.Store({
     [types.LOGIN_OUT]({commit},val){ //退出登录
       commit(types.REMOVE_AUTH);
       commit(types.SET_PAYPWD,null)
+      commit(types.SET_USERDATA,{
+        qq:"",//true string
+        loginname:"",// true string
+        accountName:"",//t true string 姓名，通过该字段是否有值可判断是否已设置过用户信息
+        phone:"",//true string
+        level:0,//true string 用户等级
+        email:"",// false string
+        accountMoney:0,// true string
+        role :"",//true string 角色
+        birthday:"",//false string 生日
+        levelNumber:"",//true number 等级（数字）
+        deputyCredit:"",//true number 副账户余额
+        phoneValidStatus:"",//true string 手机号是否验证
+        mobileNum :"",//true string 手机号
+        referWebsite:"",//
+      })
       logOut().then(res=>{
         router.push("/")
       }).catch(res=>{

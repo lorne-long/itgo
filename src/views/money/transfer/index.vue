@@ -109,16 +109,9 @@
           if(val=="MAIN")
             this.accountMoney=this.userData.accountMoney;
           else{
-            getAllMoney({gameCode:val}).then((res)=>{ //副账户
-                this.accountMoney=res.success?res.data:res.message;
-            }).catch(err=>{
-              this.accountMoney=0;
-            });
+            this.accountMoney=this.userData.deputyCredit;
           }
         }
-      },
-      "userData.accountMoney"(val){
-        this.accountMoney=val
       }
     },
     computed:{
@@ -135,8 +128,8 @@
         updateGameMoney(this.data).then(res=>{
             toast(res.message);
             if(res.success){
-              if(data.transferGameOut!="DEPUTY")this.$store.dispatch("UPDATE_USERDATA"); //主账户转账 才更新信息
-              if(this.type==1){
+              this.$store.dispatch("UPDATE_USERDATA"); //去数据库更新信息
+              if(this.type==1){//页面更新信息
                 let options=this.$refs.transOut.options;
                 this.optionmoney-=this.data.transferGameMoney-0;
                 options[options.selectedIndex].text=(platformData[options.selectedIndex].name+" ("+this.optionmoney.$to+")元");

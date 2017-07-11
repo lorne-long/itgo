@@ -15,7 +15,7 @@
           <div class="form_field_input"><input type="text" :value="userData.email" readonly=""></div>
         </div>
       </div>
-      <div class="form_tip small_form_tip" style="margin-top: 10px;" @click="copy();">
+      <div class="form_tip small_form_tip" style="margin-top: 10px;" @click="userData.referWebsite.$copy();">
         推广网址：{{userData.referWebsite}}（按此区域复制）
       </div>
     </form>
@@ -24,7 +24,6 @@
 
 <script>
   export default {
-    name:'hello',
     data () {
       return {}
     },
@@ -34,17 +33,6 @@
       }
     },
     methods:{
-      copy(rul){
-        var save=(e)=>
-        {
-          e.clipboardData.setData('text/plain',this.userData.referWebsite);
-          e.preventDefault();
-        }
-        document.addEventListener('copy',save);
-        document.execCommand('copy');
-        document.removeEventListener('copy',save);
-        toast('复制成功');
-      }
     }
   }
 </script>

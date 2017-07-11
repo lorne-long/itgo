@@ -40,12 +40,25 @@ if (!Date.prototype.getWeekNumber) {
 }
 //保留二位小数点 不四舍五入
 String.prototype.$toFixed=function(_number=2){
-  let _val=this;
-   _val= parseFloat(val).toString();
+  let _val= parseFloat(this).toString();
   _val=isNaN(_val)?"0":_val;
   _val+=_val.indexOf(".")>-1?"00":".00";
   return _val.replace(new RegExp('(\\d*\\.\\d{'+_number+'})\\d*','g'),"$1")
 }
+
+//拷贝文字
+String.prototype.$copy=function(e){
+  let $this=this;
+  var save=function(e){
+    e.clipboardData.setData('text/plain',$this);
+    e.preventDefault();
+  }
+  document.addEventListener('copy',save);
+  document.execCommand('copy');
+  document.removeEventListener('copy',save);
+  toast('复制成功');
+}
+
 //分割字符串  123456789分割成 12,345,678
 String.prototype.strSplit=function(num=3,rpl=","){
   return this.toString().replace(new RegExp("(\\w)(?=(\\w{"+num+"})+(?!\\w))",'g'), "$1"+rpl)

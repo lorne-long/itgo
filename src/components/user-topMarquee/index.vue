@@ -1,6 +1,6 @@
 <template>
   <div class="page_notice" v-show="data.length>0">
-  <marquee>
+  <marquee ref='mq' behavio="scroll">
     <router-link v-for="(item,i) in data" :key="item.id" to="/notice">
       <span>{{item.title}}</span>
     </router-link>
@@ -18,7 +18,8 @@
     created(){
       getNewAnnouncement().then(data => {
         this.data = data.data;
-      });
+        this.$refs.mq.start();
+      })
     }
   };
 </script>
