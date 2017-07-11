@@ -20,10 +20,9 @@ export function getNewAnnouncement(){
   return ajax.get($getNewAnnouncement,{v:Math.random()});
 }
 export function queryRecommandGamesList(data){
-  return ajax.post($queryRecommandGamesList,data);
+  return ajax.get($queryRecommandGamesList,data);
 }
 let version=(new Date()).getWeekNumber()
-
 let allGameType=[
   axios.get('http://staticserverhost.com/games/slot/phone/ptPhone.json?v=q19'+version),//QT
   axios.get('http://staticserverhost.com/games/slot/phone/mgsPhone.json?v=q19'+version), //MGS:
@@ -54,10 +53,10 @@ export function mobileGameAgFish(data){
   return ajax.get($mobileGameAgFish,data);
 }
 export function gamePNGMobile(data){
-  return ajax.post($gamePNGMobile,data);
+  return ajax.get($gamePNGMobile,data);
 }
 export function gameH5MGS(data){
-  return ajax.post($gameH5MGS,data);
+  return ajax.get($gameH5MGS,data);
 }
 export function getNTGame(data){
   return ajax.get($getNTGame,data);
@@ -69,8 +68,8 @@ export function queryGameStatus(data){
   return ajax.get($queryGameStatus,data);
 }
 export function getQTGame(data){
-  return ajax.post($getQTGame,data);
+  return ajax.get($getQTGame,data);
 }
 export function saveOrUpdateGameStatus(data){
-  return ajax.post($saveOrUpdateGameStatus,data);
+  return ajax.get($saveOrUpdateGameStatus,data);
 }
