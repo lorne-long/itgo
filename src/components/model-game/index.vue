@@ -108,7 +108,6 @@
             if(this.getNTGame==""){
               getNTGame().then(res=>{
                 if(res.success){
-                  console.log(res)
                   this.getNTGame=res.data;
 //                  window.location.href=`${this.getNTGame.url}?slotKey=${this.getNTGame.key}&language=zh-cn&gameCode=${item.id}&isfun=0&closeUrl=${this.getNTGame.referWebsite}`;
                 }else{

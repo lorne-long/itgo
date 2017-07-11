@@ -51,7 +51,7 @@
   import vSheet from "base/sheet/sheet"
   import { swiper, swiperSlide } from 'vue-awesome-swiper'
   import  modelGame from "components/model-game"
-  import {queryRecommandGamesList} from "api/show"
+  import {queryRecommandGamesList,queryBannerList} from "api/show"
   export default {
     name:"index",
     data() {
@@ -98,6 +98,7 @@
         if(res.success)
           this.recommandData=res.data
       })
+      queryBannerList({bannerType:1}).then()
     },
     components:{
       vTop,vSheet,vJackpot,modelGame,swiper, swiperSlide,slotMenu,alertTips

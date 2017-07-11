@@ -23,8 +23,14 @@ var ajax=_axios.create({
 });
 // 请求拦截
 var qs=require('qs');
+let get=ajax.get;
+ajax.get=function(url,data,config){
+ return get(url,Object.assign({
+   params:data||{}
+  },config||{}));
+};
 ajax.interceptors.request.use(function(config){
-  // console.log("处理请求之前的配置",config);
+  // console.log("处理请求之前的配置",config);params
   config.data=qs.stringify(config.data)
   return config;
 },function(error){

@@ -7,9 +7,14 @@ import $store from '@/store'
 let $getNewAnnouncement="/asp/getNewAnnouncement.php?v=0.941433513213153";// 获取公告
 let $queryRecommandGamesList="/asp/queryRecommandGamesList.php";//查询推荐的游戏
 let $checkConfigSystem="/asp/checkConfigSystem.php";//弹框配置 首页
+let $queryBannerList="/asp/queryBannerList.php";//弹框配置 首页
+
 
 export function checkConfigSystem(data){
   return ajax.post($checkConfigSystem,data);
+}
+export function queryBannerList(data){
+  return ajax.get($queryBannerList,data);
 }
 export function getNewAnnouncement(){
   return ajax.get($getNewAnnouncement,{v:Math.random()});
