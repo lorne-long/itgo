@@ -21,10 +21,10 @@
         }
     }},
     {name:"PT",to:{name:"slotgame",params:{type:"PT"}},img:"pt.png"},
-    {name:"MG",to:{name:"slotgame",params:{type:"MG"}},img:"mg.png"},
+    {name:"MG",to:{name:"slotgame",params:{type:"MGS"}},img:"mg.png"},
     {name:"DT",to:{name:"slotgame",params:{type:"DT"}},img:"dt.png"},
     {name:"TTG",to:{name:"slotgame",params:{type:"TTG"}},img:"ttg.png"},
-    {name:"NT",to:{path:"slotgame",params:{type:"BT"}},img:"nt.png"},
+    {name:"NT",to:{name:"slotgame",params:{type:"NT"}},img:"nt.png"},
     {name:"QT",to:{name:"slotgame",params:{type:"QT"}},img:"qt.png"},
     {name:"全部",to:{name:"slotgame"},img:"more.png"},
   ]

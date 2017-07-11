@@ -12,7 +12,7 @@
     <div class="slot_game_list  sec_box">
       <slot-menu></slot-menu>
     </div>
-    <div class="hot_game_list sec_box layout_item_list">
+    <div class="hot_game_list sec_box layout_item_list" v-show="recommandData.length>0">
       <h2><span class="icon icon_hot"></span><span>热门游戏</span></h2>
       <div class="ul_auto_wrap index-ul_auto_wrap">
           <div v-for="item in recommandData" @click="tickGanme" class="hot-item game-info">
