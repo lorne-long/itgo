@@ -46,7 +46,7 @@ let $gamePNGMobile="/gamePNGMobile.php";//PNG手机端
 
 export function getAllGames(fun){
   return axios.all(allGameType).then(axios.spread(function(){
-    fun(Array.from(arguments));
+    return Promise.resolve(Array.from(arguments))
   }));
 }
 export function mobileGameAgFish(data){

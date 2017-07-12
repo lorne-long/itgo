@@ -15,7 +15,7 @@
     <div class="hot_game_list sec_box layout_item_list" v-show="recommandData.length>0">
       <h2><span class="icon icon_hot"></span><span>热门游戏</span></h2>
       <div class="ul_auto_wrap index-ul_auto_wrap">
-          <div v-for="item in recommandData" @click="tickGanme" class="hot-item game-info">
+          <div v-for="item in recommandData" @click="tickGanme(item)" class="hot-item game-info">
             <div class="layout_image_hover_text">
               <a class="btn-open" href="javascript:;"> <span class="game_tag game_tag_hot"></span>
                 <img class="game_img lazy" :src="getImg(item)" width="150" height="150">
@@ -74,7 +74,7 @@
     props:{},
     methods:{
       getImg(item){
-        return `static/images/${item.platform.toLowerCase()}games/${item.picPath}`;
+        return ` http://staticserverhost.com/games/images/iphone/${item.platform.toLowerCase()}games/${item.picPath}`;
       },
       tickGanme(item){
         this.curItem={

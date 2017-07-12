@@ -61,7 +61,7 @@ export default new Vuex.Store({
       return state.authList.includes(types.AUTH_NAME.USER);
     },
     islogin(state,getters){ //没有权限 表示没有登录 //或者值中又一个===true表示已经登录了
-      if($sessionStorage&&$sessionStorage.get(types.IS_LOGIN)===true){ //先查sessionStorage
+      if($sessionStorage&&$sessionStorage.get(types.IS_LOGIN)==='true'){ //先查sessionStorage
         if(state.authList.length==0){ //浏览器刷新 authList肯定没有 没有就查一次后台
           return false
         }

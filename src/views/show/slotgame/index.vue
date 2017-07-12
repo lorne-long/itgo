@@ -153,7 +153,7 @@
       }
     },
     created(){
-      getAllGames((arr)=>{
+      getAllGames().then((arr)=>{
         arr.forEach(item=>{
           this.allGames.push(...item.data);
         })

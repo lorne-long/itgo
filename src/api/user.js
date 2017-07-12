@@ -52,14 +52,14 @@ export  function getAllMoney(opticons){
   return   ajax.post(_getGameMoney,opticons);
 };
 //获取多个  getAllMoney([pT,NT....]) 返回数组 ［ＰＴ数据，ＮＴ数据］
-export function getAllMoneyAll(opticons,fun){
+export function getAllMoneyAll(opticons){
   if(opticons instanceof  Array){
     return  axios.all(
       opticons.map(item=>{
         return getGameMoneySolo({gameCode:item});
       })
     ).then(axios.spread(function(){
-      fun(Array.from(arguments));
+      return Promise.resolve(Array.from(arguments));
     }));
   }
 }
