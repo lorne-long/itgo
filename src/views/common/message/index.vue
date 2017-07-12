@@ -25,7 +25,7 @@
   export default {
     data() {
       return {
-        data: [],  //records
+        data: {},  //records
         viewList: {},
         searchData: { //查询条件
           total: "10", //true string

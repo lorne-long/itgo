@@ -1,26 +1,27 @@
 <template>
   <div class="flex_1">
-    <component :is="componentChoose"></component>
+    <component :is="showWhat"></component>
     <div class="btn_wrap mt10">
-      <a href="javascript:void(0);" class="btn btn01 btn_logout"
-         @click="$store.dispatch('LOGIN_OUT')"
+      <a href="javascript:void(0);" class="btn btn01 btn_logout" @click="$store.dispatch('LOGIN_OUT')"
       >安全退出</a>
     </div>
   </div>
 </template>
 <script>
-  import {logOut} from 'api/authService';
-  import {modifyCustomerSocialInfo,getCustomerSocialInfo} from 'api/user';
-  import further from "./further-data.vue";
-  import update from "./update-data.vue";
+  import vPerfect from "./components/perfect.vue";
+  import vUpdate from "./components/update.vue";
   export default {
     data() {
       return {}
     },
     computed:{
-      componentChoose(){
-        return this.$store.getters.userData.accountName==''?further:update;
+      showWhat(){
+        let name=this.$store.getters.userData.accountName;
+        return name!=null&&name!="" ? vUpdate : vPerfect;
       }
+    },
+    components:{
+      vUpdate,vPerfect
     }
   };
 </script>

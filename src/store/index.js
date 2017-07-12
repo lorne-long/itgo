@@ -154,7 +154,8 @@ export default new Vuex.Store({
           commit(types.SET_AUTH,res.data.role);
         }
       });
-    }
+    },
+
   }
 });
 

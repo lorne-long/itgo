@@ -20,12 +20,7 @@
   import {findUserBankList} from "api/safeCenter"
   import { mapGetters } from 'vuex'
   export default {
-    name: 'hello',
     props: {
-      showAdd: {
-        type: Boolean,
-        default: false
-      },
       text: {
         type: String,
         default: "银行卡资料"
