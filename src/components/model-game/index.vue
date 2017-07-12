@@ -35,7 +35,6 @@
     methods:{
       tryGame(){
         let item=this.data;
-       console.log(item)
         let _tmp='',$href=window.location.href
         switch(item.category){
           case 'PT':

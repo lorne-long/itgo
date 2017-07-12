@@ -32,7 +32,6 @@
         }
       },
       data:{
-        myHead:[],
         type:Object,
         default(){
           return {
@@ -42,11 +41,6 @@
       },
       className:{
         type:String
-      }
-    },
-    watch:{
-      data(val){
-        this.myHead=this.thead;
       }
     },
     methods:{
