@@ -40,8 +40,14 @@
       }
     },
     created(){
-      this.endDate=this.data.endDate||new Date().format("yyyy-MM-dd");
-      this.startDate=this.data.startDate||new Date().addDay(-70).format("yyyy-MM-dd");
+      if(this.data.hasOwnProperty("starttime")){
+        this.endDate=this.data.endtime||new Date().format("yyyy-MM-dd");
+        this.startDate=this.data.starttime||new Date().addDay(-70).format("yyyy-MM-dd");
+      }
+      else if(this.data.hasOwnProperty("startDate")){
+        this.endDate=this.data.endDate||new Date().format("yyyy-MM-dd");
+        this.startDate=this.data.startDate||new Date().addDay(-70).format("yyyy-MM-dd");
+      }
     },
     methods:{
       submit(){
@@ -49,8 +55,14 @@
           return toast("请选择开始时间");
         if(this.endDate=="")
           return toast("请选择结束时间");
-        this.data.startDate=this.startDate+" 00:00:00";
-        this.data.endDate=this.endDate+" 00:00:00";
+        if(this.data.hasOwnProperty("starttime")){
+          this.data.starttime=this.startDate+" 00:00:00";
+          this.data.endtime=this.endDate+" 00:00:00";
+        }
+        else if(this.data.hasOwnProperty("startDate")){
+          this.data.startDate=this.startDate+" 00:00:00";
+          this.data.endDate=this.endDate+" 00:00:00";
+        }
         this.$emit("search");
       }
     }

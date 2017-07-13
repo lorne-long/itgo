@@ -9,7 +9,7 @@
     <div v-show="step==1">
       <div class="user_refer_link_wrap" @click="friendLink.$copy()">
         您的专属推荐链接 (点击可复制)
-        <div class="link_ref" ref="linkurl" @click="">{{friendLink}}</div>
+        <div class="link_ref" ref="linkurl">{{friendLink}}</div>
       </div>
       <div class="item_list" @click="step=2" >
         <a href="javascript:;">
@@ -23,7 +23,7 @@
         <div class="form_field form_field_no_label">
           <div class="form_field_input">
             <select  v-model="myData.platform">
-
+              <option value="">请选择转入平台</option>
               <option v-for="item in platformData" :value="item.value">
                 {{item.name}}
               </option>
@@ -55,7 +55,7 @@
         money:0,
         url:"",
         myData:{
-          platform:"PT", //true string
+          platform:"", //true string
           money:""
         }
 
@@ -67,17 +67,8 @@
       }
     },
     methods:{
-//      copy(){
-//        var save=(e)=>{
-//          e.clipboardData.setData('text/plain',this.$refs.linkurl.innerHTML);
-//          e.preventDefault();
-//        }
-//        document.addEventListener('copy',save);
-//        document.execCommand('copy');
-//        document.removeEventListener('copy',save);
-//        toast('复制成功');
-//      },
       submit(){
+        if(this.myData.platform=="")return toast("请选择转入平台")
         if(this.myData.money=="")return toast("请输入金额")
         if(this.myData.money>this.money)return toast("推荐奖励金额不足")
         transferInforFriend(this.myData).then(res=>{

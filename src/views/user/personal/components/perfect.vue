@@ -23,7 +23,7 @@
           <div class="form_field">
             <span class="form_field_label">银行卡号</span>
             <div class="form_field_input">
-              <input type="text"  v-model.number="Data.bankno" placeholder="输入卡号后，系统智能识别银行"
+              <input type="text"  v-model="Data.bankno" placeholder="输入卡号后，系统智能识别银行"
                      @input="getBank" maxlength="19"></div>
           </div>
           <div class="cardTips">{{banktxt}}</div>
@@ -76,11 +76,12 @@
       checked(){
         if (this.Data.birthday == "") toast("请输入生日");
         else if (this.Data.accountName == "") toast("请输入真实姓名");
+        else if(!/^[\u4e00-\u9fa5]$/.test(this.Data.accountName))toast("请输入中文姓名");
         else if (this.Data.bankno == "") toast("请输入银行卡号");
         else if (!this.validateBankNo) toast("银行卡号检测未通过");
-        else if (this.Data.email == "") toast("请输入正确的邮箱");
-        else if (this.Data.wexin == "") toast("请输入邮箱");
-        else if (this.Data.qq == "") toast("请输入QQ");
+        else if (this.Data.email!= ""&&!/^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/ .test(this.Data.email)) {
+          toast("请输入正确的邮箱")
+        }
         else {
           return true;
         }

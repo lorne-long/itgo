@@ -45,7 +45,7 @@
   let vip_gold=(resolve) => resolve(require('../discount-items/vip-gold'));
   let birthday_gold=(resolve) => resolve(require('../discount-items/birthday-gold'));
   let recommend_firend=(resolve) => resolve(require('../discount-items/recommend-firend'));
-  let experience_gold =(resolve) => resolve(require('../discount-items/experience-gold '));
+  let experience_gold =(resolve) => resolve(require('../discount-items/experience-gold'));
   export default {
     data() {
       return{

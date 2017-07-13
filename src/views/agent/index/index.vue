@@ -19,7 +19,6 @@
   </div>
 </template>
 <script>
-  import {logOut} from 'api/authService';
   import {agentReport} from 'api/agent';
   import {mapGetters} from 'vuex'
   import accountTop from "components/account-top"

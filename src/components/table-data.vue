@@ -3,6 +3,7 @@
     <div class="m-grid-table">
       <table class="m-grid-table">
         <thead>
+
         <tr>
           <th v-for="(item,i) in thead" @click="item.method||null" :class="item.classNmae">
             {{ item.name || item }}
@@ -10,11 +11,17 @@
         </tr>
         </thead>
         <tbody>
-        <slot>
-          <tr class="table-nodata">
-            <td :colspan="thead.length">无资料/尚未查询</td>
-          </tr>
-        </slot>
+        <slot></slot>
+        <tr v-show="!data.hasOwnProperty('totalRecords')">
+          <td :colspan="thead.length">
+            尚未查询
+          </td>
+        </tr>
+        <tr v-show="data.totalRecords==0">
+          <td :colspan="thead.length">
+            无资料
+          </td>
+        </tr>
         </tbody>
       </table>
     </div>
@@ -45,6 +52,8 @@
     },
     methods:{
       search(val){
+        var x={}
+        x.hasOwnProperty()
         this.$emit("search",val)
       }
     },
@@ -58,6 +67,7 @@
     width: 100%;
     overflow-y: auto;
   }
+
   .m-grid-table {
     width: 100%;
     text-align: center;
@@ -76,14 +86,17 @@
     color: #fff;
     padding: 0 5px;
 
-  &:last-child {
-      border-right: none
-    }
+  &
+  :last-child {
+    border-right: none
+  }
+
   }
   td {
-    border:1px solid #e5e5e5;
+    border: 1px solid #e5e5e5;
     white-space: nowrap;
   }
+
   }
   .table-nodata {
     height: 100px;

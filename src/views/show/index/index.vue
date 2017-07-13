@@ -51,7 +51,7 @@
   import vSheet from "base/sheet/sheet"
   import { swiper, swiperSlide } from 'vue-awesome-swiper'
   import  modelGame from "components/model-game"
-  import {queryRecommandGamesList,queryBannerList} from "api/show"
+  import {queryRecommandGamesList,queryBannerList,getCarouselListAll} from "api/show"
   export default {
     name:"index",
     data() {

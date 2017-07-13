@@ -13,7 +13,7 @@
         </div>
       </search-form>
       <table-data :thead="thead" :data="data">
-        <tr v-if="show" v-for="(item,i) in data.records">
+        <tr v-if="show" v-for="(item,i) in data.pageContents||[]">
           <td>{{(data.pageNumber-1)*data.size+i+1}}</td>
           <td>{{item.loginname}}</td>
           <td>{{item.platform}}</td>
@@ -21,7 +21,7 @@
           <td>{{item.amount}}</td>
           <td>{{item.tempCreateTime | Date}}</td>
         </tr>
-        <tr v-if="!show" v-for="(item,i) in data.records||[]">
+        <tr v-if="!show" v-for="(item,i) in data.pageContents||[]">
           <td>{{data.pageIndex + i + 1}}</td>
           <td>{{item.loginname}}</td>
           <td>{{item.tempCreateTime | Date}}</td>
@@ -59,8 +59,10 @@
     },
     methods: {
       search(index){
-        if(index&&this.searchData.pageIndex==index)return;
-        this.searchData.pageIndex=index||this.searchData.pageIndex
+        if(!isNaN(index)){
+          if(index==this.searchData.pageIndex)return
+          this.searchData.pageIndex=index
+        }
         queryPlatformDetails(this.searchData).then(res => {
           if (res.success) {
             if(this.searchData.code != "-1"){

@@ -14,13 +14,10 @@
           </div>
       </transition>
     </div>
-    <div class="item_list" style="text-align: center;padding:2em" v-show="data.pageContents.length==0">
-      暂无消息
-    </div>
   </div>
 </template>
 <script>
-  import  {queryEmail, readMsg} from "api/common";
+  import  {getMessageByUser, readMsg} from "api/common";
   import  Vue from "vue";
   export default {
     data() {
@@ -53,7 +50,7 @@
     computed: {},
     activated(){
       //加载数据
-      queryEmail(this.searchData).then(data => {
+      getMessageByUser(this.searchData).then(data => {
         if (data.success) {
           this.data = data.data;
         } else {

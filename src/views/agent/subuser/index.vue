@@ -4,7 +4,7 @@
     <div class="layout_form layout_form04">
       <search-form @search="search" :data="searchData"></search-form>
       <table-data :thead="thead" :data="data">
-        <tr v-for="(item,i) in data.records||[]">
+        <tr v-for="(item,i) in data.pageContents||[]">
           <td>{{(data.pageNumber-1)*data.size+i+1}}</td>
           <td>{{item.loginname}}</td>
           <td>{{item.flag}}</td>
@@ -21,16 +21,15 @@
 <script>
   import tableData from "components/table-data"
   import searchForm from "components/search-form"
-  import {queryAgentSubUserInfo} from "api/agent"
+  import {queryAgentSubUserInfoData} from "api/agent"
   export default {
     data () {
       return {
         thead: ['序', '会员帐号', '状态', '账户额度', '	开户日期', '来源网址'],
         data: {},
         searchData: {
-          total: 0,
-          startDate: "",
-          endDate: "",
+          starttime: "",
+          endtime: "",
           size: 10,
           pageIndex: 1,
         }
@@ -38,11 +37,13 @@
     },
     methods: {
       search(index) {
-        if(index&&this.searchData.pageIndex==index)return;
-        this.searchData.pageIndex=index||this.searchData.pageIndex
-        queryAgentSubUserInfo(this.searchData).then(res => {
+        if(!isNaN(index)){
+          if(index==this.searchData.pageIndex)return
+          this.searchData.pageIndex=index
+        }
+        queryAgentSubUserInfoData(this.searchData).then(res => {
           if (res.success) {
-            this.data = res.data;
+            this.data = res.data.page;
           } else {
             toast(res.message)
           }

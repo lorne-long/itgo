@@ -16,10 +16,10 @@ let _searchPtCommissionsData = "/asp/searchPtCommissionsData.php";//老虎机日
 let _searchsubuserProposalData = "/asp/searchsubuserProposalData.php";//查询下线账务
 let _searchSubUserXimaRecordData = "/asp/searchSubUserXimaRecordData.php";//查询下线洗码记录
 let _getProposalYouHuiTypeSelectionData = "/asp/getProposalYouHuiTypeSelectionData.php";//获取优惠类型下拉数据
-let _queryAgentSubUserInfo = "/mobi/queryAgentSubUserInfo.php";//查询代理下线信息（手机端）
-
-let _queryPtCommission="/mobi/queryPtCommission.php";/***查询老虎机日结佣金记录*/
 let _queryPlatformDetails="/asp/queryPlatformDetails.php";/***平台输赢*/
+
+
+
 
 export function agentReport(data) {
   return ajax.post(_agentReport, data);
@@ -27,13 +27,9 @@ export function agentReport(data) {
 export function queryPlatformDetails(data) {
   return ajax.post(_queryPlatformDetails, data);
 }
-export function queryPtCommission(data) {
-  return ajax.post(_queryPtCommission, data);
-}
 export function queryCreditlogs(data) {
   return ajax.post(_queryCreditlogs, data);
 }
-
 export function querySubProposal(data) {
   return ajax.post(_querySubProposal, data);
 }
@@ -63,7 +59,4 @@ export function searchSubUserXimaRecordData(data) {
 }
 export function getProposalYouHuiTypeSelectionData(data) {
   return ajax.post(_getProposalYouHuiTypeSelectionData, data);
-}
-export function queryAgentSubUserInfo(data) {
-  return ajax.post(_queryAgentSubUserInfo, data);
 }

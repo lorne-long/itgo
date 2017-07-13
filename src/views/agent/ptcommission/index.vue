@@ -2,7 +2,7 @@
   <!--佣金报表{-->
   <div class="page_content_wrap">
     <div class="layout_form layout_form04">
-      <search-form  :data="defaultData"   @search="search"></search-form>
+      <search-form  :data="searchData"   @search="search"></search-form>
       <table-data :thead="thead" :data="data"  @search="search">
         <tr v-for="(item,i) in data.pageContents||[]">
           <td>{{(data.pageNumber-1)*data.size+i+1}}</td>
@@ -35,19 +35,15 @@
           endtime: "",
           size:10,
           pageIndex:1,
-        },
-        defaultData:{
-          startDate:"",
-          endDate:""
         }
       }
     },
     methods: {
       search(index) {
-        if(index&&this.searchData.pageIndex==index)return;
-        this.searchData.pageIndex=index||this.searchData.pageIndex;
-        this.searchData.starttime=this.defaultData.startDate;
-        this.searchData.endtime=this.defaultData.endDate;
+        if(!isNaN(index)){
+          if(index==this.searchData.pageIndex)return
+          this.searchData.pageIndex=index
+        }
         searchPtCommissionsData(this.searchData).then(res => {
           if (res.success) {
             this.data = res.data;

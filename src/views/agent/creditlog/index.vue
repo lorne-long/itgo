@@ -29,7 +29,6 @@
         thead: ["序", '操作类型', '额度变量', '改变前额度', '改变后额度', '加入时间'],
         data: {},
         searchData: {
-          total: 0, //true string
           startDate: "", //true string
           endDate: "",// true string
           size: 10, //true string
@@ -39,7 +38,10 @@
     },
     methods: {
       search(index){
-        this.searchData.pageIndex=index||this.searchData.pageIndex;
+        if(!isNaN(index)){
+          if(index==this.searchData.pageIndex)return
+          this.searchData.pageIndex=index
+        }
         queryCreditlogs(this.searchData).then(res => {
           if (res.success) {
               this.data=res.data

@@ -9,7 +9,6 @@ let $queryRecommandGamesList="/asp/queryRecommandGamesList.php";//查询推荐�
 let $checkConfigSystem="/asp/checkConfigSystem.php";//弹框配置 首页
 let $queryBannerList="/asp/queryBannerList.php";//弹框配置 首页
 
-
 export function checkConfigSystem(data){
   return ajax.post($checkConfigSystem,data);
 }
@@ -23,14 +22,6 @@ export function queryRecommandGamesList(data){
   return ajax.get($queryRecommandGamesList,data);
 }
 let version=(new Date()).getWeekNumber()
-let allGameType=[
-  axios.get('http://staticserverhost.com/games/slot/phone/ptPhone.json?v=q19'+version),//QT
-  axios.get('http://staticserverhost.com/games/slot/phone/mgsPhone.json?v=q19'+version), //MGS:
-  axios.get('http://staticserverhost.com/games/slot/phone/qtPhone.json?v=q19'+version), // QT:
-  axios.get('http://staticserverhost.com/games/slot/phone/dtPhone.json?v=q19'+version),// DT:
-  axios.get('http://staticserverhost.com/games/slot/phone/ntPhone.json?v=q19'+version),// NT:
-  axios.get('http://staticserverhost.com/games/slot/phone/pngPhone.json?v=q19'+version)//PNG:
-];
 let  $saveOrUpdateGameStatus="/mobi/saveOrUpdateGameStatus.php";//收藏/首先收藏
 let  $queryGameStatus="/mobi/queryGameStatus.php";//查询用户收藏
 
@@ -45,7 +36,14 @@ let $gamePNGMobile="/gamePNGMobile.php";//PNG手机端
 
 
 export function getAllGames(fun){
-  return axios.all(allGameType).then(axios.spread(function(){
+  return axios.all([
+    axios.get('http://staticserverhost.com/games/slot/phone/ptPhone.json?v=q19'+version),//QT
+    axios.get('http://staticserverhost.com/games/slot/phone/mgsPhone.json?v=q19'+version), //MGS:
+    axios.get('http://staticserverhost.com/games/slot/phone/qtPhone.json?v=q19'+version), // QT:
+    axios.get('http://staticserverhost.com/games/slot/phone/dtPhone.json?v=q19'+version),// DT:
+    axios.get('http://staticserverhost.com/games/slot/phone/ntPhone.json?v=q19'+version),// NT:
+    axios.get('http://staticserverhost.com/games/slot/phone/pngPhone.json?v=q19'+version)//PNG:
+  ]).then(axios.spread(function(){
     return Promise.resolve(Array.from(arguments))
   }));
 }

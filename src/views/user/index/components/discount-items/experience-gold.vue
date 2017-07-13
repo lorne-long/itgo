@@ -9,7 +9,7 @@
       <div class="layout_icon_text_button display_flex_h">
         <div class="icon_wrap"><img src="static/images/icons/icon_profile.png" width="77" height="75"></div>
         <div class="flex_1">
-          <router-link to="/user/personal" class="link">
+          <router-link v-if="accountName==''" to="/user/personal" class="link">
             立即完善个人资料
           </router-link>
           <div class="btn_wrap no_padding">
@@ -31,7 +31,7 @@
           <span class="form_field_label">选择游戏平台</span>
           <div class="form_field_input">
             <select  v-model="platform">
-              import  {platformData} from "@/util/data"
+              <option value="">选择游戏平台</option>
               <option v-for="item in platformData" :value="item.value">
                 {{item.name}}
               </option>
@@ -61,11 +61,12 @@
       return {
         step:1,
         platformData,
-        platform:"PT"
+        platform:""
       };
     },
     methods:{
       submit(){
+        if(this.platform=="")return toast("请选择转入平台");
         commitPTSelf({platform:this.platform}).then(res=>{
           toast(res.message);
           if(res.success){
@@ -76,7 +77,11 @@
         })
       }
     },
-    computed:{},
+    computed:{
+      accountName(){
+        return this.$store.getters.userData.accountName;
+      }
+    },
     created(){
     },
     components:{
