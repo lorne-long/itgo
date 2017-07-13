@@ -4,26 +4,7 @@
     <bookmark url="file://$PROJECT_DIR$/src/components" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5dcd65e8-1c7f-4426-b686-384106f223f3" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/components/Datepicker/index.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/api/agent.js" afterPath="$PROJECT_DIR$/src/api/agent.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/api/preferential-terms.js" afterPath="$PROJECT_DIR$/src/api/preferential-terms.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/api/show.js" afterPath="$PROJECT_DIR$/src/api/show.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/search-form.vue" afterPath="$PROJECT_DIR$/src/components/search-form.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/table-data.vue" afterPath="$PROJECT_DIR$/src/components/table-data.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/views/agent/creditlog/index.vue" afterPath="$PROJECT_DIR$/src/views/agent/creditlog/index.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/views/agent/index/index.vue" afterPath="$PROJECT_DIR$/src/views/agent/index/index.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/views/agent/platform/index.vue" afterPath="$PROJECT_DIR$/src/views/agent/platform/index.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/views/agent/ptcommission/index.vue" afterPath="$PROJECT_DIR$/src/views/agent/ptcommission/index.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/views/agent/subuser/index.vue" afterPath="$PROJECT_DIR$/src/views/agent/subuser/index.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/views/common/message/index.vue" afterPath="$PROJECT_DIR$/src/views/common/message/index.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/views/show/index/index.vue" afterPath="$PROJECT_DIR$/src/views/show/index/index.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/views/user/index/components/discount-items/recommend-firend.vue" afterPath="$PROJECT_DIR$/src/views/user/index/components/discount-items/recommend-firend.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/views/user/index/components/discount-menu/index.vue" afterPath="$PROJECT_DIR$/src/views/user/index/components/discount-menu/index.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/views/user/personal/components/perfect.vue" afterPath="$PROJECT_DIR$/src/views/user/personal/components/perfect.vue" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/views/user/index/components/discount-items/experience-gold .vue" afterPath="$PROJECT_DIR$/src/views/user/index/components/discount-items/experience-gold.vue" />
-    </list>
+    <list default="true" id="5dcd65e8-1c7f-4426-b686-384106f223f3" name="Default" comment="" />
     <ignored path="vuetest.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -57,14 +38,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.vue" pinned="false" current-in-tab="true">
+      <file leaf-file-name="index.vue" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/views/agent/platform/index.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="309">
-              <caret line="15" column="64" selection-start-line="15" selection-start-column="64" selection-end-line="15" selection-end-column="64" />
+            <state relative-caret-position="529">
+              <caret line="25" column="37" selection-start-line="25" selection-start-column="37" selection-end-line="25" selection-end-column="37" />
               <folding>
                 <element signature="e#1366#1432#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="help-gold.vue" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/views/user/index/components/discount-items/help-gold.vue">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="418">
+              <caret line="73" column="25" selection-start-line="73" selection-start-column="25" selection-end-line="73" selection-end-column="25" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -161,7 +152,6 @@
         <option value="$PROJECT_DIR$/src/data/data.js" />
         <option value="$PROJECT_DIR$/src/util/data.js" />
         <option value="$PROJECT_DIR$/src/views/user/index/components/discount-items/experience-gold .vue" />
-        <option value="$PROJECT_DIR$/src/views/user/index/components/discount-items/help-gold.vue" />
         <option value="$PROJECT_DIR$/src/views/user/index/components/discount-items/save-send.vue" />
         <option value="$PROJECT_DIR$/src/vue-extend/filters.js" />
         <option value="$PROJECT_DIR$/src/views/show/index/components/jackpot.vue" />
@@ -207,6 +197,7 @@
         <option value="$PROJECT_DIR$/src/views/agent/subuser/index.vue" />
         <option value="$PROJECT_DIR$/src/components/search-form.vue" />
         <option value="$PROJECT_DIR$/src/views/agent/platform/index.vue" />
+        <option value="$PROJECT_DIR$/src/views/user/index/components/discount-items/help-gold.vue" />
       </list>
     </option>
   </component>
@@ -223,9 +214,9 @@
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="-8" />
-    <option name="y" value="1" />
-    <option name="width" value="1924" />
-    <option name="height" value="1056" />
+    <option name="y" value="-8" />
+    <option name="width" value="1936" />
+    <option name="height" value="1066" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -574,12 +565,12 @@
       <workItem from="1499735599562" duration="30821000" />
       <workItem from="1499821377380" duration="4719000" />
       <workItem from="1499828306895" duration="15920000" />
-      <workItem from="1499907674634" duration="24638000" />
+      <workItem from="1499907674634" duration="24689000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="680976000" />
+    <option name="totallyTimeSpent" value="681027000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -591,10 +582,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="1" width="1924" height="1056" extended-state="0" />
+    <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15959702" sideWeight="0.48844886" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15858799" sideWeight="0.48844886" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32901135" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4804772" sideWeight="0.5148462" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3253796" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -967,14 +958,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/user/index/components/discount-items/help-gold.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="528">
-          <caret line="24" column="23" selection-start-line="24" selection-start-column="23" selection-end-line="24" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/views/user/index/components/discount-items/vip-gold.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="440">
@@ -1147,11 +1130,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/views/agent/platform/index.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="309">
-          <caret line="15" column="64" selection-start-line="15" selection-start-column="64" selection-end-line="15" selection-end-column="64" />
+        <state relative-caret-position="529">
+          <caret line="25" column="37" selection-start-line="25" selection-start-column="37" selection-end-line="25" selection-end-column="37" />
           <folding>
             <element signature="e#1366#1432#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/user/index/components/discount-items/help-gold.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="418">
+          <caret line="73" column="25" selection-start-line="73" selection-start-column="25" selection-end-line="73" selection-end-column="25" />
+          <folding />
         </state>
       </provider>
     </entry>

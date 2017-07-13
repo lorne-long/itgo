@@ -72,7 +72,7 @@
     created(){
       queryPTLosePromo(this.searchLogData).then(data=>{
         if(data.success){
-          this.listData=data.data.records.filter(function(item,i){
+          this.listData=data.data.pageContents.filter(function(item,i){
             return item.status==0
           });
         }else{
