@@ -1,9 +1,6 @@
 <template>
   <div id="app">
     <transition :name="transitionName">
-      <!--<keep-alive :exclude="isExclude">-->
-      <!--<router-view ></router-view>-->
-      <!--</keep-alive>-->
       <keep-alive>
         <router-view v-if="!$route.meta.noCache"></router-view>
       </keep-alive>
