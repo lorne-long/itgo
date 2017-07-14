@@ -30,42 +30,42 @@ export default [
     children: [
       {
         path: "ptcommission",
-        name: "ptcommission",
+        name: "agent_ptcommission",
         component: ptcommission,
         meta: {
           headName: "佣金报表"
         }
       }, {
         path: "memberlist",
-        name: "memberlist",
+        name: "agent_memberlist",
         component: memberlist,
         meta: {
           headName: "会员列表"
         }
       }, {
         path: "memberbill",
-        name: "memberbill",
+        name: "agent_memberbill",
         component: memberbill,
         meta: {
           headName: "会员账务"
         }
       }, {
         path: "creditlog",
-        name: "creditlog",
+        name: "agent_creditlog",
         component: creditlog,
         meta: {
           headName: "额度记录"
         }
       }, {
         path: "personal",
-        name: "personal",
+        name: "agent_personal",
         component: personal,
         meta: {
           headName: "个人中心"
         }
       }, {
         path: "bindbank",
-        name: "bindbank",
+        name: "agent_bindbank",
         component: bindbank,
         meta: {
           headName: "绑定银行卡/折号"

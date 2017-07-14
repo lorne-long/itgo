@@ -29,12 +29,12 @@
       return {
         slotAccount:0,
         rowdata:[
-          {name:'佣金报表',to:{path:"/agent/ptcommission"}},
-          {name:'会员列表',to:{path:"/agent/memberlist"}},
-          {name:'会员账务',to:{path:"/agent/memberbill"}},
-          {name:'额度记录',to:{path:"/agent/creditlog"}},
-          {name:'个人中心',to:{path:"/agent/personal"}},
-          {name:'绑定银行卡/折号',to:{path:"/agent/bindbank"}},
+          {name:'佣金报表',to:{name:"agent_ptcommission"}},
+          {name:'会员列表',to:{name:"agent_memberlist"}},
+          {name:'会员账务',to:{name:"agent_memberbill"}},
+          {name:'额度记录',to:{name:"agent_creditlog"}},
+          {name:'个人中心',to:{name:"agent_personal"}},
+          {name:'绑定银行卡/折号',to:{name:"agent_bindbank"}},
         ],
         colData:[
           {name:"本月总输赢",view:0},
