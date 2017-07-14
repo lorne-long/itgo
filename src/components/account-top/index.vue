@@ -5,7 +5,7 @@
       <span v-if="!isAgent" class="vip_value">VIP {{userData.levelNumber+1}} </span>
       <p v-if="!isAgent">主账户&nbsp&nbsp;<span>{{userData.accountMoney}}</span>&nbsp&nbsp;&nbsp&nbsp;副账户<span>&nbsp&nbsp;{{userData.deputyCredit}}</span>
       </p>
-      <p v-else>总佣金&nbsp;&nbsp;&nbsp;&nbsp;{{slotAccount}}</p>
+      <p v-else>总佣金&nbsp;&nbsp;&nbsp;&nbsp;{{userData.accountMoney}}</p>
     </div>
     <img class="avata_img" src="static/images/user/avata.png" width="60" height="60">
     <img class="line_space" src="static/images/bg/bg02.png">
@@ -60,9 +60,6 @@
     props:{
       value:{
         default:false
-      },
-      slotAccount:{
-        default:0
       }
     },
     watch:{

@@ -54,19 +54,12 @@
         this.colData[3].view=res.data.reg||0;
         this.colData[4].view=res.data.monthly_reg||0;
         this.colData[5].view=res.data.betall||0;
-        this.slotAccount=res.data.slotAccount||0;
       }).catch((err)=>{
         toast("流水查询失败");
       });
     },
     computed:{
       ...mapGetters(["userData"])
-    },
-    methods:{
-      logOut:function(){
-        logOut();
-        this.$router.push("/index");
-      }
     },
     components:{
       rowList,
