@@ -1,25 +1,58 @@
 <template>
-  <!--绑定银行卡{-->
-  <div id="page-bindcard">
-    <bank-list :showAdd="true"></bank-list>
-    <div class="btn_wrap logout_btn_wrap"   @click="$store.dispatch('LOGIN_OUT')">
-      <a href="javascript:void(0);" class="btn btn01 btn_logout"
-        >安全退出</a>
+  <!--个人中心{-->
+  <div class="page_content_wrap no_padding proxy_info_wrap">
+    <tab-menu @tabmenu="tabmenu" :data="tabMenuData"></tab-menu>
+    <div style="background: #fff; padding:10px 0; ">
+    <component :is="tabPanel"></component>
     </div>
   </div>
-  <!--}绑定银行卡-->
+  <!--}个人中心-->
 </template>
+
 <script>
-  import {logOut} from 'api/authService';
-  import bankList from 'components/bank-list/index';
+  import tabMenu from "components/tab-menu";
+  import profile from "./components/profile";
+  import loginUpdate from "views/password/login-update";
+  import payUpdate from "views/password/pay-update";
+  import paySet from "views/password/pay-set";
+  import {mapGetters} from 'vuex'
   export default {
     data () {
       return {
-
+        tabPanel: profile,
+        tabMenuData:[
+          {
+            name: "个人资料",
+            params: profile
+          },
+          {
+            name: "支付密码",
+            params: payUpdate
+          },
+          {
+            name: "登录密码",
+            params: loginUpdate
+          }
+        ]
       }
     },
-    components:{
-      bankList
+    watch:{
+      isSetPayPwd(){}
+    },
+    computed:{
+       ...mapGetters(["isSetPayPwd"])
+    },
+    methods: {
+      tabmenu(val,i){
+        if(i==1&&!this.isSetPayPwd){
+          this.tabPanel=paySet
+        }else{
+          this.tabPanel=val.params;
+        }
+      }
+    },
+    components: {
+      tabMenu
     }
   }
 </script>

@@ -2,13 +2,15 @@
 import {AUTH_NAME} from "@/store/types"//权限名称
 
 import  master from "components/master"//二级路由模板页
-let index = (resolve) => resolve(require('views/agent/index/index'));
-let ptcommission = (resolve) => resolve(require('views/agent/ptcommission'));
-let subuser = (resolve) => resolve(require('views/agent/subuser'));
-let platform = (resolve) => resolve(require('views/agent/platform'));
-let creditlog = (resolve) => resolve(require('views/agent/creditlog'));
-let profile = (resolve) => resolve(require('views/agent/profile'));
-let personal = (resolve) => resolve(require('views/agent/personal'));
+let index = (resolve) => resolve(require('views/agent/index/index')); //首页
+let ptcommission = (resolve) => resolve(require('views/agent/ptcommission')); //佣金报表
+
+let memberlist = (resolve) => resolve(require('views/agent/member-list'));//会员列表
+let memberbill = (resolve) => resolve(require('views/agent/member-bill'));//会员账务
+
+let creditlog = (resolve) => resolve(require('views/agent/credit-log'));//额度记录
+let personal = (resolve) => resolve(require('views/agent/personal'));//个人中心
+let bindbank = (resolve) => resolve(require('views/agent/bind-bank'));//绑定银行卡
 export default [
   {
     path: "/agent/index",
@@ -34,16 +36,16 @@ export default [
           headName: "佣金报表"
         }
       }, {
-        path: "subuser",
-        name: "subuser",
-        component: subuser,
+        path: "memberlist",
+        name: "memberlist",
+        component: memberlist,
         meta: {
           headName: "会员列表"
         }
       }, {
-        path: "platform",
-        name: "platform",
-        component: platform,
+        path: "memberbill",
+        name: "memberbill",
+        component: memberbill,
         meta: {
           headName: "会员账务"
         }
@@ -55,16 +57,16 @@ export default [
           headName: "额度记录"
         }
       }, {
-        path: "profile",
-        name: "profile",
-        component: profile,
+        path: "personal",
+        name: "personal",
+        component: personal,
         meta: {
           headName: "个人中心"
         }
       }, {
-        path: "personal",
-        name: "personal",
-        component: personal,
+        path: "bindbank",
+        name: "bindbank",
+        component: bindbank,
         meta: {
           headName: "绑定银行卡/折号"
         }

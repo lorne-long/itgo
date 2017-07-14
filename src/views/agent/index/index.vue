@@ -2,7 +2,7 @@
   <div class="user_center_content proxy_center_content">
     <account-top :slotAccount="slotAccount">头部内容</account-top>
     <div class="proxy_info_main sec_box">
-      <col-list  :data="colData"></col-list>
+      <col-list :data="colData"></col-list>
       <div style="padding: 15px;" class="padding_wrap">
         <div class="form_tip text_align_left">
           温馨提示：<br>
@@ -13,9 +13,9 @@
       </div>
     </div>
     <row-list :data="rowdata"></row-list>
-    <div class="btn_wrap" style="margin-top: 1em"><a
-                                                     @click="$store.dispatch('LOGIN_OUT')"
-                                                     href="javascript:;" class="btn btn01">退出</a></div>
+    <div class="btn_wrap" style="margin-top: 1em">
+      <a @click="$store.dispatch('LOGIN_OUT')" href="javascript:;" class="btn btn01">退出</a>
+    </div>
   </div>
 </template>
 <script>
@@ -30,11 +30,11 @@
         slotAccount:0,
         rowdata:[
           {name:'佣金报表',to:{path:"/agent/ptcommission"}},
-          {name:'会员列表',to:{path:"/agent/subuser"}},
-          {name:'会员账务',to:{path:"/agent/platform"}},
+          {name:'会员列表',to:{path:"/agent/memberlist"}},
+          {name:'会员账务',to:{path:"/agent/memberbill"}},
           {name:'额度记录',to:{path:"/agent/creditlog"}},
-          {name:'个人中心',to:{path:"/agent/profile"}},
-          {name:'绑定银行卡/折号',to:{path:"/agent/personal"}},
+          {name:'个人中心',to:{path:"/agent/personal"}},
+          {name:'绑定银行卡/折号',to:{path:"/agent/bindbank"}},
         ],
         colData:[
           {name:"本月总输赢",view:0},
@@ -47,17 +47,17 @@
       }
     },
     created(){
-      agentReport().then((res)=> {
-          this.colData[0].view=res.data.profitall||0;
-          this.colData[1].view=res.data.ximafee||0;
-          this.colData[2].view=res.data.couponfee||0;
-          this.colData[3].view=res.data.reg||0;
-          this.colData[4].view=res.data.monthly_reg||0;
-          this.colData[5].view=res.data.betall||0;
-          this.slotAccount=res.data.slotAccount||0;
-        }).catch((err)=>{
-          toast("流水查询失败");
-        });
+      agentReport().then((res)=>{
+        this.colData[0].view=res.data.profitall||0;
+        this.colData[1].view=res.data.ximafee||0;
+        this.colData[2].view=res.data.couponfee||0;
+        this.colData[3].view=res.data.reg||0;
+        this.colData[4].view=res.data.monthly_reg||0;
+        this.colData[5].view=res.data.betall||0;
+        this.slotAccount=res.data.slotAccount||0;
+      }).catch((err)=>{
+        toast("流水查询失败");
+      });
     },
     computed:{
       ...mapGetters(["userData"])
