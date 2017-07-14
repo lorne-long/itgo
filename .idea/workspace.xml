@@ -4,11 +4,7 @@
     <bookmark url="file://$PROJECT_DIR$/src/components" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5dcd65e8-1c7f-4426-b686-384106f223f3" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/App.vue" afterPath="$PROJECT_DIR$/src/App.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/api/agent.js" afterPath="$PROJECT_DIR$/src/api/agent.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/views/agent/member-bill/index.vue" afterPath="$PROJECT_DIR$/src/views/agent/member-bill/index.vue" />
-    </list>
+    <list default="true" id="5dcd65e8-1c7f-4426-b686-384106f223f3" name="Default" comment="" />
     <ignored path="vuetest.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -447,12 +443,12 @@
       <workItem from="1499828306895" duration="15920000" />
       <workItem from="1499907674634" duration="24689000" />
       <workItem from="1499994250199" duration="1507000" />
-      <workItem from="1499999950648" duration="6105000" />
+      <workItem from="1499999950648" duration="6704000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="688639000" />
+    <option name="totallyTimeSpent" value="689238000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -464,7 +460,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1932" height="1066" extended-state="0" />
+    <frame x="-8" y="-8" width="1932" height="1066" extended-state="1" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15839493" sideWeight="0.48844886" order="0" side_tool="false" content_ui="combo" />
