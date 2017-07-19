@@ -16,6 +16,9 @@ let $cookie={
     }
     return null;
   },
+  has: function (key) {
+    return this.get(key)!= null
+  },
   remove(key){
     var exp = new Date();
     exp.setTime(exp.getTime() - 1);
@@ -57,6 +60,7 @@ if (!window.localStorage) {
 }
 ;
 if (!window.sessionStorage) {
+  $localStorage=$cookie;
   console.log("不浏览器支持");
 } else {
   $sessionStorage = {

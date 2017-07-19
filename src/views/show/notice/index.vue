@@ -54,7 +54,7 @@
       })
     },
     components:{
-      'back-header':require("components/header_back/header_back")
+      'back-header':require("components/header-back")
     }
   }
 </script>

@@ -31,7 +31,7 @@
 <script>
   import  vFilter from "./components/filter"
   import  dadaList from "./components/dada-list"
-  import  headerBack from "components/header_back/header_back"
+  import  headerBack from "components/header-back"
   import  loadding from "components/loadding"
   import  {getAllGames,queryGameStatus} from "api/show"
   import Vue from 'vue'

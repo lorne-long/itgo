@@ -14,7 +14,7 @@
   import topMarquee from "components/user-topMarquee"
   import tabMenu from "./components/discount-menu/index"
   import accountTop from "components/account-top"
-  import moneyOption from "components/moneyOption"
+  import moneyOption from "components/money-option"
   import vSheet from "base/sheet/sheet"
   import { mapGetters } from 'vuex'
   export default {
