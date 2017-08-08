@@ -2,7 +2,7 @@ import {AUTH_NAME} from "@/store/types"
 import  master from "components/master" //二级路由模板页
 let index=(resolve) => resolve(require('user/index/index'));
 let message=(resolve) => resolve(require('views/common/message')); //站内消息
-let history=(resolve) => resolve(require('views/user/history'));//记录消息
+let log=(resolve) => resolve(require('views/user/log'));//记录消息
 let personal=(resolve) => resolve(require('views/user/personal'));  //会员个人资料
 let security=(resolve) => resolve(require('views/user/security'));  //安全中心
 export default [
@@ -40,9 +40,9 @@ export default [
         }
       },
       {
-        path:"history",
-        name:"user_history",
-        component:history,
+        path:"log",
+        name:"user_log",
+        component:log,
         meta:{
           headName:"记录查询"
         }

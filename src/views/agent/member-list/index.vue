@@ -43,7 +43,7 @@
         }
         queryAgentSubUserInfoData(this.searchData).then(res => {
           if (res.success) {
-            this.data = res.data.page;
+            this.data = res.data;
           } else {
             toast(res.message)
           }

@@ -4,14 +4,16 @@
     <div class="slot_game_filter_bar mb">
       <div class="cfx display_flex_h">
         <div class="flex_3 fl" @click="showFilter=!showFilter">筛选</div>
-        <div class="flex_5 fl">
-          <input v-model="inputVal" type="text" placeholder="查找游戏 ">
-          <div class="select-list" v-show="inputData.length>0">
-            <a v-for="item in inputData" href="javascript:;"
-               @click="getCur(item)">{{item.name}}</a>
-          </div>
-        </div>
-        <a href="javascript:;" @click="searchInput" class="iconfont icon-search icon_search fr"></a>
+
+        <fliter-input :data="allGames"
+                      @search="searchInput"  @item="selectClk">
+
+        </fliter-input>
+
+        <!--<div class="flex_5 fl">-->
+          <!--<input type="text" placeholder="查找游戏 ">-->
+        <!--</div>-->
+        <!--<a href="javascript:;" class="iconfont icon-search icon_search fr"></a>-->
       </div>
       <v-filter v-model="showFilter" @search="search"></v-filter>
     </div>
@@ -31,6 +33,7 @@
 <script>
   import  vFilter from "./components/filter"
   import  dadaList from "./components/dada-list"
+  import  fliterInput from "./components/fliter-input"
   import  headerBack from "components/header-back"
   import  loadding from "components/loadding"
   import  {getAllGames,queryGameStatus} from "api/show"
@@ -58,8 +61,6 @@
         showloadding:false,//加载中... 相反的 false=显示
         showNoData:false,//是否显示空数据
         showFilter:false,//是否显示 过滤条件
-        inputVal:"", //搜索框
-        inputData:[], //搜索框列表
         allGames:[],//所有的数据
         fillterData:[], //过滤后 的数据
         filter:{ //过滤条件
@@ -73,14 +74,6 @@
       };
     },
     watch:{
-      inputVal(val){
-        if(val==""){
-          return this.inputData=[]
-        }
-        this.inputData=this.allGames.filter((item,i)=>{
-          return item.name.includes(val)||item.eName.toLowerCase().includes(val);
-        });
-      },
       islogin(val){
         if(val){
           this.queryGameStatus()
@@ -88,13 +81,9 @@
       }
     },
     methods:{
-      getCur(item){ //下拉框点击事件
-        this.inputVal=item.name;
+      selectClk(item){ //下拉框点击事件
         this.showNoData=false;
         this.fillterData=[item];
-        Vue.nextTick(()=>{
-          this.inputData=[];
-        })
       },
       notFound(){ //未找到游戏
         this.showNoData=true;
@@ -120,15 +109,14 @@
           this.showloadding=true;//关闭 查询中...
         },0)
       },
-      searchInput(){
-        if(this.inputVal=="")return; //没有数据不查询
+      searchInput(val,games){ //val input的值  games下拉框的所有数据
+        if(val=="")return;//没有数据不查询
         this.showNoData=this.showloadding=false; //显示查询中 //关闭无数据
-        this.fillterData=this.inputData; //设置 数据
-        this.inputData=[]; //清空下拉框数据
+        this.fillterData=games; //设置 数据
         !this.fillterData.length&&this.notFound(); //如果没有数据...
         this.showloadding=true; //关闭 查询中...
       },
-      queryGameStatus(){
+      queryGameStatus(){ //查询用户收藏状态
         queryGameStatus().then(res=>{
           if(res.success){
             this.statusData=res.data.gameList?JSON.parse(res.data.gameList):[];
@@ -161,7 +149,7 @@
       });
     },
     components:{
-      vFilter,headerBack,loadding,dadaList
+      vFilter,headerBack,loadding,dadaList,fliterInput
     }
   };
 </script>

@@ -3,27 +3,20 @@
     <div class="m-grid-table">
       <table class="m-grid-table">
         <thead>
-
         <tr>
           <th v-for="(item,i) in thead" @click="item.method||null" :class="item.classNmae">
             {{ item.name || item }}
           </th>
         </tr>
         </thead>
-        <tbody>
         <slot></slot>
-        <tr v-show="!data.hasOwnProperty('totalRecords')">
-          <td :colspan="thead.length">
-            尚未查询
-          </td>
-        </tr>
-        <tr v-show="data.totalRecords==0">
-          <td :colspan="thead.length">
-            无资料
-          </td>
-        </tr>
-        </tbody>
       </table>
+      <div class="txt-center" v-show="!data.hasOwnProperty('totalRecords')">
+        尚未查询
+      </div>
+      <div class="txt-center"  v-show="data.totalRecords==0">
+          无资料
+      </div>
     </div>
     <page-By @search="search" :data="data"></page-By>
   </div>
@@ -42,7 +35,6 @@
         type:Object,
         default(){
           return {
-            records:[]
           };
         }
       },
@@ -67,7 +59,11 @@
     width: 100%;
     overflow-y: auto;
   }
-
+  .txt-center{
+    text-align:center;
+    height: 45px;
+    line-height: 45px;
+  }
   .m-grid-table {
     width: 100%;
     text-align: center;

@@ -5,11 +5,10 @@
       <div class="title_content" @click="showView(item,i)">
         <div class="title_content_main">
           <h3>{{item.title}}
-            <span class="notice_time">{{item.createtime|Date("M月dd日")}}</span>
+            <span class="notice_time">{{item.createtime | Date("M月dd日")}}</span>
           </h3>
           <p v-html="item.content"></p>
         </div>
-
       </div>
       <transition name="message">
         <div v-show="item.already" :ref="item.id">
@@ -21,8 +20,9 @@
   </div>
 </template>
 <script>
-  import  {getNewAnnouncement} from "api/show";
-  import  Vue from "vue";
+  import {getNewAnnouncement} from "api/show";
+  import Vue from "vue";
+
   export default {
     data() {
       return {
@@ -30,31 +30,30 @@
       };
     },
     methods: {
-      showView(item, i){
-        if(this.$refs[item.id][0].style.height==""){
-          this.$refs[item.id][0].style.height=this.$refs[item.id][0].css("height");
+      showView(item, i) {
+        if (this.$refs[item.id][0].style.height == "") {
+          this.$refs[item.id][0].style.height = this.$refs[item.id][0].css("height");
         }
-
-          Vue.nextTick(()=>{
-            item.already=!item.already;
-          });
+        Vue.nextTick(() => {
+          item.already = !item.already;
+        });
       }
     },
-    created(){
+    created() {
       //加载数据
       getNewAnnouncement().then(res => {
         if (res.success) {
-          this.data= res.data.map(item=>{
-            item.already=false;
+          this.data = res.data.map(item => {
+            item.already = false;
             return item;
-         });
+          });
         } else {
           toast(data.message);
         }
       })
     },
-    components:{
-      'back-header':require("components/header-back")
+    components: {
+      'back-header': require("components/header-back")
     }
   }
 </script>
@@ -63,8 +62,9 @@
     transition: all 1s;
     overflow: hidden;
   }
+
   .message-enter,
-  .message-leave-to{
-    height: 0!important;
+  .message-leave-to {
+    height: 0 !important;
   }
 </style>

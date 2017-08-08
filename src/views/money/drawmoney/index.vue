@@ -18,7 +18,7 @@
               <span class="form_field_label">取款至</span>
               <span class="icon icon_logo_bank icon_logo_02"></span><!-- 不同银行卡的样式 icon_logo_01 icon_logo_02 -->
               <div class="form_field_input">
-                <select v-model="sumitData.cardId" ref="carddom">
+                <select v-model="sumitData.id" ref="carddom">
                   <option value="">请选择银行卡</option>
                   <option v-for="(item,i) in bankList" :value="item.id">{{item.bankname}}（尾号{{item.bankno}}）</option>
                 </select>
@@ -50,7 +50,7 @@
                   <div class="form_field_input"><span class="money_text">{{sumitData.amount}}</span></div>
                 </div>
                 <div class="form_field with_icon_label form_field_password with_right_label">
-                  <div class="form_field_input"><input v-model="sumitData.payPassword" type="password"
+                  <div class="form_field_input"><input v-model="sumitData.password" type="password"
                                                        placeholder="支付密码是由6位纯数字组成的" maxlength="6" class="j-payPassword">
                   </div>
                   <span class="right_label"></span>
@@ -96,93 +96,80 @@
   </div>
 </template>
 <script>
-  import  md5  from "MD5";
-  import  {findUserBankList,thirdWithdraw}  from "api/safeCenter";
+  import md5 from "MD5";
+  import {findUserBankList, thirdWithdraw} from "api/safeCenter";
   import {mapGetters} from 'vuex'
+
   export default {
     data() {
       return {
-        step:0,
-        bankList:[],
-        bankText:"",
-        showSetPay:true,
-        sumitData:{
-          amount:"",
-          cardId:"",
-          payPassword:""
+        step: 0,
+        bankList: [],
+        bankText: "",
+        showSetPay: true,
+        sumitData: {
+          amount: "",
+          id: "",
+          password: "",
+          tkType: ""// false string 若是代理提款，必填输入代理提款类型，提款类型，slotmachine-老虎机，liveall-其他部分
         }
       };
     },
-    watch:{
-      "sumitData.cardId"(){
-        this.bankText=this.$refs.carddom.options[this.$refs.carddom.options.selectedIndex].text;
-      },
-      isSetPayPwd(val){
-//        alert(val)
+    watch: {
+      "sumitData.id"() {
+        this.bankText = this.$refs.carddom.options[this.$refs.carddom.options.selectedIndex].text;
       }
     },
-    methods:{
-      checkForm(){
-        if(this.sumitData.amount=="")toast("请输入取款金额!");
-        else if(this.sumitData.amount<100)toast("最少取款100元!");
-        else if(this.sumitData.amount>this.userData.accountMoney)toast("余额不足!");
-        else if(this.sumitData.cardId=="")toast("请选银行卡!");
-        else{
+    methods: {
+      checkForm() {
+        if (this.sumitData.amount == "") toast("请输入取款金额!");
+        else if (this.sumitData.amount < 100) toast("最少取款100元!");
+        else if (this.sumitData.amount > this.userData.accountMoney) toast("余额不足!");
+        else if (this.sumitData.id == "") toast("请选银行卡!");
+        else {
           return true;
         }
       },
-      showPay(val){
-        if(!this.checkForm()){
+      showPay(val) {
+        if (!this.checkForm()) {
           return;
         }
-        this.step=1;
+        this.step = 1;
       },
-      submit(){
-        if(!this.checkForm())return;
-        if(this.sumitData.payPassword=="") return toast("请输入支付密码!");
-        thirdWithdraw({
-            amount:this.sumitData.amount,
-            cardId:this.sumitData.cardId,
-            payPassword:md5(md5(this.sumitData.payPassword)) //因为密码要加密 这种方式易懂     监控变化也可以  或者Object.assign()合并也可以
-          }
-        ).then((data)=>{
-          if(data.success
-          ){
-            this.step=2;
-           this.sumitData.payPassword='';
+      submit() {
+        if (!this.checkForm()) return;
+        if (this.sumitData.password == "") return toast("请输入支付密码!");
+        this.sumitData.tkType = this.isAgent ? "slotmachine" : "";
+        this.sumitData.password = md5(md5(this.sumitData.password))
+        thirdWithdraw(this.sumitData).then(data => {
+          this.sumitData.password = '';
+          if (data.success) {
+            this.step = 2;
           }
           toast(data.message);
-        }).
-          catch((err)=>{
-            toast("取款失败,请稍后重新尝试!"
-            )
-          })
+        }).catch((err) => {
+          toast("取款失败,请稍后重新尝试!")
+        })
       }
     },
-    computed:{
-      ...mapGetters(["userData","isSetPayPwd","isAgent","isUser"])
+    computed: {
+      ...mapGetters(["userData", "isSetPayPwd", "isAgent", "isUser"])
     },
-      created(){
-      this.showSetPay=true;
-//      if(this.isUser&&this.userData.accountName==""){
-      if(false){
-        this.$router.replace("/user/personal")
-      }else{
-          findUserBankList().then((res)=>{
-            if(res.success){
-              if(res.result.length>0){
-               this.bankList=res.result;
-              }else{
-//                this.$router.replace("/datum/addbank")
-              }
-            }
-            else{
-              toast("获取银行卡失败")
-            }
-          }).catch((err)=>{
-            toast("获取银行卡失败")
-          })
-      }
+    created() {
+      findUserBankList().then((res) => {
+        if (res.success) {
+          if (res.result.length > 0) {
+            this.bankList = res.result;
+          } else {
+//          this.$router.replace("/datum/addbank")
+          }
+        }
+        else {
+          toast("获取银行卡失败")
+        }
+      }).catch((err) => {
+        toast("获取银行卡失败")
+      })
     }
   };
 </script>

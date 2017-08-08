@@ -1,16 +1,18 @@
 <template>
   <div class="filter_dropdown_content" v-show="value">
-  <div class="filter_dropdown_content_sec"  v-for="mydata in data">
-    <h3>{{mydata.title}}</h3>
-    <ul class="filter_item_content filter_dropdown_content_sec" >
-      <li  v-for="(item,i) in mydata.data" :class="[{active:item.value==mydata.active},'filter_item']" @click="search(item,i,mydata)">
-        <!--<router-link  ></router-link>-->
-        <a href="javascript:;">{{item.name}}</a>
-      </li>
-    </ul>
-    <div class="space_border_wrap"><div class="space_border"></div></div>
-  </div>
-    <div class="btn_wrap"><a @click="$emit('input',false)" href="javascript:;"  class="btn btn02">完成</a></div>
+    <div class="filter_dropdown_content_sec" v-for="mydata in data">
+      <h3>{{mydata.title}}</h3>
+      <ul class="filter_item_content filter_dropdown_content_sec">
+        <li v-for="(item,i) in mydata.data" :class="[{active:item.value==mydata.active},'filter_item']"
+            @click="search(item,i,mydata)">
+          <a href="javascript:;">{{item.name}}</a>
+        </li>
+      </ul>
+      <div class="space_border_wrap">
+        <div class="space_border"></div>
+      </div>
+    </div>
+    <div class="btn_wrap"><a @click="$emit('input',false)" href="javascript:;" class="btn btn02">完成</a></div>
   </div>
 </template>
 <script>

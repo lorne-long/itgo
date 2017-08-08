@@ -5,8 +5,9 @@
         <div class="m-grid-pagination-first flaticon-media25" @click="pageFun(1)"></div>
         <div class="m-grid-pagination-prev flaticon-media23" @click="prev()"></div>
       </div>
-      <div class="m-grid-pagination-page"><span>第</span><input type="text" v-model="mydata.pageNumber"
-      ><span> 页</span></div>
+      <div class="m-grid-pagination-page"><span>第</span>
+
+        <input type="text" v-model="mydata.pageNumber" @change="pageFun(pageNumber)" ><span> 页</span></div>
       <div class="m-grid-pagination-right">
         <div class="m-grid-pagination-next flaticon-media23"  @click="next()"></div>
         <div class="m-grid-pagination-last flaticon-media25" @click="pageFun(mydata.totalPages)"></div>
@@ -25,6 +26,9 @@
         }
       }
     },
+    data(){
+       return {pageNumber:1}
+    },
     computed:{
       mydata(){
         let mydateInit={
@@ -35,12 +39,8 @@
           totalRecords:0//总记录条数,
         };
         Object.assign(mydateInit,this.data);
+        this.pageNumber=mydateInit.pageNumber;
         return mydateInit;
-      }
-    },
-    watch:{
-      "mydata.pageNumber"(val){
-        this.pageFun(val)
       }
     },
     methods:{

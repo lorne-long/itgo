@@ -55,10 +55,6 @@
         checkUpgrade().then(data=>{
             toast(data.message)
         })
-      },
-      moneyEdit(data){ //保级金额处理
-        let level=this.userData.levelNumber;
-        this.data=data;
       }
     },
     computed: {
@@ -78,11 +74,25 @@
         }).length;
       },
       lineWidth(){ //红色线条宽度
-        let nextMoney=this.data.upgradeThresholdList.filter(item=>{ //找到第一个大于本月金额的等级
-          return item.money&&this.thisMonthMoney<item.money;
+
+        let list=this.data.upgradeThresholdList;
+        if(list.length==0)return 0
+        let index=list.findIndex(item => { //找到第一个大于本月金额的等级
+          return item.money && item.money>this.thisMonthMoney;
         });
-        nextMoney=!nextMoney.length?this.thisMonthMoney:nextMoney[0].money; //0不能当除数   下面要被除  所以等于除数本身就好了 也就是this.thisMonthMoney
-        return (100/this.num*this.lineNum)+(this.thisMonthMoney/nextMoney *(100/this.num)) +"%"
+        if(index==0){
+          return   (this.thisMonthMoney/list[0].money)/this.lineNum*100+"%"
+        }else{
+          let  next=list[index],
+            def=100/this.num, //每个等级的长
+            cur=list[index-1],
+            more= this.thisMonthMoney-cur.money,//保级 多出来的钱
+            rotes=more/(next.money-cur.money)/def;//多出来的钱 占剩余钱的 比例
+
+          return rotes+def*this.lineNum+'%'
+        }
+//        let nextMoney=index==-1? this.thisMonthMoney:list[index].money; //0不能当除数   下面要被除  所以等于除数本身就好了 也就是this.thisMonthMoney
+//        return (100 / this.num * this.lineNum) + (this.thisMonthMoney / nextMoney * (100 / this.num)) + "%"
       }
     },
     created(){
@@ -143,6 +153,7 @@
     display: table;
     position: absolute;
     top: r(-100);
+    transform: translateX(-50%);
     z-index: 99;
     height: r(78);
     padding: 0 r(24);

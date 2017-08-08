@@ -2,7 +2,7 @@ import {AUTH_NAME} from "@/store/types"//权限名称
 
 import  master from "components/master" //二级路由模板页
 let deposit=(resolve) => resolve(require('views/money/deposit')); //q存款
-let personal=(resolve) => resolve(require('views/money/personal'));//取款
+let drawmoney=(resolve) => resolve(require('views/money/drawmoney'));//取款
 let transfer=(resolve) => resolve(require('views/money/transfer'));//转账
 let payupdate=(resolve) => resolve(require('views/password/pay-update'));//支付密码修改
 let payset=(resolve) => resolve(require('views/password/pay-set'));//支付密码设置
@@ -35,9 +35,9 @@ export default [{
       }
     },
     {
-      path:"personal",
+      path:"drawmoney",
       name:"money_personal",
-      component:personal,
+      component:drawmoney,
       meta:{
         headName:"提现",
         noCache:true, //不缓存该组件

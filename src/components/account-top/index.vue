@@ -21,7 +21,7 @@
         </router-link>
       </div>
       <div v-if="!isAgent" class="icon_with_text flex_1">
-        <router-link to="/user/history">
+        <router-link to="/user/log">
           <span class="icon icon_file"></span><span>记录</span>
         </router-link>
       </div>
@@ -33,7 +33,7 @@
       </router-link>
     </div>
     <div v-else class="link_wrap btn_link">
-      <router-link to="/money/personal" class="btn_trans">取款</router-link>
+      <router-link to="/money/drawmoney" class="btn_trans">取款</router-link>
     </div>
   </div>
 </template>

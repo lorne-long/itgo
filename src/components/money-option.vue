@@ -6,7 +6,7 @@
       </router-link>
     </div>
     <div class="flex_1">
-      <router-link :to="{path:'/money/personal'}" class="box_border_box">
+      <router-link :to="{path:'/money/drawmoney'}" class="box_border_box">
         <span class="link_wrap"><span class="icon icon_withdraw"></span><span>取款</span></span>
       </router-link>
     </div>

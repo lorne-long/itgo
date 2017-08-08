@@ -8,7 +8,7 @@
   </div>
 </template>
 <script>
-  import {getNewAnnouncement} from "api/common"
+  import {getNewAnnouncement} from "api/show"
   export default {
     data() {
       return {

@@ -4,7 +4,8 @@
 import ajax from 'api/index'
 import axios from 'axios'
 import $store from '@/store'
-let $getNewAnnouncement="/asp/getNewAnnouncement.php?v=0.941433513213153";// 获取公告
+
+let $getNewAnnouncement="/asp/getNewAnnouncement.php";// 获取公告获取公告 只获取最新15条，时间倒序排列
 let $queryRecommandGamesList="/asp/queryRecommandGamesList.php";//查询推荐的游戏
 let $checkConfigSystem="/asp/checkConfigSystem.php";//弹框配置 首页
 let $queryBannerList="/asp/queryBannerList.php";//弹框配置 首页

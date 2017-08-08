@@ -43,7 +43,7 @@
   </div>
 </template>
 <script>
-  import {modifyCustomerSocialInfo, getCustomerSocialInfo} from 'api/user';
+  import {modifyCustomerSocialInfo} from 'api/user';
   import { mapGetters } from 'vuex'
   import vVerify from './verify'
   import  bankList from 'components/bank-list/index'
@@ -60,11 +60,8 @@
           qq: "",
           weixin: "",
           email:''
-        },
-        verify:false
+        }
       };
-    },
-    watch:{
     },
     methods: {
       upData(type){
@@ -85,9 +82,8 @@
       ...mapGetters(["userData"])
     },
     activated(){
-      this.oldDetail.qq =this.userData.qq;
-      this.oldDetail.weixin =this.userData.weixin;
-      this.oldDetail.email =this.userData.email;
+      let {qq,weixin,email}=this.userData;
+      Object.assign(this.oldDetail,{qq,weixin,email});
     },
     components: {
       vVerify,bankList

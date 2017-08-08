@@ -27,10 +27,10 @@
     data () {
       return {
         thead: ["序", '操作类型', '额度变量', '改变前额度', '改变后额度', '加入时间'],
-        data: {},
+        data: {pageContents:[]},
         searchData: {
-          startDate: "", //true string
-          endDate: "",// true string
+          starttime: "", //true string
+          endtime: "",// true string
           size: 10, //true string
           pageIndex:1//true string
         }
