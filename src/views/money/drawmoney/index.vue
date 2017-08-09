@@ -97,7 +97,7 @@
 </template>
 <script>
   import md5 from "MD5";
-  import {findUserBankList, thirdWithdraw} from "api/safeCenter";
+  import {findUserBankList, withdraw_new} from "api/safeCenter";
   import {mapGetters} from 'vuex'
 
   export default {
@@ -141,7 +141,7 @@
         if (this.sumitData.password == "") return toast("请输入支付密码!");
         this.sumitData.tkType = this.isAgent ? "slotmachine" : "";
         this.sumitData.password = md5(md5(this.sumitData.password))
-        thirdWithdraw(this.sumitData).then(data => {
+        withdraw_new(this.sumitData).then(data => {
           this.sumitData.password = '';
           if (data.success) {
             this.step = 2;

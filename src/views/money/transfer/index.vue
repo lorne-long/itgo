@@ -57,7 +57,7 @@
 <script>
   import {mapGetters} from 'vuex'
   import {updateGameMoney} from "api/safeCenter"
-  import  {getAllMoney} from "api/user"
+  import  {getMoneyAll} from "api/user"
   import  {platformData} from "@/util/data"
   platformData[0].value!=""&&platformData.splice(0,0,{value:"",name:"选择游戏平台"});
 
@@ -84,7 +84,7 @@
       "data.transferGameIn"(val){
         if(val=="")
           return this.targetCredit=0;
-        getAllMoney({gameCode:val}).then(res=>{
+        getMoneyAll({gameCode:val}).then(res=>{
           if(res.success){
             this.targetCredit=res.data;
           }else{
@@ -99,7 +99,7 @@
           if(val=="")return;
           let options=this.$refs.transOut.options;
           options[options.selectedIndex].text="正在查询账号余额..."
-          getAllMoney({gameCode:val}).then(res=>{
+          getMoneyAll({gameCode:val}).then(res=>{
               this.optionmoney=res.success?res.data-0:0;
               options[options.selectedIndex].text=res.success?(platformData[options.selectedIndex].name+" ("+res.data+")元"):res.message;
           }).catch(err=>{

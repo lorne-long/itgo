@@ -17,33 +17,33 @@ let $searchsubuserProposalData = "/asp/searchsubuserProposalData.php";//查询�
 let $getProposalYouHuiTypeSelectionData = "/asp/getProposalYouHuiTypeSelectionData.php";//获取优惠类型下拉数据
 
 export function agentReport(data) {
-  return ajax.post($agentReport, data);
+  return ajax.get($agentReport, data);
 }
 
 export function queryCreditlogs(data) {
-  return ajax.post($queryCreditlogs, data);
+  return ajax.get($queryCreditlogs, data);
 }
 export function searchCreditlogsData(data) {
-  return ajax.post($searchCreditlogsData, data);
+  return ajax.get($searchCreditlogsData, data);
 }
 export function searchagprofitData(data) {
-  return ajax.post($searchagprofitData, data);
+  return ajax.get($searchagprofitData, data);
 }
 export function getAgentQueryType(data) {
-  return ajax.post($getAgentQueryType, data);
+  return ajax.get($getAgentQueryType, data);
 }
 export function queryAgentSubUserInfoData(data) {
-  return ajax.post($queryAgentSubUserInfoData, data);
+  return ajax.get($queryAgentSubUserInfoData, data);
 }
 export function getXimaSelectItems(data) {
-  return ajax.post($getXimaSelectItems, data);
+  return ajax.get($getXimaSelectItems, data);
 }
 export function searchPtCommissionsData(data) {
-  return ajax.post($searchPtCommissionsData, data);
+  return ajax.get($searchPtCommissionsData, data);
 }
 export function searchsubuserProposalData(data) {
-  return ajax.post($searchsubuserProposalData, data);
+  return ajax.get($searchsubuserProposalData, data);
 }
 export function getProposalYouHuiTypeSelectionData(data) {
-  return ajax.post($getProposalYouHuiTypeSelectionData, data);
+  return ajax.get($getProposalYouHuiTypeSelectionData, data);
 }

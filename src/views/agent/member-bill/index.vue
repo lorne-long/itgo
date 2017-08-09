@@ -12,7 +12,7 @@
         </div>
       </search-form>
       <winlose ref="-1" v-show="searchData.proposalType==-1"></winlose>
-      <recharge v-for="(item,i) in type.slice(1)" :searchData="searchData"
+      <recharge v-for="(item,i) in type.slice(1)" :searchData="searchData" :key="item.value"
                 :ref="item.value" v-show="searchData.proposalType==item.value">
       </recharge>
     </div>

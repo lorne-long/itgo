@@ -30,7 +30,7 @@
   </div>
 </template>
 <script>
-  import {endSmsTYJ,checkPhoneCode} from 'api/user';
+  import {sendSms4TYJ,checkPhoneCode} from 'api/user';
   import {mapGetters} from 'vuex'
   import vTouclick from 'components/touclick'
   export default {
@@ -56,7 +56,7 @@
         this.myData.check_key=obj.token;
         this.myData.check_address=obj.checkAddress;
         this.myData.sid=obj.sid;
-        endSmsTYJ(this.myData).then(res=>{
+        sendSms4TYJ(this.myData).then(res=>{
           toast(res.message);
           if(res.success){
           }

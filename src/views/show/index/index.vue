@@ -2,7 +2,7 @@
   <div id="page_content" class="flex_1">
     <v-top v-model="showSheet"></v-top>
     <div class="index-promotion-bar"><a href="static/register.jsp">立即注册 • 马上领取<b>8元</b>红包</a></div>
-    <v-Sheet v-model="showSheet" :data="sheetData"></v-Sheet>
+
     <swiper style="height: 120px">
       <swiper-slide><a href="slotGame.jsp"><img  src="static/images/banner/banner1.jpg"/></a></swiper-slide>
       <swiper-slide><a href="slotGame.jsp"><img src="static/images/banner/banner2.jpg"/></a></swiper-slide>
@@ -40,6 +40,7 @@
     </div>
     <model-game v-model="showModel" :data="curItem"></model-game>
     <alert-tips></alert-tips>
+    <v-Sheet v-model="showSheet" :data="sheetData"></v-Sheet>
   </div>
 </template>
 <script>
@@ -53,7 +54,6 @@
   import  modelGame from "components/model-game"
   import {queryRecommandGamesList,queryBannerList,getCarouselListAll} from "api/show"
   export default {
-    name:"index",
     data() {
       return {
         sheetData:[
@@ -63,7 +63,7 @@
             href:"https://www.ll-kefu.com/chat/chatClient/chatbox.jsp?companyID=8999&configID=37&info=userId%3Dwoodytest%26loginname%3Dwoodytest%26grade%3D3%26name%3D%E7%A6%BB%E5%BC%80%26gender%3D%26mobileNo%3D%26memo%3D%26hashCode%3Df18bb7d1b4df6325aac5c7e50fa6f5e8%26timestamp%3D1498730513813"
           },
           {name:"电话回拨",to:{path:"/help/backCall"}},
-          {name:"400-2312314",href:"tel:400-2312314"}
+          {name:"400-12345768",href:"tel:400-2312314"}
         ],
         showSheet:false,
         recommandData:[],

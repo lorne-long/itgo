@@ -54,7 +54,7 @@
 </template>
 <script>
   import formTip from "components/form-tip.vue"
-  import  {commitPTSelf} from "api/preferential-terms"
+  import  {commitPT8Self} from "api/preferential-terms"
   import  {platformData} from "@/util/data"
   export default {
     data() {
@@ -67,7 +67,7 @@
     methods:{
       submit(){
         if(this.platform=="")return toast("请选择转入平台");
-        commitPTSelf({platform:this.platform}).then(res=>{
+        commitPT8Self({platform:this.platform}).then(res=>{
           toast(res.message);
           if(res.success){
             this.step=3;

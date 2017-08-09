@@ -39,7 +39,6 @@
 </template>
 <script>
   import {mapGetters} from 'vuex'
-  import  {getAllMoney} from "api/user"
   import  {getGuestbookCountNew} from "api/common"
   //  import vSheet from "base/sheet/sheet"
   export default {
