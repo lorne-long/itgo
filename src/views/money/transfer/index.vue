@@ -58,7 +58,7 @@
   import {mapGetters} from 'vuex'
   import {updateGameMoney} from "api/safeCenter"
   import  {getMoneyAll} from "api/user"
-  import  {platformData} from "@/util/data"
+  import  {platformData} from "@/assets/data"
   platformData[0].value!=""&&platformData.splice(0,0,{value:"",name:"选择游戏平台"});
 
   let transferGameOut=[{value:"MAIN",name:"主账户"},{value:"DEPUTY",name:"副账户"}];

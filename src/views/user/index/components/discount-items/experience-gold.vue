@@ -55,7 +55,7 @@
 <script>
   import formTip from "components/form-tip.vue"
   import  {commitPT8Self} from "api/preferential-terms"
-  import  {platformData} from "@/util/data"
+  import  {platformData} from "@/assets/data"
   export default {
     data() {
       return {

@@ -6,22 +6,13 @@
   <component name="ChangeListManager">
     <list default="true" id="5dcd65e8-1c7f-4426-b686-384106f223f3" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/api/agent.js" afterPath="$PROJECT_DIR$/src/api/agent.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/api/common.js" afterPath="$PROJECT_DIR$/src/api/common.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/api/preferential-terms.js" afterPath="$PROJECT_DIR$/src/api/preferential-terms.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/api/safeCenter.js" afterPath="$PROJECT_DIR$/src/api/safeCenter.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/api/user.js" afterPath="$PROJECT_DIR$/src/api/user.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/base/sheet/sheet.vue" afterPath="$PROJECT_DIR$/src/base/sheet/sheet.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/account-top/index.vue" afterPath="$PROJECT_DIR$/src/components/account-top/index.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/views/agent/member-bill/index.vue" afterPath="$PROJECT_DIR$/src/views/agent/member-bill/index.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/views/common/back-Call/index.vue" afterPath="$PROJECT_DIR$/src/views/common/back-Call/index.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/views/common/forgot-pwd/index.vue" afterPath="$PROJECT_DIR$/src/views/common/forgot-pwd/index.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/views/money/drawmoney/index.vue" afterPath="$PROJECT_DIR$/src/views/money/drawmoney/index.vue" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/views/money/transfer/index.vue" afterPath="$PROJECT_DIR$/src/views/money/transfer/index.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/views/show/index/index.vue" afterPath="$PROJECT_DIR$/src/views/show/index/index.vue" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/views/user/index/components/discount-items/discount-code.vue" afterPath="$PROJECT_DIR$/src/views/user/index/components/discount-items/discount-code.vue" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/views/user/index/components/discount-items/experience-gold.vue" afterPath="$PROJECT_DIR$/src/views/user/index/components/discount-items/experience-gold.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/views/user/index/components/discount-items/public.scss" afterPath="$PROJECT_DIR$/src/views/user/index/components/discount-items/public.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/views/user/personal/components/verify.vue" afterPath="$PROJECT_DIR$/src/views/user/personal/components/verify.vue" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/views/user/index/components/discount-items/help-gold.vue" afterPath="$PROJECT_DIR$/src/views/user/index/components/discount-items/help-gold.vue" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/views/user/index/components/discount-items/recommend-firend.vue" afterPath="$PROJECT_DIR$/src/views/user/index/components/discount-items/recommend-firend.vue" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/views/user/index/components/discount-items/wash-code.vue" afterPath="$PROJECT_DIR$/src/views/user/index/components/discount-items/wash-code.vue" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/util/data.js" afterPath="$PROJECT_DIR$/src/assets/data/index.js" />
     </list>
     <ignored path="vuetest.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -80,12 +71,34 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.vue" pinned="false" current-in-tab="true">
+      <file leaf-file-name="index.vue" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/views/common/back-Call/index.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="480">
-              <caret line="24" column="12" lean-forward="false" selection-start-line="24" selection-start-column="12" selection-end-line="24" selection-end-column="12" />
+            <state relative-caret-position="669">
+              <caret line="35" column="4" lean-forward="true" selection-start-line="35" selection-start-column="4" selection-end-line="35" selection-end-column="4" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/assets/data/index.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="380">
+              <caret line="19" column="24" lean-forward="true" selection-start-line="19" selection-start-column="24" selection-end-line="19" selection-end-column="24" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.vue" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/views/money/transfer/index.vue">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="18">
+              <caret line="51" column="26" lean-forward="true" selection-start-line="51" selection-start-column="26" selection-end-line="51" selection-end-column="26" />
+              <folding>
+                <element signature="e#2090#2121#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -116,7 +129,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>moneyEdit</find>
       <find>post</find>
       <find>getAllAutoXimaObject</find>
       <find>execSelfXima</find>
@@ -146,6 +158,7 @@
       <find>在线客服111</find>
       <find>getAllMoney</find>
       <find>makeCall</find>
+      <find>@/util/data</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -157,6 +170,7 @@
       <replace>.post</replace>
       <replace>$</replace>
       <replace>get</replace>
+      <replace>@/assets/data</replace>
     </replaceStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$/src/views/common/solo-Data</dir>
@@ -214,11 +228,11 @@
         <option value="$PROJECT_DIR$/src/views/user/index/components/discount-items/experience-gold.vue" />
         <option value="$PROJECT_DIR$/src/components/account-top/index.vue" />
         <option value="$PROJECT_DIR$/src/api/user.js" />
-        <option value="$PROJECT_DIR$/src/views/money/transfer/index.vue" />
         <option value="$PROJECT_DIR$/src/views/agent/member-bill/index.vue" />
         <option value="$PROJECT_DIR$/src/base/sheet/sheet.vue" />
         <option value="$PROJECT_DIR$/src/views/show/index/index.vue" />
         <option value="$PROJECT_DIR$/src/views/common/back-Call/index.vue" />
+        <option value="$PROJECT_DIR$/src/views/money/transfer/index.vue" />
       </list>
     </option>
   </component>
@@ -293,7 +307,7 @@
               <item name="itgo" type="b2602c69:ProjectViewProjectNode" />
               <item name="itgo" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="api" type="462c0819:PsiDirectoryNode" />
+              <item name="assets" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="itgo" type="b2602c69:ProjectViewProjectNode" />
@@ -305,21 +319,7 @@
               <item name="itgo" type="b2602c69:ProjectViewProjectNode" />
               <item name="itgo" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="itgo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="itgo" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="show" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="itgo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="itgo" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="user" type="462c0819:PsiDirectoryNode" />
+              <item name="util" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -352,11 +352,11 @@
       <recent name="$PROJECT_DIR$/src/views/show/index/components" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\word\itgo\src\assets" />
       <recent name="D:\word\itgo\src\views\agent\member-bill\components" />
       <recent name="E:\itgo\src\views\show\index\components\alert-tips" />
       <recent name="E:\itgo\src\components\loadding" />
       <recent name="E:\itgo\src\views\show\index\components\slot-menu\img" />
-      <recent name="E:\itgo\src\views\show\preferential\images" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -519,12 +519,12 @@
       <workItem from="1502076852816" duration="2362000" />
       <workItem from="1502090674997" duration="8043000" />
       <workItem from="1502153805577" duration="16607000" />
-      <workItem from="1502242227446" duration="6015000" />
+      <workItem from="1502242227446" duration="6324000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="738561000" />
+    <option name="totallyTimeSpent" value="738870000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -539,10 +539,10 @@
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17017913" sideWeight="0.48844886" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17017913" sideWeight="0.48844886" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32901135" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4804772" sideWeight="0.5148462" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32535365" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32535365" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32864675" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32901135" sideWeight="0.49578503" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21643835" sideWeight="0.51155114" order="2" side_tool="true" content_ui="tabs" />
@@ -624,13 +624,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/components/money-option.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="8" column="47" lean-forward="false" selection-start-line="8" selection-start-column="47" selection-end-line="8" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/views/show/slotgame/components/dada-list.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="320">
@@ -754,6 +747,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -793,6 +787,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="200">
           <caret line="15" column="38" lean-forward="true" selection-start-line="15" selection-start-column="9" selection-end-line="15" selection-end-column="38" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1002,16 +997,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/money/transfer/index.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="199">
-          <caret line="101" column="21" lean-forward="false" selection-start-line="101" selection-start-column="21" selection-end-line="101" selection-end-column="21" />
-          <folding>
-            <element signature="e#2090#2121#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/views/agent/member-bill/index.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="260">
@@ -1055,9 +1040,27 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/views/common/back-Call/index.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="24" column="12" lean-forward="false" selection-start-line="24" selection-start-column="12" selection-end-line="24" selection-end-column="12" />
+        <state relative-caret-position="669">
+          <caret line="35" column="4" lean-forward="true" selection-start-line="35" selection-start-column="4" selection-end-line="35" selection-end-column="4" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/assets/data/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="380">
+          <caret line="19" column="24" lean-forward="true" selection-start-line="19" selection-start-column="24" selection-end-line="19" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/money/transfer/index.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="18">
+          <caret line="51" column="26" lean-forward="true" selection-start-line="51" selection-start-column="26" selection-end-line="51" selection-end-column="26" />
+          <folding>
+            <element signature="e#2090#2121#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
