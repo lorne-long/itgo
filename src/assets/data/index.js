@@ -11,3 +11,12 @@ export  let platformData=[
   {name:"MG平台",value:"MG"},
   {name:"PNG平台",value:"PNG"}
 ]
+
+export  let serverText={  //服务文本
+  qq:"afdfa",
+  wechat:'adfdfadf',
+  email:"xxxx@163.com",
+  skype:"fadfadf",
+  phone:"400-xxxx-xxxx",
+  mobile:'1654878914515'
+}
