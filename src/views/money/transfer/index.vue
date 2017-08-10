@@ -56,7 +56,7 @@
 </template>
 <script>
   import {mapGetters} from 'vuex'
-  import {updateGameMoney} from "api/safeCenter"
+  import {updateGameMoney} from "api/payment"
   import  {getMoneyAll} from "api/user"
   import  {platformData} from "@/assets/data"
   platformData[0].value!=""&&platformData.splice(0,0,{value:"",name:"选择游戏平台"});

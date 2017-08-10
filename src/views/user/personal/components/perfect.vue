@@ -54,7 +54,7 @@
 </template>
 <script>
   import {completeUserInfo} from "api/user"
-  import {validateBankNo} from "api/safeCenter"
+  import {validateBankNo} from "api/payment"
   import { mapGetters } from 'vuex'
   export default {
     name: 'hello',

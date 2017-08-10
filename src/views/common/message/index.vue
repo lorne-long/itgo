@@ -17,7 +17,7 @@
   </div>
 </template>
 <script>
-  import  {getMessageByUser, readMsg} from "api/common";
+  import  {getMessageByUser, readMsg} from "api/show";
   import  Vue from "vue";
   export default {
     data() {

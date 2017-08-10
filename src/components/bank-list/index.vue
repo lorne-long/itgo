@@ -17,7 +17,7 @@
   </div>
 </template>
 <script>
-  import {findUserBankList} from "api/safeCenter"
+  import {findUserBankList} from "api/payment"
   import { mapGetters } from 'vuex'
   export default {
     props: {

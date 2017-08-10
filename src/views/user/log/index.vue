@@ -81,8 +81,8 @@
         Days: "1",
         searchData: {
           historyType: "deposit",
-          startDate: "",
-          endDate: '',
+          starttime: "",
+          endtime: '',
           pageIndex: 1,
           size: 10,
           friendtype: "0"
@@ -91,7 +91,7 @@
     },
     watch: {
       Days(val) {
-        this.searchData.startDate = (new Date().addDay(val * -1).format("yyyy-MM-dd"));
+        this.searchData.starttime = (new Date().addDay(val * -1).format("yyyy-MM-dd"));
       }
     },
     methods: {
@@ -275,7 +275,7 @@
       }
     },
     created() {
-      this.searchData.endDate = new Date().format("yyyy-MM-dd");
+      this.searchData.endtime = new Date().format("yyyy-MM-dd");
       this.Days = 1;
     },
     components: {

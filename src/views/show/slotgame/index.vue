@@ -36,7 +36,8 @@
   import  fliterInput from "./components/fliter-input"
   import  headerBack from "components/header-back"
   import  loadding from "components/loadding"
-  import  {getAllGames,queryGameStatus} from "api/show"
+  import  {getAllGames} from "api/show"
+  import  {queryGameStatus} from "api/user"
   import Vue from 'vue'
   //判断线条的方法
   function lineIncludes(rang,val){

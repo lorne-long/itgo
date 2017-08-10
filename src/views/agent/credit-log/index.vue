@@ -19,7 +19,7 @@
   <!--}额度记录-->
 </template>
 <script>
-  import {queryCreditlogs}  from "api/agent"
+  import {queryCreditlogs}  from "api/user"
   import tableData from "components/table-data"
   import searchForm from "components/search-form"
   export default {

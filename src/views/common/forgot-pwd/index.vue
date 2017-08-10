@@ -43,7 +43,7 @@
   </div>
 </template>
 <script>
-  import {getbackPwdByDx_dc} from "api/common";
+  import {getbackPwdByDx_dc} from "api/show";
 //  import {endSmsTYJ} from "api/user";
 
   import touClick from "components/touclick";

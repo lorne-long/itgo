@@ -4,14 +4,14 @@
       <div class="form_field date_picker with_arrow_icon">
         <span class="form_field_label">开始日期</span>
         <div class="form_field_input">
-          <input v-model="startDate" class="date_picker_value" type="date"
+          <input v-model="startTime" class="date_picker_value" type="date"
                  placeholder="请选择">
         </div>
       </div>
       <div class="form_field date_picker with_arrow_icon">
         <span class="form_field_label">结束日期</span>
         <div class="form_field_input">
-          <input v-model="endDate" class="date_picker_value" type="date"
+          <input v-model="endTime" class="date_picker_value" type="date"
                  placeholder="请选择">
         </div>
       </div>
@@ -23,46 +23,33 @@
   </div>
 </template>
 <script>
-  //  import {propssync} from "@/vue-extend/mixins.js"
   export default {
-    data(){
+    data() {
       return {
-        startDate:"",
-        endDate:""
+        startTime: "",
+        endTime: ""
       }
     },
-    props:{
-      className:{
-        type:String
+    props: {
+      className: {
+        type: String
       },
-      data:{
-        type:Object
+      data: {
+        type: Object
       }
     },
-    created(){
-      if(this.data.hasOwnProperty("starttime")){
-        this.endDate=this.data.endtime||new Date().format("yyyy-MM-dd");
-        this.startDate=this.data.starttime||new Date().addDay(-70).format("yyyy-MM-dd");
-      }
-      else if(this.data.hasOwnProperty("startDate")){
-        this.endDate=this.data.endDate||new Date().format("yyyy-MM-dd");
-        this.startDate=this.data.startDate||new Date().addDay(-70).format("yyyy-MM-dd");
-      }
+    created() {
+      this.endTime = this.data.endtime || new Date().format("yyyy-MM-dd");
+      this.startTime = this.data.starttime || new Date().addDay(-70).format("yyyy-MM-dd");
     },
-    methods:{
-      submit(){
-        if(this.startDate=="")
+    methods: {
+      submit() {
+        if (this.startTime == "")
           return toast("请选择开始时间");
-        if(this.endDate=="")
+        if (this.endTime == "")
           return toast("请选择结束时间");
-        if(this.data.hasOwnProperty("starttime")){
-          this.data.starttime=this.startDate+" 00:00:00";
-          this.data.endtime=this.endDate+" 00:00:00";
-        }
-        else if(this.data.hasOwnProperty("startDate")){
-          this.data.startDate=this.startDate+" 00:00:00";
-          this.data.endDate=this.endDate+" 00:00:00";
-        }
+        this.data.starttime = this.startTime;
+        this.data.endtime = this.endTime;
         this.$emit("search");
       }
     }
