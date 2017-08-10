@@ -91,7 +91,7 @@
     },
     watch: {
       Days(val) {
-        this.searchData.starttime = (new Date().addDay(val * -1).format("yyyy-MM-dd"));
+        this.searchData.starttime = (new Date().addDay(val * -1).format());
       }
     },
     methods: {
@@ -275,7 +275,7 @@
       }
     },
     created() {
-      this.searchData.endtime = new Date().format("yyyy-MM-dd");
+      this.searchData.endtime = new Date().format();
       this.Days = 1;
     },
     components: {

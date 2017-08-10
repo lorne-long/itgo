@@ -39,8 +39,8 @@
       }
     },
     created() {
-      this.endTime = this.data.endtime || new Date().format("yyyy-MM-dd");
-      this.startTime = this.data.starttime || new Date().addDay(-70).format("yyyy-MM-dd");
+      this.endTime = this.data.endtime || new Date().format();
+      this.startTime = this.data.starttime || new Date().addDay(-30).format();
     },
     methods: {
       submit() {
