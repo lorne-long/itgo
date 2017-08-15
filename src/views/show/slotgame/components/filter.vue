@@ -1,6 +1,6 @@
 <template>
   <div class="filter_dropdown_content" v-show="value">
-    <div class="filter_dropdown_content_sec" v-for="mydata in data">
+    <div class="filter-btn" v-for="mydata in data">
       <h3>{{mydata.title}}</h3>
       <ul class="filter_item_content filter_dropdown_content_sec">
         <li v-for="(item,i) in mydata.data" :class="[{active:item.value==mydata.active},'filter_item']"
@@ -60,5 +60,8 @@
     components:{}
   };
 </script>
-<style>
+<style lang="scss">
+  .filter-btn{
+
+  }
 </style>

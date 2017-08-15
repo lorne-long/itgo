@@ -52,7 +52,7 @@
       cursor: pointer;
       line-height: 42px;
       border-bottom: 1px solid #ddd;
-      background: url(/images/icons/icon_right.png) right 18px top 50% no-repeat;
+      background: url(~static/images/icons/icon_right.png) right 18px top 50% no-repeat;
       background-size: 7px 12px;
       color: #666;
     }

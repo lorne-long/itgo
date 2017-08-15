@@ -11,11 +11,11 @@
         </thead>
         <slot></slot>
       </table>
-      <div class="txt-center" v-show="!data.hasOwnProperty('totalRecords')">
+      <div class="txt-center no-data" v-show="!data.hasOwnProperty('totalRecords')">
         尚未查询
       </div>
-      <div class="txt-center"  v-show="data.totalRecords==0">
-          无资料
+      <div class="txt-center no-data" v-show="data.totalRecords==0">
+        无资料
       </div>
     </div>
     <page-By @search="search" :data="data"></page-By>
@@ -23,79 +23,85 @@
 </template>
 <script>
   import pageBy from "./page-by.vue";
+
   export default {
-    props:{
-      thead:{
-        type:Array,
-        default(){
+    props: {
+      thead: {
+        type: Array,
+        default() {
           return [];
         }
       },
-      data:{
-        type:Object,
-        default(){
-          return {
-          };
+      data: {
+        type: Object,
+        default() {
+          return {};
         }
       },
-      className:{
-        type:String
+      className: {
+        type: String
       }
     },
-    methods:{
-      search(val){
-        var x={}
+    methods: {
+      search(val) {
+        var x = {}
         x.hasOwnProperty()
-        this.$emit("search",val)
+        this.$emit("search", val)
       }
     },
-    components:{
+    components: {
       pageBy
     }
   }
 </script>
 <style lang="scss">
+  @import "~assets/scss/mixin.scss";
+
   .grid-warper {
     width: 100%;
     overflow-y: auto;
-  }
-  .txt-center{
-    text-align:center;
-    height: 45px;
-    line-height: 45px;
-  }
-  .m-grid-table {
-    width: 100%;
-    text-align: center;
-    border-spacing: 0;
-    border-collapse: collapse;
-    line-height: 1.5em;
+    margin-top: 1em;
+    .txt-center {
+      text-align: center;
+      height: r(90);
+      line-height: 45px;
+    }
+    .m-grid-table {
+      width: 100%;
+      text-align: center;
+      border-spacing: 0;
+      border-collapse: collapse;
+      line-height: 1.5em;
+      th {
+        padding: r(10);
+        text-align: center;
+        @include f(32px);
+        border: 1px solid #fff;
+        color: #fff;
+        background: #49a2bc;
+        &
+        :last-child {
+          border-right: none
+        }
 
-  th {
-    border-right: 1px #fff solid;
-    background-color: #f66;
-    font-weight: bold;
-    text-align: center;
-    font-size: 16px;
-    line-height: 28px;
-    white-space: nowrap;
-    color: #fff;
-    padding: 0 5px;
+      }
+      td {
+        border: 2px solid #e5e5e5;
+        white-space: nowrap;
+      }
 
-  &
-  :last-child {
-    border-right: none
-  }
-
-  }
-  td {
-    border: 1px solid #e5e5e5;
-    white-space: nowrap;
+    }
+    .table-nodata {
+      height: r(200);
+      text-align: center
+    }
+    .no-data {
+      position: relative;
+      padding: 2em;
+      text-align: center;
+      border-right: 1px solid #e5e5e5;
+      color: #757575;
+    }
   }
 
-  }
-  .table-nodata {
-    height: 100px;
-    text-align: center
-  }
 </style>

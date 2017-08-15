@@ -30,11 +30,10 @@ module.exports = {
       "api":resolve('src/api'),
       'static':resolve('static'),
       'views':resolve('src/views'),
-      'agent':resolve('src/views/agent'),
-      'user':resolve('src/views/user'),
+      'images':resolve('src/assets/images/'),
+      'img':resolve('static/img/'),
       'components':resolve('src/components'),
-      'assets':resolve('src/assets'),
-      '@store':resolve('src/store')
+      'assets':resolve('src/assets')
     }
   },
   module: {

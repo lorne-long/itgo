@@ -5,8 +5,7 @@
       <span class="money_text">
         <span class="cny">￥</span>
         <div class="text_bold" id="textC">
-
-                  <div v-for="item in myData"   >
+                  <div v-for="item in myData">
                     <transition name="monys">
                         <div class="rate-moeny" :key="item">
                               <span v-for="num in getAry(item)">
@@ -15,7 +14,6 @@
                         </div>
                     </transition>
                 </div>
-
         </div>
       </span>
     </a>
@@ -23,50 +21,67 @@
 </template>
 <script>
   import {$cookie} from "@/util/storage";
+
   export default {
     data() {
       return {
-        myData:0
+        myData: 0
       };
     },
-    watch:{},
-    props:{},
-    activated(){
+    watch: {},
+    props: {},
+    activated() {
     },
-    methods:{
-       random(dom){
-         let nowDate=new Date().getTime().toString().substr(-11)*0.01;
-         this.myData=nowDate.toString().$toFixed().strSplit();
-         setTimeout(()=>{
-           this.random();
-         },4000)
+    methods: {
+      random(dom) {
+        let nowDate = new Date().getTime().toString().substr(-11) * 0.01;
+        this.myData = nowDate.toString().$toFixed().strSplit();
+        setTimeout(() => {
+          this.random();
+        }, 4000)
       },
-      getAry(item){
-        if(isNaN(item))return [item];
-        item-=0;
-        let ary=[];
+      getAry(item) {
+        if (isNaN(item)) return [item];
+        item -= 0;
+        let ary = [];
         ary.push(item)
-        for(let i=0;i<=item;i++){
+        for (let i = 0; i <= item; i++) {
           ary.push(i);
         }
         return ary;
       }
     },
-    created(){
+    created() {
       this.random();
     }
   }
 </script>
 <style>
-  #textC { height: 23px !important;}
-  #textC > div { float: left; margin: 0 0.5px; position: relative; }
-  #textC div .rate-moeny {color:#fff; position: relative; }
-  #textC div .rate-moeny span { display: block; }
-  .monys-enter-to{
-    transform: translateY(-100%);
-    margin-top:25px;
+  #textC {
+    height: 23px !important;
   }
-  .monys-enter-active{
+
+  #textC > div {
+    float: left;
+    margin: 0 0.5px;
+    position: relative;
+  }
+
+  #textC div .rate-moeny {
+    color: #fff;
+    position: relative;
+  }
+
+  #textC div .rate-moeny span {
+    display: block;
+  }
+
+  .monys-enter-to {
+    transform: translateY(-100%);
+    margin-top: 25px;
+  }
+
+  .monys-enter-active {
     transition: all 1.5s ease-out;
   }
 </style>

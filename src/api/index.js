@@ -34,17 +34,15 @@ ajax.interceptors.request.use(function(config){
   config.data=qs.stringify(config.data)
   return config;
 },function(error){
+  $load.close();
   console.log("发送请求失败:"+error);
   return Promise.reject(error);
 });
 //响应拦截
 ajax.interceptors.response.use(function(response){
+  $load.close();
   if(response.status===200&& !response.data.hasOwnProperty("success")){
     response.data.success=response.data.code=="10000";
-  }
-  $load.close();
-  if(response.data.code=="20006"&&response.data.message.indexOf("登录")>-1){
-    alert("请喊我.....")
   }
   if(response.status===200&&/40001/.test(response.data.code)){//没有登录
     store.commit("REMOVE_AUTH");

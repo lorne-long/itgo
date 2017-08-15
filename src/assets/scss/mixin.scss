@@ -1,24 +1,44 @@
-//@function r($px, $base-font-size:75) {
-//@return ($px/$base-font-size)*1rem;
-//}
-//@mixin f($font-size,$styles:'font-size'){
-//#{$styles}: $font-size;
-//[data-dpr="2"] & {
-//  #{$styles}: $font-size*2;
-//}
-//[data-dpr="3"] & {
-//  #{$styles}: $font-size* 3;
-//}
-//}
-@mixin f($font-size,$styles:'font-size'){
-        #{$styles}: $font-size;
-}
 @function r($px, $base-font-size:75) {
-   @return $px/2*1px;
+  @return ($px/$base-font-size)*1rem;
+}
+@mixin f($font-size){
+  font-size: $font-size/2;
+  [data-dpr="2"] & {
+    font-size: $font-size
+  }
+  [data-dpr="3"] & {
+    font-size: $font-size*3;
+  }
 }
 
-$herder:150;
-$footer:100;
+
+$cl1:#1096b9; // 主要色调一
+$cl2:#969696;//灰色字体
+$cl3:#e21c1d;//红色字体
+$cl4:#999;//灰色字体 提醒性文字颜色
+
+$body-bg:#fff;
+
+
+$header:80;
+$herder-cl:#1096b9;
+$herder-bg:#fff;
+
+$footer-h:112;
+$footer-bg:#fff;
+
+
+$back-h:80;//顶部 返回高度
+$back-bg:#1096b9; //背景颜色 1096b9
+$back-cl:#fff; //文字颜色
+
+$btn-bg1:#1bb5db;//按钮主色调1
+$btn-bg2:#fc4863;//按钮主色调2
+$btn-cl1:#fff;//按钮主色调1
+$btn-cl2:#fff;//按钮主色调2
+
+
+
 $f22:22px;
 $f20:20px;
 $f18:18px;

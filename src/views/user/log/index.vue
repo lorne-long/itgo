@@ -1,42 +1,37 @@
 <template>
-  <div class="page_content_wrap">
-    <div class="layout_form layout_form03" style="margin-bottom: 1em;">
-      <form action="#">
-        <div class="form_field_warp">
-          <div class="form_field">
-            <span class="form_field_label">记录类型</span>
-            <div class="form_field_input">
-              <select v-model="searchData.historyType">
-                <option v-for="item in logType" :value="item.value">{{item.name}}</option>
-              </select>
-            </div>
-          </div>
-          <div class="form_field" v-show="searchData.historyType=='friend'">
-            <span class="form_field_label">推荐类型</span>
-            <div class="form_field_input">
-              <select v-model="searchData.friendtype">
-                <option value="0">推荐注册成功玩家</option>
-                <option value="1">推荐奖金收入</option>
-                <option value="2">推荐奖金支出</option>
-              </select>
-            </div>
-          </div>
-          <div class="form_field">
-            <span class="form_field_label">时间范围</span>
-            <div class="form_field_input">
-              <select v-model="Days">
-                <option value="1">一天</option>
-                <option value="7">七天</option>
-                <option value="30">一个月</option>
-              </select>
-            </div>
-          </div>
+  <div class="user-log">
+    <div class="form-box">
+      <div class="form-group">
+        <label class="fl form-label">记录类型</label>
+        <div class="form-control">
+          <select v-model="searchData.historyType">
+            <option v-for="item in logType" :value="item.value">{{item.name}}</option>
+          </select>
         </div>
-        <div class="form_btn_wrap">
-          <a href="javascript:;" @click="search(1)" class="btn btn01">查询</a>
+      </div>
+      <div class="form-group" v-show="searchData.historyType=='friend'">
+        <label class="fl form-label">推荐类型</label>
+        <div class="form-control">
+          <select v-model="searchData.friendtype">
+            <option value="0">推荐注册成功玩家</option>
+            <option value="1">推荐奖金收入</option>
+            <option value="2">推荐奖金支出</option>
+          </select>
         </div>
-      </form>
+      </div>
+      <div class="form-group">
+        <label class="fl form-label">时间范围</label>
+        <div class="form-control">
+          <select v-model="Days">
+            <option value="1">一天</option>
+            <option value="7">七天</option>
+            <option value="30">一个月</option>
+          </select>
+          <i class="right-info iconfont icon-arrow_d"></i>
+        </div>
+      </div>
     </div>
+    <div class="btn-search" @click="search(1)">查询 </div>
     <table-data :thead="thead" @search="search" :data="data">
       <tbody v-for="(item,i) in data.pageContents||[]">
       <tr @click="curItem=i">
@@ -246,9 +241,11 @@
               {value: 'referenceNo', name: '编号：'},
               {value: 'remit', name: '存款金额：'},
               {value: 'typeString', name: '类型：'},
-              {value: 'tempCreateTime', name: '执行时间：', filter(val) {
+              {
+                value: 'tempCreateTime', name: '执行时间：', filter(val) {
                 return new Date(val).format();
-              }}
+              }
+              }
             ]
             break;
           case "ximaDetail"://  {value: "ximaDetail", name: '自助返水记录'},
@@ -267,9 +264,11 @@
               {name: '玩家账号', value: 'downlineuser'},
               {name: '金额', value: 'money'},
               {name: '类型', value: 'type'},
-              {name: '时间', value: 'createtime', filter(val) {
+              {
+                name: '时间', value: 'createtime', filter(val) {
                 return new Date(val).format();
-              }}];
+              }
+              }];
             break;
         }
       }
@@ -284,13 +283,62 @@
   };
 </script>
 <style lang="scss">
-  .grid-item {
-    text-align: left;
-    overflow: hidden;
-    label {
-      width: 6em;
-      float: left;
-      text-align: right;
+  @import "~assets/scss/mixin.scss";
+
+  .user-log {
+    @include f(32px);
+    .form-box {
+      padding:r(30) r(30) 0;
+      .form-group {
+        position: relative;
+        height: r(84);
+        line-height: r(84);
+        overflow: hidden;
+        border: r(2) solid #ccc;
+        padding: 0 r(24);
+        border-radius: 50em;
+        margin-bottom: r(32);
+        background: #fff;
+      }
+      .form-label {
+        color: $cl4;
+        width: r(160);
+        display: block;
+        float: left;
+        padding-left: r(16);
+      }
+      .form-control {
+        @include f(28px);
+        height: 100%;
+        white-space: nowrap;
+        select,input {
+          vertical-align: top;
+          font-size: inherit;
+          border: none;
+          color: #333;
+          outline: none;
+          height: 100%;
+          width: 100%;
+          text-indent: 1em;
+        }
+        .right-info{
+          position: absolute;
+          height:100%;
+          top:0;
+          right:r(32);
+        }
+      }
+    }
+    .btn-search {
+      display: block;
+      margin: 0 auto;
+      background: $btn-bg1;
+      text-align: center;
+      @include f(36px);
+      color: #fff;
+      width: 90%;
+      border-radius: r(100);
+      line-height: r(88);
     }
   }
 </style>

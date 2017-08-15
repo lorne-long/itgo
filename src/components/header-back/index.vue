@@ -1,10 +1,8 @@
 <template>
-  <header class="header_normal">
-    <a @click="doClick" class="back_link"><span class="icon icon_arrow_back"></span></a>
-    <h1>
+  <header class="header-back">
+    <a @click="doClick" class="back-link"><i class="iconfont icon-arrow_l"></i></a>
       <slot></slot>
       {{$route.meta.headName}}
-    </h1>
   </header>
 </template>
 <script>
@@ -25,5 +23,28 @@
     }
   };
 </script>
-<style>
+<style lang="scss">
+  @import "~assets/scss/mixin.scss";
+  .header-back{
+    position: relative;
+    z-index: 99;
+    background:$back-bg;
+    color: $back-cl;
+    height: r($back-h);
+    text-align: center;
+    line-height: r($back-h);
+    @include  f(36px);
+    .back-link{
+      position: absolute;
+      height: 100%;
+      left:0;
+      width:r(88);
+      top:50%;
+      transform:translateY(-50%);
+      text-align: center;
+    }
+    .icon-arrow_l{
+      @include f(44px)
+    }
+  }
 </style>

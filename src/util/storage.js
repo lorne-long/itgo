@@ -36,8 +36,6 @@ let $cookie={
   }
 }
 
-
-
 if (!window.localStorage) {
   $localStorage=$cookie;
   console.log("不浏览器支持");

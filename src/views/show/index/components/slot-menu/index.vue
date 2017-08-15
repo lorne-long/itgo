@@ -54,25 +54,24 @@
     };
 </script>
 <style lang="scss">
+  @import "~assets/scss/mixin.scss";
   .slot-menu{
     display:flex;
     flex-wrap: wrap;
-    font-size: 1.4rem;
-
+    padding: r(40) r(14) r(28);
+    @include  f(28px);
     .slot-menu-item{
       width: 25%;
       display: block;
       text-align: center;
-      margin-bottom: 10px;
+      margin-bottom:r(20);
     }
-    a{ display: block}
-    img{display: block;
-      margin-left: auto;
-      margin-right: auto;
-      margin-bottom: 7px;
+    img{
+      height: r(120);
+      width: r(120);
+      margin-bottom:r(14)
     }
-   .img_text {
-
+   .img_text{
       display: block;
       text-align: center;
       white-space: nowrap;

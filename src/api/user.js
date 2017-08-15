@@ -2,8 +2,8 @@ import ajax from 'api/index'
 import axios from 'axios'
 
 let $queryCreditlogs = "/mobi/queryCreditlogs.php";//额度记录查询
-
-let  $queryGameStatus="/user/queryGameStatus.php";//查询用户收藏的游戏
+let $doSignRecord = "/asp/doSignRecord.php";//签到
+let $queryGameStatus="/user/queryGameStatus.php";//查询用户收藏的游戏
 
 let $getGameMoney = "/user/getGameMoney.php"; //获取金钱接口
 let $change_info = "/user/change_info.php";  //修改用户信息
@@ -21,7 +21,9 @@ let $checkPhoneCode = "/user/checkPhoneCode.php";//校验短信校验码
 
 
 
-
+export function doSignRecord(data){
+  return ajax.get($doSignRecord,data);
+}
 export function queryGameStatus(data){
   return ajax.get($queryGameStatus,data);
 }

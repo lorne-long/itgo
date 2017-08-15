@@ -34,7 +34,7 @@ export default new Vuex.Store({
   getters:{
     showFooter(state,getters){
       Vue.nextTick(()=>{
-          document.querySelector("body").style.paddingBottom=(state.showFooter?"51px":"0");
+          document.querySelector("body").style.paddingBottom=(state.showFooter?"":"0");
       })
       return state.showFooter;
     },
