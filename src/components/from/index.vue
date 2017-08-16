@@ -8,7 +8,7 @@
           <option value="option.value">{{option.text}}</option>
         </select>
       </div>
-      <span class="right_label">元</span>
+      <span class="right-info">元</span>
     </div>
   </div>
 </template>

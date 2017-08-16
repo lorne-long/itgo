@@ -12,10 +12,8 @@
   </div>
 </template>
 <script type="text/ecmascript-6">
-  import "./assets/scss/base.scss";
-  import  "./assets/scss/font.scss";
-  import "./assets/scss/mixin.scss";
   import vFooter from 'components/footer/footer';
+
   import ajaxLoad from 'base/ajax-load/';
   import {mapGetters} from 'vuex'
   export default {

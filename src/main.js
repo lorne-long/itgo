@@ -17,7 +17,8 @@ Vue.use(VueLazyload, {
   loading:   require('static/images/bank_loading.gif'),
 })
 Vue.config.productionTip = false;
-
+require("./assets/scss/base.scss")
+require("./assets/scss/font.scss")
 import App from './App.vue';//引入app.vue
 let vm= new Vue({
   el:"#app",

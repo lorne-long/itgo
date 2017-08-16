@@ -2,7 +2,7 @@ import vueRouter from '@/router'; //引入vue
 import _axios from 'axios'; //引入axios
 import store from '@/store';	//加载状态管理器
 var ajax=_axios.create({
-  // baseURL:"http://112.213.126.135:4777",
+  //baseURL:"http://112.213.126.135:4777",
   method:"get",
   timeout:10000,
   responseType:"json",

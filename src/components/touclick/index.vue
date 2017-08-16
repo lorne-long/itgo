@@ -1,5 +1,5 @@
 <template>
-  <div v-show="showDom" ref="verifyWarp" style="margin:50px auto 30px; width: 320px;">
+  <div v-show="showDom" ref="verifyWarp" class="touclick">
   </div>
 </template>
 <script>
@@ -42,5 +42,15 @@
     }
   };
 </script>
-<style>
+<style lang="scss">
+  @import "~assets/scss/mixin.scss";
+  .touclick{
+    @include f(28px);
+    margin:r(100) auto r(60);
+    width:80%;
+    .touclick-pub-holder-wrap{
+      /*transform: scale(2);*/
+      margin: 0 auto;
+    }
+  }
 </style>

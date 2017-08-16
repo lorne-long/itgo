@@ -1,20 +1,28 @@
 <template>
   <header class="index-top">
-    <i class="iconfont icon-menu"></i>
+    <i class="iconfont icon-menu" @click="value=true"></i>
     <a href="/" class="link_logo">
       <img src="~static/img/logos.png" alt="利来电游">
     </a>
     <i class="iconfont icon-dongtai"></i>
+    <tool-bar v-model="value"></tool-bar>
   </header>
 </template>
 <script>
+  import toolBar from 'components/tool-bar';
   export default {
     data() {
-      return {};
+      return {
+        value:false
+      };
+    },
+    components:{
+      toolBar
     }
   };
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
+
   @import "~assets/scss/mixin.scss";
   header.index-top {
     height: r($header);

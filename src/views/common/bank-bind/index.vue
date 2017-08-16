@@ -1,68 +1,63 @@
 <template>
-  <div class="pay-update">
+  <div class="add-bank-card ">
     <div class="form-box">
-      <div class="form-group ">
-        <span class="form-label">原密码</span>
-        <div class="form-control">
-          <input type="password" v-model="originalPwd" class="j-password" maxlength="6" placeholder="原密码">
-        </div>
-      </div>
       <div class="form-group">
-        <span class="form-label">新密码</span>
-        <div class="form-control"><input ref="pwd" v-model="newPwd" type="password" placeholder="6位数字"
-                                         class="j-newpassword" maxlength="6"></div>
-        <span @touchstart="$refs.pwd.type='text'" @touchend="$refs.pwd.type='password'" class="right-info"></span>
+        <span class="form-label">银行卡号</span>
+        <div class="form-control">
+          <input v-model="bankno" type="text" placeholder="输入卡号后，系统智能识别银行"
+                 maxlength="19" @input="getBank"></div>
       </div>
     </div>
-    <div class="btn-search"
-         @click="submit">确定
+    <div class="card-tip">
+      {{banktxt}}
+    </div>
+    <div class="btn-search" @click="submit">保存
     </div>
   </div>
 </template>
 <script>
-  import {modifyWithdrawPwd} from "api/payment";
-  import md5 from "MD5";
+  import {validateBankNo, bindBankNo} from "api/payment";
 
   export default {
     data() {
       return {
-        originalPwd: "",
-        newPwd: ""
+        bankno: "",
+        banktxt: "",
+        validateBankNo: false
       };
     },
     methods: {
-      checkFrom() {
-        if (this.originalPwd == '') toast("请输入原密码");
-        else if (this.newPwd == '') toast("请输入新密码");
-        else if (this.newPwd == this.originalPwd) toast("新密码不能和旧密码相同");
-        else {
-          return true;
+      getBank() {
+        if (/^(\d{16}|\d{19})$/.test(this.bankno)) {
+          validateBankNo({bankno: this.bankno}).then(data => {
+            this.validateBankNo = data.success;
+            if (data.success) this.banktxt = data.data;
+          })
+        } else {
+          this.banktxt = "";
         }
       },
       submit() {
-        if (!this.checkFrom()) return;
-        modifyWithdrawPwd({
-          originalPwd: md5(md5(this.originalPwd)),
-          newPwd: md5(md5(this.newPwd))
-        }).then(data => {
+        if (this.bankno == "") return toast("请输入正确的银行卡");
+        if (!this.validateBankNo) return toast("银行卡校验未通过");
+        bindBankNo({cardNo: this.bankno}).then(data => {
           if (data.success) {
-            this.originalPwd = this.newPwd = '';
-            toast("修改成功");
+            this.bankno = "";
+            this.$router.back();
           } else {
             toast(data.message);
           }
         }).catch(err => {
-          toast("修改失败,请重新尝试");
+          toast("操作失败");
         })
       }
     }
   };
 </script>
-
 <style lang="scss">
   @import "~assets/scss/mixin.scss";
 
-  .pay-update {
+  .add-bank-card {
     @include f(32px);
     .form-box {
       padding: r(30) r(30) 0;
@@ -118,6 +113,13 @@
       border-radius: r(100);
       line-height: r(88)
 
+    }
+
+
+    .card-tip{
+      line-height:1.3;
+      text-align: center;
+      color:$cl3;
     }
   }
 </style>

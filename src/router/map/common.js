@@ -7,7 +7,7 @@ let transfer=(resolve) => resolve(require('views/money/transfer'));//转账
 let payupdate=(resolve) => resolve(require('views/password/pay-update'));//支付密码修改
 let payset=(resolve) => resolve(require('views/password/pay-set'));//支付密码设置
 let loginupdate=(resolve) => resolve(require('views/password/login-update'));//支付密码设置
-let addBank=(resolve) => resolve(require('views/common/addBank'));  //银行卡绑定
+let addBank=(resolve) => resolve(require('views/common/bank-bind'));  //银行卡绑定
 
 
 let backCall=(resolve) => resolve(require('views/common/back-Call'));  //银行卡绑定

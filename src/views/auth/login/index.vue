@@ -163,6 +163,8 @@
           border-radius: r(40);
           margin-left: 2%;
           width:28%;
+          height: r(84);
+          img{height: 100%;}
         }
         .pwd-eye{  position:absolute;right:r(20);top:0;width:52px; height:100%;  }
       }

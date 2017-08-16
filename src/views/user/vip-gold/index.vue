@@ -185,7 +185,7 @@
     background: #fff;
     transform: rotate(45deg);
   }
-  .money_text { @include f($f16) }
+  .money_text { @include f(38px) }
 
   .user_vip_level_info {
     overflow: hidden;
@@ -208,7 +208,7 @@
     @include f(26px) ;color: #999;
   }
 
-  .bottom_info_text { margin-top: r(30); text-align: center; @include f($f13) display: block; color: #999; }
+  .bottom_info_text { margin-top: r(30); text-align: center; @include f(26px) display: block; color: #999; }
   .btn_disable02 {
     background-color: #ddd;
     border-color: #ddd;

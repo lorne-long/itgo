@@ -12,8 +12,7 @@ let $queryBannerList="/index/queryBannerList.php";//弹框配置 首页
 
 
 let $getCarouselListAll="/index/getCarouselListAll.php";// 首页中奖信息
-let $makeCall = "/user/makeCall.php"; //电话回拨接口$
-
+let $makeCall = "/user/makeCall.php"; //电话回拨接口
 
 let  $saveOrUpdateGameStatus="/index/saveOrUpdateGameStatus.php";//收藏接口
 
@@ -32,6 +31,7 @@ let $loginDT="/mobi/loginDT.php";//DT手机端
 let $getNTGame="/mobi/getNTGame.php";//NT手机端
 let $mobileGameAgFish="/mobi/mobileGameAgFish.php";//NT手机端
 let $gamePNGMobile="/gamePNGMobile.php";//PNG手机端
+
 export function getAllGames(fun){
   return axios.all([
     axios.get('http://staticserverhost.com/games/slot/phone/ptPhone.json?v=q19'+version),//QT

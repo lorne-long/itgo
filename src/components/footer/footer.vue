@@ -44,7 +44,7 @@
     display: flex;
     align-items: center;
     height: r($footer-h);
-    z-index: 10;
+    z-index: 99;
     width: 100%;
     @include f(28px);
     color: $cl2;
