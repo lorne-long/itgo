@@ -1,5 +1,5 @@
 <template>
-  <div class="dialog_wrap dialog_with_title dialog_enter_game" v-show="value">
+  <div class="model-game" v-show="!value">
     <div class="dialog_main">
       <span class="dialog_close" @click='$emit("input",false)'><span class="icon icon_close"></span></span>
       <div class="title_wrap">{{data.name}}</div>
@@ -162,5 +162,13 @@
     components:{}
   };
 </script>
-<style>
+<style lang="scss">
+  @import "~assets/scss/mixin.scss";>
+  .model-game{
+    position: fixed;
+    top:50%;
+    left:50%;
+    z-index: 99;
+    transform: translate(-50%,-50%);
+  }
 </style>

@@ -1,58 +1,43 @@
 <template>
   <div class="user-perfect">
     <div class="page_content_tip">完善资料后就可以领取体验金啦！</div>
-    <div class="layout_form sec_box">
-      <div class="form-box">
-        <div class="form-group">
-          <span class="fl form-label">真实姓名</span>
-          <div class="form-control"><input v-model="Data.accountName" type="text" placeholder="填写后无法修改，与银行卡持卡人一致"/>
-          </div>
-        </div>
-        <div class="form-group">
-          <span class="fl form-label">手机号码</span>
-          <div class="form-control">
-            <input type="text" v-model="userData.phone" readonly>
-          </div>
-        </div>
-        <div class="form-group date_picker with_arrow_icon">
-          <span class="fl form-label">出生日期</span>
-          <div class="form-control">
-            <input type="date" v-model="Data.birthday" placeholder="请选择"/>
-          </div>
-        </div>
-        <div class="form-group">
-          <span class="fl form-label">银行卡号</span>
-          <div class="form-control">
-            <input type="text" v-model="Data.bankno" placeholder="输入卡号后，系统智能识别银行"
-                   @input="getBank" maxlength="19"></div>
-        </div>
-        <div class="cardTips">{{banktxt}}</div>
-        <div class="form-group">
-          <span class="fl form-label">微信</span>
-          <div class="form-control">
-            <input type="text" placeholder="用于接收优惠信息，非必填项"
-                   v-model="Data.wexin"
-            >
-          </div>
-        </div>
-        <div class="form-group">
-          <span class="fl form-label">qq</span>
-          <div class="form-control"><input type="text" placeholder="用于接收优惠信息，非必填项" v-model="Data.qq"></div>
-        </div>
-        <div class="form-group">
-          <span class="fl form-label">电子邮箱</span>
-          <div class="form-control"><input type="text" placeholder="用于接收优惠信息，非必填项" v-model="Data.email"></div>
-        </div>
-      </div>
-      <div class="form_tip text_align_left">
-        请注意，检测如有同ip同姓名，或银行卡已被使用时，将
-        无法领取体验金，感谢您的理解。
-      </div>
+    <div class="form-box">
+      <input-inline label="真实姓名">
+        <input v-model="Data.accountName" type="text" placeholder="填写后无法修改，与银行卡持卡人一致"/>
+      </input-inline>
+      <input-inline label="手机号码">
+        <input type="text" v-model="userData.phone" readonly>
+      </input-inline>
+
+      <input-inline label="出生日期">
+        <input type="date" v-model="Data.birthday" placeholder="请选择"/>
+      </input-inline>
+      <input-inline label="银行卡号">
+        <input type="text" v-model="Data.bankno" placeholder="输入卡号后，系统智能识别银行"
+               @input="getBank" maxlength="19">
+      </input-inline>
+      <div class="cardTips">{{banktxt}}</div>
+      <input-inline label="微信">
+        <input type="text" placeholder="用于接收优惠信息，非必填项"
+               v-model="Data.wexin">
+      </input-inline>
+      <input-inline label="QQ">
+        <input type="text" placeholder="用于接收优惠信息，非必填项" v-model="Data.qq">
+      </input-inline>
+      <input-inline label="电子邮箱">
+        <input type="text" placeholder="用于接收优惠信息，非必填项" v-model="Data.email">
+      </input-inline>
     </div>
-    <div @click="submit" class="btn-search"> 保存</div>
+    <div class="">
+      请注意，检测如有同ip同姓名，或银行卡已被使用时，将
+      无法领取体验金，感谢您的理解。
+    </div>
+    <v-button @click="submit">保存</v-button>
   </div>
 </template>
 <script>
+  import vButton from "components/form/button"
+  import inputInline from "components/form/input-inline"
   import {completeUserInfo} from "api/user"
   import {validateBankNo} from "api/payment"
   import {mapGetters} from 'vuex'
@@ -114,6 +99,9 @@
     },
     computed: {
       ...mapGetters(["userData"])
+    },
+    components: {
+      inputInline, vButton
     }
   }
 </script>

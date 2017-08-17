@@ -6,23 +6,20 @@
       <div class="flex-3 ">
         <p>点击获取验证码，系统将向您的注册手机号发送一个验证码</p>
         <div class="form-box">
-          <div class=" form-group">
-            <span class="form-label">验证码:</span>
-            <div class="form-control">
-              <input type="text" v-model="code" placeholder="请输入验证码" maxlength="6">
-            </div>
-          </div>
+          <input-inline label="验证码:">
+            <input type="text" v-model="code" placeholder="请输入验证码" maxlength="6">
+          </input-inline>
         </div>
-        <div class="btn-getcode" @click="showVerify=true">
-          获取验证码
-        </div>
+        <div class="btn-getcode" @click="showVerify=true">获取验证码</div>
       </div>
     </div>
     <v-touclick v-model="showVerify" @success="success"></v-touclick>
-    <div @click="verify" class="btn-search ">验证</div>
+    <v-button  @click="verify">验证</v-button>
   </div>
 </template>
 <script>
+  import vButton from "components/form/button"
+  import inputInline from "components/form/input-inline"
   import {sendSms4TYJ, checkPhoneCode} from 'api/user';
   import {mapGetters} from 'vuex'
   import vTouclick from 'components/touclick'
@@ -71,7 +68,7 @@
       }
     },
     components: {
-      vTouclick
+      vTouclick,vButton,inputInline
     }
   };
 </script>

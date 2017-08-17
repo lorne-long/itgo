@@ -1,37 +1,27 @@
 <template>
   <div class="user-log">
     <div class="form-box">
-      <div class="form-group">
-        <label class="fl form-label">记录类型</label>
-        <div class="form-control">
-          <select v-model="searchData.historyType">
-            <option v-for="item in logType" :value="item.value">{{item.name}}</option>
-          </select>
-        </div>
-      </div>
-      <div class="form-group" v-show="searchData.historyType=='friend'">
-        <label class="fl form-label">推荐类型</label>
-        <div class="form-control">
-          <select v-model="searchData.friendtype">
-            <option value="0">推荐注册成功玩家</option>
-            <option value="1">推荐奖金收入</option>
-            <option value="2">推荐奖金支出</option>
-          </select>
-        </div>
-      </div>
-      <div class="form-group">
-        <label class="fl form-label">时间范围</label>
-        <div class="form-control">
-          <select v-model="Days">
-            <option value="1">一天</option>
-            <option value="7">七天</option>
-            <option value="30">一个月</option>
-          </select>
-          <i class="right-info iconfont icon-arrow_d"></i>
-        </div>
-      </div>
+      <input-inline label="记录类型" select="1">
+        <select v-model="searchData.historyType">
+          <option v-for="item in logType" :value="item.value">{{item.name}}</option>
+        </select>
+      </input-inline>
+      <input-inline v-show="searchData.historyType=='friend'" label="推荐类型" select="1">
+        <select v-model="searchData.friendtype">
+          <option value="0">推荐注册成功玩家</option>
+          <option value="1">推荐奖金收入</option>
+          <option value="2">推荐奖金支出</option>
+        </select>
+      </input-inline>
+      <input-inline label="时间范围" select="1">
+        <select v-model="Days">
+          <option value="1">一天</option>
+          <option value="7">七天</option>
+          <option value="30">一个月</option>
+        </select>
+      </input-inline>
     </div>
-    <div class="btn-search" @click="search(1)">查询 </div>
+    <v-button @click="search(1)">查询</v-button>
     <table-data :thead="thead" @search="search" :data="data">
       <tbody v-for="(item,i) in data.pageContents||[]">
       <tr @click="curItem=i">
@@ -54,7 +44,8 @@
 <script>
   import {queryHistory} from "api/user";
   import tableData from "components/table-data"
-
+  import vButton from "components/form/button"
+  import inputInline from "components/form/input-inline"
   let logType = [
     {value: 'deposit', name: "在线存款记录"},
     {value: "withdraw", name: '提款记录'},
@@ -278,7 +269,7 @@
       this.Days = 1;
     },
     components: {
-      tableData
+      tableData,inputInline,vButton
     }
   };
 </script>
@@ -288,58 +279,6 @@
     @include f(32px);
     .form-box {
       padding:r(30) r(30) 0;
-      .form-group {
-        position: relative;
-        height: r(84);
-        line-height: r(82);
-        overflow: hidden;
-        border: r(2) solid #ccc;
-        padding: 0 r(24);
-        border-radius: 50em;
-        margin-bottom: r(32);
-        background: #fff;
-      }
-      .form-label {
-        text-align:right;
-        color: $cl4;
-        min-width: 4em;
-        display: block;
-        float: left;
-        padding-left:r(16);
-      }
-      .form-control {
-        @include f(28px);
-        height: 100%;
-        white-space: nowrap;
-        select,input {
-          vertical-align: top;
-          font-size: inherit;
-          border: none;
-          color: #333;
-          outline: none;
-          height: 100%;
-          width: 100%;
-          text-indent: 1em;
-        }
-        .right-info{
-          position: absolute;
-          height:100%;
-          top:0;
-          right:r(32);
-        }
-      }
-    }
-    .btn-search {
-      display: block;
-      margin: r(20) auto 0;
-      background: $btn-bg1;
-      text-align: center;
-      @include f(36px);
-      color: #fff;
-      width: 90%;
-      border-radius: r(100);
-      line-height: r(88)
-
     }
   }
 </style>

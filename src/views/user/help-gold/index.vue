@@ -7,17 +7,20 @@
       </div>
     </div>
     <div  v-show="!!submitData.pno">
-      <div class="form-control">
+      <v-input select="1">
         <select v-model="submitData.platform">
           <option value="">选择游戏平台</option>
           <option v-for="item in platformData" :value="item.value">
             {{item.name}}
           </option>
         </select>
-        <i class="right-info iconfont icon-arrow_d"></i>
-      </div>
-      <div class="btn-submit " @click="submit">确定转入</div>
-      <div class="btn-reset" @click="submitData.pno=submitData.platform=''">重新选择</div>
+      </v-input>
+      <v-button @click="submit">
+        确定转入
+      </v-button>
+      <v-button @click="submitData.pno=submitData.platform=''" model="0">
+        重新选择
+      </v-button>
     </div>
     <form-tip>
       <p class="c-red">温馨提示：</p>
@@ -29,9 +32,10 @@
 
 <script>
   import {queryPTLosePromo, claimLosePromo} from "api/preferential-terms";
-  import formTip from "components/form-tip.vue"
+  import formTip from "components/form-tip"
+  import vInput from "components/form"
+  import vButton from "components/form/button"
   import {platformData} from "@/assets/data"
-
   export default {
     data() {
       return {
@@ -75,13 +79,12 @@
       });
     },
     components: {
-      formTip
+      formTip,vInput,vButton
     }
   };
 </script>
 <style lang="scss">
   @import "~assets/scss/mixin.scss";
-
   .help-gold {
     padding: r(30);
     @include  f(28px);
@@ -107,49 +110,6 @@
         color: $cl4;
       }
     }
-    .form-control {
-      position: relative;
-      height: r(84);
-      line-height: r(84);
-      overflow: hidden;
-      border: r(2) solid #ccc;
-      padding: 0 r(24);
-      border-radius: 50em;
-      margin-bottom: r(32);
-      background: #fff;
-      @include f(28px);
-      select, input {
-        font-size: inherit;
-        border: none;
-        color: #333;
-        outline: none;
-        height: 100%;
-        width: 100%;
-        vertical-align: top;
-        text-indent: 0.5em;
-      }
-      .right-info {
-        position: absolute;
-        height: 100%;
-        top: 0;
-        right: r(32);
 
-      }
-    }
-    .btn-reset, .btn-submit {
-      display: block;
-      margin: 0 auto;
-      background: $btn-bg1;
-      text-align: center;
-      @include f(36px);
-      color: #fff;
-      width: 90%;
-      border-radius: r(100);
-      line-height: r(88);
-    }
-    .btn-reset{
-      background: $btn-bg2;
-      margin-top: r(20);
-    }
   }
 </style>

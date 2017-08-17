@@ -1,23 +1,21 @@
 <template>
   <div class="discount-code">
-
-    <div class="form-control">
+    <v-input select="1">
       <select v-model="couponType" id="couponType">
         <option value=""> 请选择 </option>
         <option v-for="item in platformData" :value="item.value">
           {{item.name}}
         </option>
       </select>
-      <i class="right-info iconfont icon-arrow_d"></i>
-    </div>
-    <div class="form-control">
+    </v-input>
+    <v-input>
       <input type="text" v-model.number="couponRemit" placeholder="请填写转入金额" name="couponRemit" maxlength="10">
       <span class="right-info">元</span>
-    </div>
-    <div class="form-control">
+    </v-input>
+    <v-input>
       <input type="text" v-model="couponCode" id="couponCode" maxlength="20"   placeholder="优惠代码">
-    </div>
-    <div @click="submit" class="btn-submit">确定转入</div>
+    </v-input>
+    <v-button @click="submit">确定转入</v-button>
     <form-tip>
       <p class="c-red">温馨提示：</p>
       <p>1.不限平台使用。</p>
@@ -28,9 +26,10 @@
 </template>
 <script>
   import {transferInforCoupon} from "api/preferential-terms"
-  import formTip from "components/form-tip.vue"
+  import formTip from "components/form-tip"
   import {platformData} from "@/assets/data"
-
+  import vInput from "components/form"
+  import vButton from "components/form/button"
   export default {
     data() {
       return {
@@ -67,7 +66,7 @@
     created() {
     },
     components: {
-      formTip
+      formTip,vInput,vButton
     }
   };
 </script>
@@ -77,47 +76,8 @@
 
   .discount-code {
     padding: r(30);
-    .form-control {
-      position: relative;
-      height: r(84);
-      line-height: r(84);
-      overflow: hidden;
-      border: r(2) solid #ccc;
-      padding: 0 r(24);
-      border-radius: 50em;
-      margin-bottom: r(32);
-      background: #fff;
-      @include f(28px);
-      select, input {
-        font-size: inherit;
-        border: none;
-        color: #333;
-        outline: none;
-        height: 100%;
-        width: 100%;
-        vertical-align: top;
-        text-indent: 0.5em;
-      }
-      .right-info {
-        position: absolute;
-        height: 100%;
-        top: 0;
-        right: r(32);
 
-      }
-    }
 
-    .btn-submit {
-      display: block;
-      margin: 0 auto;
-      background: $btn-bg1;
-      text-align: center;
-      @include f(36px);
-      color: #fff;
-      width: 90%;
-      border-radius: r(100);
-      line-height: r(88);
-    }
 
   }
 

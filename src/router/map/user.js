@@ -88,7 +88,7 @@ export default [
       {
         path:"washcode",
         name:"user_washcode",
-        component:discount_code,
+        component:wash_code,
         meta:{
           headName:"洗码"
         }

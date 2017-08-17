@@ -1,34 +1,27 @@
 <template>
   <div class="login-update">
-
     <div class="form-box">
-      <div class="form-group">
-        <span class="form-label">原密码</span>
-        <div class="form-control"><input v-model='password' placeholder="原密码" type="password"></div>
-      </div>
-      <div class="form-group">
-        <span class="form-label">新密码</span>
-        <div class="form-control"><input ref="pwd1" v-model='new_password' type="password" placeholder="6-16位数字和字母">
-        </div>
+      <input-inline label="原密码">
+        <input v-model='password' placeholder="原密码" type="password">
+      </input-inline>
+      <input-inline label="新密码">
+        <input ref="pwd1" v-model='new_password' type="password" placeholder="6-16位数字和字母">
         <span @touchstart="$refs.pwd1.type='text'" @touchend="$refs.pwd1.type='password'" class="right_label"></span>
-      </div>
-      <div class="form-group">
-        <span class="form-label">确认密码</span>
-        <div class="form-control"><input ref="pwd2" v-model='confirm_password' type="password"
-                                             placeholder="6-16位数字和字母"></div>
+      </input-inline>
+      <input-inline label="确认密码">
+        <input ref="pwd2" v-model='confirm_password' type="password" placeholder="6-16位数字和字母">
         <span @touchstart="$refs.pwd2.type='text'" @touchend="$refs.pwd2.type='password'" class="right-info"></span>
-      </div>
+      </input-inline>
     </div>
-
-
-    <div class="btn-search"
-         @click="submit">确定
-    </div>
+    <v-button @click="submit">确定</v-button>
   </div>
 </template>
 <script>
   import md5 from "MD5";
   import {changepws} from "api/payment";
+
+  import vButton from "components/form/button"
+  import inputInline from "components/form/input-inline"
 
   export default {
     data() {
@@ -66,6 +59,9 @@
           }
         })
       }
+    },
+    components: {
+      inputInline, vButton
     }
   };
 </script>
@@ -77,58 +73,6 @@
     @include f(32px);
     .form-box {
       padding: r(30) r(30) 0;
-      .form-group {
-        position: relative;
-        height: r(84);
-        line-height: r(82);
-        overflow: hidden;
-        border: r(2) solid #ccc;
-        padding: 0 r(24);
-        border-radius: 50em;
-        margin-bottom: r(32);
-        background: #fff;
-      }
-      .form-label {
-        text-align: right;
-        color: $cl4;
-        min-width: 4em;
-        display: block;
-        float: left;
-        padding-left: r(16);
-      }
-      .form-control {
-        @include f(28px);
-        height: 100%;
-        white-space: nowrap;
-        select, input {
-          vertical-align: top;
-          font-size: inherit;
-          border: none;
-          color: #333;
-          outline: none;
-          height: 100%;
-          width: 100%;
-          text-indent: 1em;
-        }
-        .right-info {
-          position: absolute;
-          height: 100%;
-          top: 0;
-          right: r(32);
-        }
-      }
-    }
-    .btn-search {
-      display: block;
-      margin: r(20) auto 0;
-      background: $btn-bg1;
-      text-align: center;
-      @include f(36px);
-      color: #fff;
-      width: 90%;
-      border-radius: r(100);
-      line-height: r(88)
-
     }
   }
 </style>

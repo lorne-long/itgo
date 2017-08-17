@@ -35,7 +35,7 @@
 </template>
 <script>
   import  {checkUpgrade,getBetUpgrateVO} from "api/preferential-terms"
-  import formTip from "components/form-tip.vue"
+  import formTip from "components/form-tip"
   import { mapGetters } from 'vuex'
   export default {
     data() {

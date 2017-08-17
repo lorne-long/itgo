@@ -11,19 +11,19 @@
       </div>
     </div>
     <div v-show="step==2">
-      <div class="form-control">
+      <v-input select="1">
         <select v-model="myData.platform">
           <option value="">请选择转入平台</option>
           <option v-for="item in platformData" :value="item.value">
             {{item.name}}
           </option>
         </select>
-      </div>
-      <div class="form-control">
+      </v-input>
+      <v-input >
         <input v-model.number="myData.money" type="text" placeholder="请填写转入金额">
         <span class="right-info">元</span>
-      </div>
-      <div class="btn-submit" @click="submit">确定转入</div>
+      </v-input>
+      <v-button  @click="submit">确定转入</v-button>
     </div>
     <form-tip>
       <p class="c-red">温馨提示：</p>
@@ -34,8 +34,12 @@
   </div>
 </template>
 <script>
+
+  import vButton from "components/form/button"
+  import vInput from "components/form"
+
   import {queryFriendBonue, transferInforFriend} from "api/preferential-terms";
-  import formTip from "components/form-tip.vue"
+  import formTip from "components/form-tip"
   import {platformData} from "@/assets/data"
 
   export default {
@@ -75,56 +79,15 @@
       })
     },
     components: {
-      formTip
+      formTip,vInput,vButton
     }
   };
 </script>
-
 <style lang="scss">
   @import "~assets/scss/mixin.scss";
   .recommend-firend {
     padding: r(30);
     @include f(28px);
-    .form-control {
-      position: relative;
-      height: r(84);
-      line-height: r(84);
-      overflow: hidden;
-      border: r(2) solid #ccc;
-      padding: 0 r(24);
-      border-radius: 50em;
-      margin-bottom: r(32);
-      background: #fff;
-      @include f(28px);
-      select, input {
-        font-size: inherit;
-        border: none;
-        color: #333;
-        outline: none;
-        height: 100%;
-        width: 100%;
-        vertical-align: top;
-        text-indent: 0.5em;
-      }
-      .right-info {
-        position: absolute;
-        height: 100%;
-        top: 0;
-        right: r(32);
-
-      }
-    }
-    .btn-submit {
-      display: block;
-      margin: 0 auto;
-      background: $btn-bg1;
-      text-align: center;
-      @include f(36px);
-      color: #fff;
-      width: 90%;
-      border-radius: r(100);
-      line-height: r(88);
-    }
     .link-box, .item-list {
       margin-bottom: r(30);
       padding: r(30);

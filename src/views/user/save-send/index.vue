@@ -1,23 +1,25 @@
 <template>
-  <div class="discount-code save-send">
-    <div class="form-public">
-      <div class="form-control">
-        <input v-model.number="submitData.remit" placeholder="请填写转入金额" type="text">
-        <span class="right-info">元</span>
-      </div>
-      <div class="form-control"><select v-model="Type">
+  <div class="save-send">
+
+    <v-input>
+      <input v-model.number="submitData.remit" placeholder="请填写转入金额" type="text">
+      <span class="right-info">元</span>
+    </v-input>
+    <v-input select="1">
+      <select v-model="Type">
         <option value="">选择游戏平台</option>
         <option v-for="item in platformData" :value="item">{{item}}</option>
-      </select></div>
-      <div class="form-control"><select v-model="submitData.youhuiConfigId">
+      </select>
+    </v-input>
+    <v-input select="1">
+      <select v-model="submitData.youhuiConfigId">
         <option value="">选择优惠幅度</option>
         <option v-for="(item,i) in filterData"
                 :value="item.id">
           {{item.name}}
         </option>
       </select>
-      </div>
-    </div>
+    </v-input>
     <div class="money-tip">
       <div class="tip-item">
         可获得红利（7天有效）
@@ -36,7 +38,7 @@
         <div class="item-money">{{touzhuLimit | toFixed }} 元</div>
       </div>
     </div>
-    <div @click="submit" class="btn-submit">确定转入</div>
+    <v-button @click="submit" class="btn-submit">确定转入</v-button>
     <form-tip>
       <div class="c-red">温馨提示：</div>
       <span class="c-red">1.每天的00:00-01:00为系统结算时间，暂时无法使用自助存送。</span><br>
@@ -46,8 +48,11 @@
   </div>
 </template>
 <script>
+
+  import vButton from "components/form/button"
+  import vInput from "components/form"
   import {youhui, getSelfYouHuiObject} from "api/preferential-terms"
-  import formTip from "components/form-tip.vue"
+  import formTip from "components/form-tip"
 
   export default {
     data() {
@@ -139,7 +144,7 @@
       this.getYouHui();
     },
     components: {
-      formTip
+      formTip, vButton, vInput
     }
   };
 </script>
@@ -149,16 +154,17 @@
 
   .save-send {
     @include f(28px);
+    padding: r(30);
     .money-tip {
       overflow: hidden;
       color: $cl4;
       .tip-item {
         float: left;
         width: 50%;
-        .item-money{
+        .item-money {
           color: $cl3;
-          @include  f(40px);
-          line-height:2;
+          @include f(40px);
+          line-height: 2;
         }
       }
     }
